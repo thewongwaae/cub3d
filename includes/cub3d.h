@@ -35,7 +35,12 @@ char	**parse_map( char *file );
 
 /* UTILS */
 // GNL
-char	*gnl(int fd);
-
+char	*gnl( int fd );
+// split
+char	**ft_split( const char *str, char c );
+// strings
+int		ft_strlen( char *s );
+char	*ft_strjoin( char *s1, char *s2 );
+char	*ft_strdup( char *s );
 
 #endif
