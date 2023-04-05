@@ -4,12 +4,10 @@ CFLAGS		= -Wall -Werror -Wextra -fsanitize=address -g
 MLX			= -L. -lmlx -framework OpenGL -framework AppKit
 INCLUDES	= -I includes -I mlx
 
-CUB3D		= main checks
-PARSE		= keypress parse
+CUB3D		= main checks keypress parse
 UTILS		= gnl split strings
 
-SRCS 		= $(addsuffix .c, $(addprefix srcs/cub3d/, $(GAME))) \
-			$(addsuffix .c, $(addprefix srcs/parse/, $(PARSE))) \
+SRCS 		= $(addsuffix .c, $(addprefix srcs/cub3d/, $(CUB3D))) \
 			$(addsuffix .c, $(addprefix srcs/utils/, $(UTILS)))
 
 OBJS = $(SRCS:c=o)

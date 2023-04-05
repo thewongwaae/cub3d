@@ -12,9 +12,11 @@ static int	has_extension( const char *file, const char *ext )
 	return (0);
 }
 
-int	check_file(char *file)
+int	checks( char *file, t_game *game )
 {
 	if (!has_extension(file, "cub"))
-		return (write(2, "Error: Invalid extension", 24));
+		return (write(2, "Error: Invalid extension", 25));
+	if (!parse_mapfile(file, game))
+		return (write(2, "Error: Invalid file", 22));
 	return (0);
 }

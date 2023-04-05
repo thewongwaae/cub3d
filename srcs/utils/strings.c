@@ -44,17 +44,6 @@ char	*ft_strdup( char *s )
 	return (out);
 }
 
-// char	*ft_strchr( const char *s, int c )
-// {
-// 	while (*s != (char)c)
-// 	{
-// 		if (*s == '\0')
-// 			return (NULL);
-// 		s++;
-// 	}
-// 	return ((char *)s);
-// }
-
 char	*ft_strrchr( const char *s, int c )
 {
 	char	*last;
