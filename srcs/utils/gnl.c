@@ -1,6 +1,6 @@
 #include "cub3d.h"
 
-char	*ft_free(char *buffer, char *buf)
+static char	*freee(char *buffer, char *buf)
 {
 	char	*tmp;
 
@@ -72,7 +72,7 @@ static char	*read_file(int fd, char *res)
 			return (NULL);
 		}
 		buff[read_status] = 0;
-		res = ft_free(res, buff);
+		res = freee(res, buff);
 		if (ft_strchr(buff, '\n'))
 			break ;
 	}

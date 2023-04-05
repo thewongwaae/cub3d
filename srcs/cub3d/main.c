@@ -9,7 +9,9 @@ int	main( int ac, char **av )
 	game.mlx = mlx_init();
 	if (!checks(av[1], &game))
 		return (write(2, ": Invalid map file\n", 24));
-	game.win = mlx_new_window(game.mlx, 1920, 1080, "cub3D");
+	game.size.x = 1920;
+	game.size.y = 1080;
+	game.win = mlx_new_window(game.mlx, game.size.x, game.size.y, "cub3D");
 	// mlx_key_hook(game.win, move, &game);
 	// mlx_hook(game.win, 17, (1L << 0), endgame, &game);
 	// mlx_loop_hook(game.mlx, refresh, &game);

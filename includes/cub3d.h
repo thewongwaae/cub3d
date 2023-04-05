@@ -11,14 +11,18 @@
 
 # define BUFFER_SIZE 1024
 
+typedef struct s_vec
+{
+	int	x;
+	int	y;
+}	t_vec;
+
 typedef struct s_texture
 {
-	// path to wall files
 	void	*north;
 	void	*south;
 	void	*east;
 	void	*west;
-	// solid color fill in hex
 	int 	floor;
 	int 	ceiling;
 }	t_texture;
@@ -28,6 +32,7 @@ typedef struct s_game
 	char		**map;
 	void		*mlx;
 	void		*win;
+	t_vec		size;
 	char		**paths;
 	t_texture	*tex;
 }				t_game;
@@ -36,6 +41,7 @@ typedef struct s_game
 
 /* PARSE */
 char	**parse_mapfile( char *file, t_game *game );
+void	load_textures( t_game *game );
 
 /* UTILS */
 // free
