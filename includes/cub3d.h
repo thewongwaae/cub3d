@@ -28,8 +28,8 @@ typedef struct s_game
 	char		**map;
 	void		*mlx;
 	void		*win;
-	char		**texpaths;
-	t_texture	*texture;
+	char		**paths;
+	t_texture	*tex;
 }				t_game;
 
 /* CUB3D */
@@ -38,6 +38,9 @@ typedef struct s_game
 char	**parse_mapfile( char *file, t_game *game );
 
 /* UTILS */
+// free
+void	ft_free( char *var );
+void	free_tab( char **tab );
 // GNL
 char	*gnl( int fd );
 // split
@@ -49,7 +52,9 @@ char	*ft_strdup( char *s );
 char	*ft_strchr( const char *s, int c );
 char	*ft_strrchr( const char *s, int c );
 int		ft_strcmp( const char *s1, const char *s2 );
-int		is_space( char c );
-char	*ft_strcpy( char *dst, const char *src );
+int 	is_space( char c );
+int		is_digit( char c );
+int		ft_atoi( const char *s );
+char	*ft_strtok( char *s, char sep );
 
 #endif

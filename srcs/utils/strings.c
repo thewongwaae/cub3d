@@ -29,17 +29,21 @@ char	*ft_strjoin( char *s1, char *s2 )
 	return (dst);
 }
 
+// Modified ft_strdup to stop at \n
 char	*ft_strdup( char *s )
 {
 	char	*out;
 	int		i;
 
-	i = -1;
+	i = 0;
 	out = malloc(sizeof(char) * ft_strlen(s) + 1);
 	if (!out)
 		return (NULL);
-	while (s[++i])
+	while (s[i] && (s[i] != '\n'))
+	{
 		out[i] = s[i];
+		i++;
+	}
 	out[i] = '\0';
 	return (out);
 }
@@ -62,7 +66,8 @@ char	*ft_strrchr( const char *s, int c )
 
 int	ft_strcmp( const char *s1, const char *s2 )
 {
-	while (*s1 && (*s1 == *s2)) {
+	while (*s1 && (*s1 == *s2))
+	{
 		s1++;
 		s2++;
 	}

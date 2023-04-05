@@ -29,13 +29,14 @@ static void	parse_textures( char **mapfile, t_game *game )
 		space = ft_strchr(mapfile[i], ' ');
 		if (space)
 		{
-			ft_strcpy(game->texpaths[j], space + 1);
+			game->paths[j] = ft_strdup(space + 1);
 			j++;
 		}
 		i++;
 	}
-	if (space)
-		free(space);
+	game->paths[j] = ft_strdup(mapfile[i][2]);
+	game->paths[j + 1] = NULL;
+	ft_free(space);
 	load_textures(game);
 }
 

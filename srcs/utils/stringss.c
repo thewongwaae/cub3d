@@ -11,20 +11,58 @@ char	*ft_strchr( const char *s, int c )
 	return ((char *)s);
 }
 
-int	is_space( char c )
+int is_space( char c )
 {
-	if (c == 32 || (c >= 9 && c <= 13))
-		return (1);
-	return (0);
+	return (c == 32 || (c >= 9 && c <= 13));
 }
 
-char	*ft_strcpy( char *dst, const char *src )
+int	is_digit( char c )
 {
-	char	*p;
-	
-	p = dst;
-	while (*src && *src != '\n')
-		*p++ = *src++;
-	*p = '\0';
-	return (dst);
+	return (c >= '0' && c <= '9');
+}
+
+int	ft_atoi( const char *s )
+{
+	int	res;
+	int	sign;
+
+	res = 0;
+	sign = 1;
+	while (is_space(*s))
+		s++;
+	if (*s == '-' || *s == '+')
+		if (*s++ == '-')
+			sign = -1;
+	while (is_digit(*s))
+	{
+		res = res * 10 + (*s - '0');
+		s++;
+	}
+	return (res * sign);
+}
+
+char	*ft_strtok( char *s, char sep )
+{
+	static char	*stock;
+	char		*ptr;
+
+	ptr = NULL;
+	if (s)
+	{
+		free(stock);
+		stock = ft_strdup(s);
+	}
+	while (*stock)
+	{
+		if (!ptr && *stock != sep)
+			ptr = stock;
+		else if (ptr && *stock == sep)
+		{
+			*stock = '\0';
+			stock += 1;
+			break ;
+		}
+		stock++;
+	}
+	return (ptr);
 }
