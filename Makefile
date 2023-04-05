@@ -1,8 +1,10 @@
 NAME		= cub3D
 CC			= gcc
+RM			= rm -rf
 CFLAGS		= -Wall -Werror -Wextra -fsanitize=address -g
-MLX			= -L. -lmlx -framework OpenGL -framework AppKit
-INCLUDES	= -I includes -I mlx
+MLX			= -lmlx -framework OpenGL -framework AppKit
+MLXA		= libmlx.a
+INCLUDES	= -I includes
 
 CUB3D		= main checks keypress parse
 UTILS		= gnl split strings
@@ -19,7 +21,7 @@ OBJS = $(SRCS:c=o)
 $(NAME): $(OBJS)
 	@echo "\n"
 	@echo "\033[0;32;1mCompiling scub3d..."
-	@$(CC) $(CFLAGS) $(MLX) $(OBJS) -o $(NAME) libmlx.a
+	@$(CC) $(CFLAGS) $(MLXA) $(MLX) $(OBJS) -o $(NAME)
 	@echo "\n\033[0mDone !"
 
 all: $(NAME)
