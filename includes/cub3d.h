@@ -5,6 +5,7 @@
 # include <fcntl.h>
 # include <unistd.h>
 # include <stdio.h>
+# include <stdlib.h>
 # include <math.h>
 # include <mlx.h>
 
@@ -42,5 +43,7 @@ char	**ft_split( const char *str, char c );
 int		ft_strlen( char *s );
 char	*ft_strjoin( char *s1, char *s2 );
 char	*ft_strdup( char *s );
+char	*ft_strrchr( const char *s, int c );
+int		ft_strcmp( const char *s1, const char *s2 );
 
 #endif

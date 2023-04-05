@@ -2,7 +2,7 @@
 
 char	**parse_map( char *file )
 {
-	// check extension, parse map into struct
+	// parse map into struct
 }
 
 // check map validity

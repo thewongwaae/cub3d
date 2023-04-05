@@ -43,3 +43,39 @@ char	*ft_strdup( char *s )
 	out[i] = '\0';
 	return (out);
 }
+
+// char	*ft_strchr( const char *s, int c )
+// {
+// 	while (*s != (char)c)
+// 	{
+// 		if (*s == '\0')
+// 			return (NULL);
+// 		s++;
+// 	}
+// 	return ((char *)s);
+// }
+
+char	*ft_strrchr( const char *s, int c )
+{
+	char	*last;
+
+	last = NULL;
+	while (*s)
+	{
+		if (*s == (char)c)
+			last = (char *)s;
+		s++;
+	}
+	if ((char)c == '\0')
+		return ((char *)s);
+	return (last);
+}
+
+int	ft_strcmp( const char *s1, const char *s2 )
+{
+	while (*s1 && (*s1 == *s2)) {
+		s1++;
+		s2++;
+	}
+	return ((unsigned char)*s1 - (unsigned char)*s2);
+}

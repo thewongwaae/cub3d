@@ -4,7 +4,7 @@ CFLAGS		= -Wall -Werror -Wextra -fsanitize=address -g
 MLX			= -L. -lmlx -framework OpenGL -framework AppKit
 INCLUDES	= -I includes -I mlx
 
-CUB3D		= main
+CUB3D		= main checks
 PARSE		= keypress parse
 UTILS		= gnl split strings
 
