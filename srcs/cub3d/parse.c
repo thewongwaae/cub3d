@@ -6,7 +6,7 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 17:12:14 by hwong             #+#    #+#             */
-/*   Updated: 2023/04/06 17:12:15 by hwong            ###   ########.fr       */
+/*   Updated: 2023/04/06 17:19:55 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,7 @@ char	**parse_mapfile( char *file, t_game *game )
 	if (fd == -1)
 		return (write(2, "Error: File not found", 22));
 	mapfile = cub_to_array(fd);
+	close(fd);
 	game->paths = malloc(sizeof(char *) * 7);
 	parse_textures(mapfile, &i, game);
 	parse_map(&mapfile[i], game);

@@ -6,7 +6,7 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 17:12:20 by hwong             #+#    #+#             */
-/*   Updated: 2023/04/06 17:12:20 by hwong            ###   ########.fr       */
+/*   Updated: 2023/04/06 17:21:24 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,6 @@ void	free_tab( char **tab )
 
 	i = -1;
 	while (tab[++i])
-		free(tab[i]);
+		ft_free(tab[i]);
 	free(tab);
 }
