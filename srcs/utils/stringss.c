@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   stringss.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/04/06 17:12:30 by hwong             #+#    #+#             */
+/*   Updated: 2023/04/06 17:12:55 by hwong            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 char	*ft_strchr( const char *s, int c )
@@ -11,7 +23,7 @@ char	*ft_strchr( const char *s, int c )
 	return ((char *)s);
 }
 
-int is_space( char c )
+int	is_space( char c )
 {
 	return (c == 32 || (c >= 9 && c <= 13));
 }
