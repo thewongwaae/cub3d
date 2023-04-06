@@ -41,4 +41,5 @@ void	load_textures( t_game *game )
 	game->tex->floor = rgba_to_int(c[0], c[1], c[2], 1);
 	strrgb_to_rgba(game->paths[5], &c);
 	game->tex->ceiling = rgba_to_int(c[0], c[1], c[2], 1);
+	free_tab(game->paths);
 }

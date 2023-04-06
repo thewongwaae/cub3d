@@ -18,5 +18,7 @@ int	checks( char *file, t_game *game )
 		return (write(2, "Error: Invalid extension", 25));
 	if (!parse_mapfile(file, game))
 		return (write(2, "Error: Invalid file", 22));
+	if (!check_map(game))
+		return (write(2, "Error: Map invalid", 19));
 	return (0);
 }

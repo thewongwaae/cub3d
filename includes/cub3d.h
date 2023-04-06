@@ -40,8 +40,10 @@ typedef struct s_game
 /* CUB3D */
 
 /* PARSE */
+int		checks( char *file, t_game *game );
 char	**parse_mapfile( char *file, t_game *game );
 void	load_textures( t_game *game );
+int		check_map( t_game *game );
 
 /* UTILS */
 // free
