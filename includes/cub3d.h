@@ -32,9 +32,12 @@ typedef struct s_game
 	char		**map;
 	void		*mlx;
 	void		*win;
-	t_vec		size;
+	t_vec		winsize;
+	t_vec		mapsize;
+	int			leak;
 	char		**paths;
 	t_texture	*tex;
+	t_vec		player;
 }				t_game;
 
 /* CUB3D */
@@ -43,7 +46,7 @@ typedef struct s_game
 int		checks( char *file, t_game *game );
 char	**parse_mapfile( char *file, t_game *game );
 void	load_textures( t_game *game );
-int		check_map( t_game *game );
+void	check_map( t_game *game );
 
 /* UTILS */
 // free

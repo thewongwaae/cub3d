@@ -61,13 +61,12 @@ static void	parse_map( char **mapfile, t_game *game )
 		j++;
 	}
 	game->map = malloc(sizeof(char *) * j + 1);
-	j = 0;
-	while (mapfile[i + j])
+	while (mapfile[i + game->mapsize.y])
 	{
-		game->map[j] = ft_strdup(mapfile[i + j]);
-		j++;
+		game->map[game->mapsize.y] = ft_strdup(mapfile[i + game->mapsize.y]);
+		game->mapsize.y++;
 	}
-	game->map[j] = NULL;
+	game->map[game->mapsize.y] = NULL;
 }
 
 /*
