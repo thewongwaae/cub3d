@@ -6,10 +6,12 @@ MLX			= -lmlx -framework OpenGL -framework AppKit
 MLXA		= libmlx.a
 INCLUDES	= -I includes
 
-CUB3D		= main checks keypress parse
-UTILS		= gnl split strings
+CHECKS		= checks flood parse
+RENDER		= keypress main textures
+UTILS		= free gnl split strings stringss
 
-SRCS 		= $(addsuffix .c, $(addprefix srcs/cub3d/, $(CUB3D))) \
+SRCS 		= $(addsuffix .c, $(addprefix srcs/checks/, $(CHECKS))) \
+			$(addsuffix .c, $(addprefix srcs/render/, $(RENDER))) \
 			$(addsuffix .c, $(addprefix srcs/utils/, $(UTILS)))
 
 OBJS = $(SRCS:c=o)

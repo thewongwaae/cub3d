@@ -40,13 +40,13 @@ typedef struct s_game
 	t_vec		player;
 }				t_game;
 
-/* CUB3D */
-
-/* PARSE */
+/* CHECKS AND PARSE */
 int		checks( char *file, t_game *game );
 char	**parse_mapfile( char *file, t_game *game );
-void	load_textures( t_game *game );
 void	check_map( t_game *game );
+
+/* RENDER */
+void	load_textures( t_game *game );
 
 /* UTILS */
 // free
