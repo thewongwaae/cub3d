@@ -6,7 +6,7 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 17:12:14 by hwong             #+#    #+#             */
-/*   Updated: 2023/04/08 01:17:27 by hwong            ###   ########.fr       */
+/*   Updated: 2023/04/08 01:31:32 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,17 @@ static char	**cub_to_array( int fd )
 {
 	char	*read;
 	char	*buff;
+	char	*tmp;
 	char	**res;
 
 	read = gnl(fd);
 	buff = ft_strdup("");
 	while (read)
 	{
-		buff = ft_strjoin(buff, read);
+		tmp = ft_strjoin(buff, read);
+		free(buff);
+		buff = tmp;
+		free(read);
 		read = gnl(fd);
 	}
 	ft_free(read);

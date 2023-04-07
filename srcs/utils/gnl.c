@@ -6,7 +6,7 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 17:12:22 by hwong             #+#    #+#             */
-/*   Updated: 2023/04/06 17:12:23 by hwong            ###   ########.fr       */
+/*   Updated: 2023/04/08 01:28:58 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@ static char	*freee(char *buffer, char *buf)
 
 	tmp = ft_strjoin(buffer, buf);
 	free(buffer);
-	return (tmp);
+	buffer = tmp;
+	return (buffer);
 }
 
 static char	*store_remaining(char *buff)

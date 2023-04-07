@@ -6,7 +6,7 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 17:11:56 by hwong             #+#    #+#             */
-/*   Updated: 2023/04/08 00:34:22 by hwong            ###   ########.fr       */
+/*   Updated: 2023/04/08 01:36:24 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,5 +38,7 @@ int	main( int ac, char **av )
 	// mlx_hook(game.win, 17, (1L << 0), endgame, &game);
 	// mlx_loop_hook(game.mlx, refresh, &game);
 	// mlx_loop(game.mlx);
+	free_tab(game.map);
+	//system("leaks cub3D");
 	return (0);
 }

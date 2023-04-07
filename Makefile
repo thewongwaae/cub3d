@@ -1,7 +1,7 @@
 NAME		= cub3D
 CC			= gcc
 RM			= rm -rf
-CFLAGS		= -Wall -Werror -Wextra -fsanitize=address -g
+CFLAGS		= -Wall -Werror -Wextra -fsanitize=address -g3
 MLX			= -lmlx -framework OpenGL -framework AppKit
 MLXA		= libmlx.a
 INCLUDES	= -I includes
