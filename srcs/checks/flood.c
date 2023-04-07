@@ -6,7 +6,7 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 17:11:45 by hwong             #+#    #+#             */
-/*   Updated: 2023/04/06 17:11:46 by hwong            ###   ########.fr       */
+/*   Updated: 2023/04/08 01:23:24 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static void	flood( int y, int x, t_game *game, char **map )
 {
 	if (game->leak != 0)
 		return ;
-	if (y < 0 || x < 0 || y >= game->mapsize.y || x >= ft_strlen(map[y]))
+	if (y <= 0 || x <= 0 || y >= game->mapsize.y || x >= ft_strlen(map[y]))
 	{
 		game->leak = 1;
 		return ;
@@ -40,7 +40,7 @@ static char	**copy_tab( char **tab )
 	i = 0;
 	while (tab[i])
 		i++;
-	copy = malloc(sizeof(char *) * i + 1);
+	copy = malloc(sizeof(char *) * (i + 1));
 	i = 0;
 	while (tab[i])
 	{
@@ -63,16 +63,19 @@ void	check_map( t_game *game )
 	{
 		while (game->map[game->player.y][game->player.x])
 		{
-			if (game->map[game->player.y][game->player.x] != 'N'
-				|| game->map[game->player.y][game->player.x] != 'S'
-				|| game->map[game->player.y][game->player.x] != 'W'
-				|| game->map[game->player.y][game->player.x] != 'E')
+			if (game->map[game->player.y][game->player.x] == 'N'
+				|| game->map[game->player.y][game->player.x] == 'S'
+				|| game->map[game->player.y][game->player.x] == 'W'
+				|| game->map[game->player.y][game->player.x] == 'E')
 				break ;
 			game->player.x++;
 		}
 		game->player.y++;
 	}
+	printf("Making a copy of the map\n");
 	copy = copy_tab(game->map);
+	printf("Flooding map\n");
 	flood(game->player.y, game->player.x, game, copy);
+	printf("Map OK!\n");
 	free_tab(copy);
 }

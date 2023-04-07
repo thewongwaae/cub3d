@@ -6,13 +6,13 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 17:11:42 by hwong             #+#    #+#             */
-/*   Updated: 2023/04/06 17:11:43 by hwong            ###   ########.fr       */
+/*   Updated: 2023/04/08 01:22:04 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static int	has_extension( const char *file, const char *ext )
+static int	has_extension( char *file, char *ext )
 {
 	const char	*dot;
 
@@ -28,10 +28,13 @@ int	checks( char *file, t_game *game )
 {
 	if (!has_extension(file, "cub"))
 		return (write(2, "Error: Invalid extension", 25));
-	if (!parse_mapfile(file, game))
-		return (write(2, "Error: Invalid file", 22));
+	printf("Extension OK\n");
+	if (parse_mapfile(file, game))
+		return (1);
+	printf("Mapfile OK\n");
 	check_map(game);
 	if (!game->leak)
 		return (write(2, "Error: Map invalid", 19));
+	printf("Checks finished!\n");
 	return (0);
 }

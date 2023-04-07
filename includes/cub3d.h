@@ -7,7 +7,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <math.h>
-# include <mlx.h>
+// # include <mlx.h>
 
 # define BUFFER_SIZE 1024
 
@@ -42,11 +42,11 @@ typedef struct s_game
 
 /* CHECKS AND PARSE */
 int		checks( char *file, t_game *game );
-char	**parse_mapfile( char *file, t_game *game );
+int		parse_mapfile( char *file, t_game *game );
 void	check_map( t_game *game );
 
 /* RENDER */
-void	load_textures( t_game *game );
+// void	load_textures( t_game *game );
 
 /* UTILS */
 // free
@@ -63,9 +63,13 @@ char	*ft_strdup( char *s );
 char	*ft_strchr( const char *s, int c );
 char	*ft_strrchr( const char *s, int c );
 int		ft_strcmp( const char *s1, const char *s2 );
+int		ft_strncmp(const char *s1, const char *s2, size_t n);
 int 	is_space( char c );
 int		is_digit( char c );
 int		ft_atoi( const char *s );
 char	*ft_strtok( char *s, char sep );
+void	ft_bzero(void *str, size_t n);
+void	*ft_calloc(size_t nitems, size_t size);
+
 
 #endif

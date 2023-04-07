@@ -7,8 +7,8 @@ MLXA		= libmlx.a
 INCLUDES	= -I includes
 
 CHECKS		= checks flood parse
-RENDER		= keypress main textures
-UTILS		= free gnl split strings stringss
+RENDER		= main #keypress #textures
+UTILS		= free gnl split strings stringss stringsss
 
 SRCS 		= $(addsuffix .c, $(addprefix srcs/checks/, $(CHECKS))) \
 			$(addsuffix .c, $(addprefix srcs/render/, $(RENDER))) \
@@ -23,7 +23,7 @@ OBJS = $(SRCS:c=o)
 $(NAME): $(OBJS)
 	@echo "\n"
 	@echo "\033[0;32;1mCompiling scub3d..."
-	@$(CC) $(CFLAGS) $(MLXA) $(MLX) $(OBJS) -o $(NAME)
+	@$(CC) $(CFLAGS) $(OBJS) -o $(NAME) #$(MLXA) $(MLX) 
 	@echo "\n\033[0mDone !"
 
 all: $(NAME)
