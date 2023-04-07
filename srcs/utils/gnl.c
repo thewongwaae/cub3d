@@ -6,7 +6,7 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 17:12:22 by hwong             #+#    #+#             */
-/*   Updated: 2023/04/08 01:28:58 by hwong            ###   ########.fr       */
+/*   Updated: 2023/04/08 02:11:22 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static char	*store_remaining(char *buff)
 		free(buff);
 		return (NULL);
 	}
-	line = ft_calloc((ft_strlen(buff) - i + 1), sizeof(char));
+	line = ft_calloc((ft_slen(buff) - i + 1), sizeof(char));
 	i++;
 	j = 0;
 	while (buff[i])

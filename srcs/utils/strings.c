@@ -6,13 +6,13 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 17:12:28 by hwong             #+#    #+#             */
-/*   Updated: 2023/04/06 17:12:28 by hwong            ###   ########.fr       */
+/*   Updated: 2023/04/08 02:11:22 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	ft_strlen( char *s )
+int	ft_slen( char *s )
 {
 	int	i;
 
@@ -29,7 +29,7 @@ char	*ft_strjoin( char *s1, char *s2 )
 	char	*dst;
 
 	i = -1;
-	dst = malloc (sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
+	dst = malloc (sizeof(char) * (ft_slen(s1) + ft_slen(s2) + 1));
 	if (!dst)
 		return (NULL);
 	while (s1[++i])
@@ -48,7 +48,7 @@ char	*ft_strdup( char *s )
 	int		i;
 
 	i = 0;
-	out = malloc(sizeof(char) * ft_strlen(s) + 1);
+	out = malloc(sizeof(char) * ft_slen(s) + 1);
 	if (!out)
 		return (NULL);
 	while (s[i] && (s[i] != '\n'))

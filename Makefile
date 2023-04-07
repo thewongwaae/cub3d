@@ -1,12 +1,12 @@
 NAME		= cub3D
 CC			= gcc
 RM			= rm -rf
-CFLAGS		= -Wall -Werror -Wextra -fsanitize=address -g3
+CFLAGS		= -Wall -Werror -Wextra #-fsanitize=address -g3
 MLX			= -lmlx -framework OpenGL -framework AppKit
 MLXA		= libmlx.a
 INCLUDES	= -I includes
 
-CHECKS		= checks flood parse
+CHECKS		= checks flood parse queue
 RENDER		= main #keypress #textures
 UTILS		= free gnl split strings stringss stringsss
 

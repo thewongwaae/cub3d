@@ -6,7 +6,7 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 17:12:14 by hwong             #+#    #+#             */
-/*   Updated: 2023/04/08 01:31:32 by hwong            ###   ########.fr       */
+/*   Updated: 2023/04/08 02:11:54 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,12 +84,12 @@ static int	parse_map( char **mapfile, t_game *game )
 		j++;
 	}
 	game->map = malloc(sizeof(char *) * (j + 1));
-	while (mapfile[i + game->mapsize.y])
+	while (mapfile[i + game->msize.y])
 	{
-		game->map[game->mapsize.y] = ft_strdup(mapfile[i + game->mapsize.y]);
-		game->mapsize.y++;
+		game->map[game->msize.y] = ft_strdup(mapfile[i + game->msize.y]);
+		game->msize.y++;
 	}
-	game->map[game->mapsize.y] = NULL;
+	game->map[game->msize.y] = NULL;
 	return (0);
 }
 

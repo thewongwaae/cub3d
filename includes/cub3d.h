@@ -17,6 +17,19 @@ typedef struct s_vec
 	int	y;
 }	t_vec;
 
+/* Iterative flood */
+typedef struct s_queue_node
+{
+	t_vec				val;
+	struct s_queue_node	*next;
+}	t_queue_node;
+
+typedef struct s_queue
+{
+	t_queue_node	*head;
+	t_queue_node	*tail;
+}	t_queue;
+
 typedef struct s_texture
 {
 	void	*north;
@@ -33,7 +46,7 @@ typedef struct s_game
 	void		*mlx;
 	void		*win;
 	t_vec		winsize;
-	t_vec		mapsize;
+	t_vec		msize;
 	int			leak;
 	char		**paths;
 	t_texture	*tex;
@@ -44,6 +57,12 @@ typedef struct s_game
 int		checks( char *file, t_game *game );
 int		parse_mapfile( char *file, t_game *game );
 void	check_map( t_game *game );
+/* ITERATIVE FLOOD */
+t_queue	*init_queue( void );
+int		is_q_empty( t_queue *q );
+void	enqueue( t_queue *q, t_vec val );
+t_vec	dequeue( t_queue *q );
+void	free_queue( t_queue *q );
 
 /* RENDER */
 // void	load_textures( t_game *game );
@@ -57,7 +76,7 @@ char	*gnl( int fd );
 // split
 char	**ft_split( const char *str, char c );
 // strings
-int		ft_strlen( char *s );
+int		ft_slen( char *s );
 char	*ft_strjoin( char *s1, char *s2 );
 char	*ft_strdup( char *s );
 char	*ft_strchr( const char *s, int c );

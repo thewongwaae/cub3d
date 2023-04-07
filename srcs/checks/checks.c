@@ -6,7 +6,7 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 17:11:42 by hwong             #+#    #+#             */
-/*   Updated: 2023/04/08 01:22:04 by hwong            ###   ########.fr       */
+/*   Updated: 2023/04/08 02:11:22 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static int	has_extension( char *file, char *ext )
 	const char	*dot;
 
 	dot = ft_strrchr(file, '.');
-	if (!dot || dot == (file + ft_strlen(file) - 1))
+	if (!dot || dot == (file + ft_slen(file) - 1))
 		return (0);
 	if (!ft_strcmp(dot + 1, ext))
 		return (1);
@@ -33,8 +33,10 @@ int	checks( char *file, t_game *game )
 		return (1);
 	printf("Mapfile OK\n");
 	check_map(game);
-	if (!game->leak)
+	printf("Map leak: %d\n", game->leak);
+	if (game->leak)
 		return (write(2, "Error: Map invalid", 19));
+	printf("Map OK!\n");
 	printf("Checks finished!\n");
 	return (0);
 }

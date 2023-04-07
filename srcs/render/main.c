@@ -6,7 +6,7 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 17:11:56 by hwong             #+#    #+#             */
-/*   Updated: 2023/04/08 01:36:24 by hwong            ###   ########.fr       */
+/*   Updated: 2023/04/08 02:24:42 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,10 @@ static void	game_init( t_game *game )
 	// 		game->winsize.y, "cub3D");
 	game->player.y = 0;
 	game->player.x = 0;
-	game->mapsize.y = 0;
-	game->mapsize.x = 0;
+	game->msize.y = 0;
+	game->msize.x = 0;
 }
+
 int	main( int ac, char **av )
 {
 	t_game	game;
@@ -32,7 +33,7 @@ int	main( int ac, char **av )
 		return (write(2, "Error: Invalid arguments\n", 25));
 	game_init(&game);
 	if (checks(av[1], &game))
-		return (write(2, ": Invalid map file\n", 24));
+		return (write(2, ": Invalid file\n", 15));
 
 	// mlx_key_hook(game.win, move, &game);
 	// mlx_hook(game.win, 17, (1L << 0), endgame, &game);
