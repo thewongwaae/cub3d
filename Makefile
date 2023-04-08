@@ -1,20 +1,20 @@
 NAME		= cub3D
 CC			= gcc
 RM			= rm -rf
-CFLAGS		= -Wall -Werror -Wextra #-fsanitize=address -g3
+CFLAGS		= -Wall -Werror -Wextra -fsanitize=address -g3
 MLX			= -lmlx -framework OpenGL -framework AppKit
 MLXA		= libmlx.a
 INCLUDES	= -I includes
 
-# CHECKS		= checks flood parse queue
-# RENDER		= main #keypress #textures
-# UTILS		= free gnl split strings stringss stringsss
+CHECKS		= checks flood parse queue
+RENDER		= main #keypress #textures
+UTILS		= free gnl split strings stringss stringsss
 
-# SRCS 		= $(addsuffix .c, $(addprefix srcs/checks/, $(CHECKS))) \
-# 			$(addsuffix .c, $(addprefix srcs/render/, $(RENDER))) \
-# 			$(addsuffix .c, $(addprefix srcs/utils/, $(UTILS)))
+SRCS 		= $(addsuffix .c, $(addprefix srcs/checks/, $(CHECKS))) \
+			$(addsuffix .c, $(addprefix srcs/render/, $(RENDER))) \
+			$(addsuffix .c, $(addprefix srcs/utils/, $(UTILS)))
 
-SRCS = test.c
+# SRCS = test.c
 
 OBJS = $(SRCS:c=o)
 
@@ -25,7 +25,7 @@ OBJS = $(SRCS:c=o)
 $(NAME): $(OBJS)
 	@echo "\n"
 	@echo "\033[0;32;1mCompiling scub3d..."
-	@$(CC) $(CFLAGS) $(OBJS) -o $(NAME) $(MLXA) $(MLX) 
+	@$(CC) $(CFLAGS) $(OBJS) -o $(NAME) #$(MLXA) $(MLX) 
 	@echo "\n\033[0mDone !"
 
 all: $(NAME)

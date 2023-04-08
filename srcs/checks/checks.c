@@ -6,7 +6,7 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 17:11:42 by hwong             #+#    #+#             */
-/*   Updated: 2023/04/08 02:11:22 by hwong            ###   ########.fr       */
+/*   Updated: 2023/04/08 20:01:18 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ int	checks( char *file, t_game *game )
 	printf("Map leak: %d\n", game->leak);
 	if (game->leak)
 		return (write(2, "Error: Map invalid", 19));
+	if (!game->player.found)
+		return (write(2, "Error: Player where", 20));
 	printf("Map OK!\n");
 	printf("Checks finished!\n");
 	return (0);

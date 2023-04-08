@@ -40,6 +40,14 @@ typedef struct s_texture
 	int 	ceiling;
 }	t_texture;
 
+typedef struct s_player
+{
+	int		found;
+	int		x;
+	int		y;
+	char	dir;
+}	t_player;
+
 typedef struct s_game
 {
 	char		**map;
@@ -50,7 +58,7 @@ typedef struct s_game
 	int			leak;
 	char		**paths;
 	t_texture	*tex;
-	t_vec		player;
+	t_player	player;
 }				t_game;
 
 /* CHECKS AND PARSE */
