@@ -8,19 +8,19 @@
 
 ## Map Parsing
 
-* Start with square/rectangular maps. Prioritise raycasting.
-* Filename check (.cub)
-* Check that all walls are closed off (1 for wall, 0 for space)
-* Store map in 2d array
+* [ ] Start with square/rectangular maps. Prioritise raycasting.
+* [x] Filename check (.cub)
+* [x] Check that all walls are closed off (1 for wall, 0 for space)
+* [x] Store map in 2d array
 
 ## Top-down player movement
 
-* Initialise whatever needs to be initialised for mlx. (Window, etc)
-* Print a marker to represent the player.
-* Handle key press, and map them to players movement.
-* Print out a top-down view of the map, preferably with gridlines. (To act as reference for raycast)
-* Later on we could maybe minimise this on screen to become the minimap.
-* Handle player rotation (I don't have brain to make notes on this atm)
+* [x] Initialise whatever needs to be initialised for mlx. (Window, etc)
+* [ ] Print a marker to represent the player.
+* [ ] Handle key press, and map them to players movement.
+* [ ] Print out a top-down view of the map, preferably with gridlines. (To act as reference for raycast)
+* [ ] Later on we could maybe minimise this on screen to become the minimap.
+* [ ] Handle player rotation (I don't have brain to make notes on this atm)
 
 ## Raycasting
 
