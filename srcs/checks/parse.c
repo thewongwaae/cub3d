@@ -6,7 +6,7 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 17:12:14 by hwong             #+#    #+#             */
-/*   Updated: 2023/04/08 02:11:54 by hwong            ###   ########.fr       */
+/*   Updated: 2023/04/09 11:58:12 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,12 +43,8 @@ static void	parse_textures( char **mapfile, int *i, t_game *game )
 
 	j = 0;
 	k = 0;
-	printf("In parse_textures\n");
 	while (ft_strncmp(mapfile[j], "C ", 2))
 	{
-		printf("%s\n", mapfile[j]);
-		// if (mapfile[j][0] == '\n')
-		// 	continue ;
 		space = ft_strchr(mapfile[j], ' ');
 		if (space)
 		{
@@ -61,7 +57,6 @@ static void	parse_textures( char **mapfile, int *i, t_game *game )
 	game->paths[k] = ft_strdup(&mapfile[j][2]);
 	(*i)++;
 	game->paths[k + 1] = NULL;
-	//ft_free(space);
 	//load_textures(game);
 }
 
@@ -104,39 +99,18 @@ int	parse_mapfile( char *file, t_game *game )
 	int		fd;
 	char	**mapfile;
 	int		i;
-	int		j;
 
 	i = 0;
-	j = 0;
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
 		return (write(2, "Error: File not found", 22));
 	mapfile = cub_to_array(fd);
-	while (mapfile[j])
-	{
-		printf("%s\n", mapfile[j]);
-		j++;
-	}
 	close(fd);
 	game->paths = malloc(sizeof(char *) * 7);
 	parse_textures(mapfile, &i, game);
-	j = 0;
-	printf("Showing saved paths and colors:\n");
-	while (game->paths[j])
-	{
-		printf("%s\n", game->paths[j]);
-		j++;
-	}
 	free_tab(game->paths);
 	if (parse_map(&mapfile[i], game))
 		return (1);
 	free_tab(mapfile);
-	j = 0;
-	printf("Showing saved map:\n");
-	while (game->map[j])
-	{
-		printf("%s\n", game->map[j]);
-		j++;
-	}
 	return (0);
 }

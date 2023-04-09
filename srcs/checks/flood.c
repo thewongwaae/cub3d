@@ -6,31 +6,11 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 17:11:45 by hwong             #+#    #+#             */
-/*   Updated: 2023/04/08 20:04:25 by hwong            ###   ########.fr       */
+/*   Updated: 2023/04/09 12:13:05 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-// static void	flood_recurse( int y, int x, t_game *game, char **map )
-// {
-// 	if (game->leak > 0)
-// 		return ;
-// 	if (y <= 0 || x <= 0 || y >= game->msize.y || x >= ft_slen(map[y]))
-// 	{
-// 		game->leak = 1;
-// 		return ;
-// 	}
-// 	if (map[y][x] == '1')
-// 		return ;
-// 	if (map[y][x] == 'v')
-// 		return ;
-// 	map[y][x] = 'v';
-// 	flood_recurse(y - 1, x, game, map);
-// 	flood_recurse(y + 1, x, game, map);
-// 	flood_recurse(y, x - 1, game, map);
-// 	flood_recurse(y, x + 1, game, map);
-// }
 
 /*
 	Do stupid shit to conform to norminette
@@ -47,7 +27,6 @@ static void	flood_iter( int y, int x, t_game *game, char **map )
 	t_vec	xy;
 	t_queue	*q;
 
-	game->leak = 0;
 	init_iter(y, x, &xy, &q);
 	enqueue(q, xy);
 	while (!is_q_empty(q))
@@ -90,39 +69,45 @@ static char	**copy_tab( char **tab )
 }
 
 /*
-	Find player position
-	Start flood from player position
+	Even more stupid shit for norminette
 */
-void	check_map( t_game *game )
+static void	init_flood( t_game *game )
 {
 	char	**copy;
 
-	while (game->map[game->player.y])
+	if (!game->p.found || !game->p.dir)
 	{
-		game->player.x = 0;
-		while (game->map[game->player.y][game->player.x])
+		free_tab(game->map);
+		return ;
+	}
+	copy = copy_tab(game->map);
+	flood_iter(game->p.y, game->p.x, game, copy);
+	free_tab(copy);
+}
+
+/*
+	Find player position
+	Start flood from player position
+*/
+void	check_map( t_game *g )
+{
+	while (g->map[g->p.y])
+	{
+		g->p.x = 0;
+		while (g->map[g->p.y][g->p.x])
 		{
-			if (game->map[game->player.y][game->player.x] == 'N'
-				|| game->map[game->player.y][game->player.x] == 'S'
-				|| game->map[game->player.y][game->player.x] == 'W'
-				|| game->map[game->player.y][game->player.x] == 'E')
+			if (g->map[g->p.y][g->p.x] == 78 || g->map[g->p.y][g->p.x] == 83
+				|| g->map[g->p.y][g->p.x] == 87 || g->map[g->p.y][g->p.x] == 69)
 			{
-				game->player.found = 1;
+				g->p.found = 1;
+				g->p.dir = g->map[g->p.y][g->p.x];
 				break ;
 			}
-			game->player.x++;
+			g->p.x++;
 		}
-		if (game->player.found)
+		if (g->p.found)
 			break ;
-		game->player.y++;
+		g->p.y++;
 	}
-	if (!game->player.found)
-		return ;
-	printf("Making a copy of the map\n");
-	copy = copy_tab(game->map);
-	printf("Flooding map\n");
-	printf("Player x: %d, Player y: %d\n", game->player.x, game->player.y);
-	// flood_recurse(game->player.y, game->player.x, game, copy);
-	flood_iter(game->player.y, game->player.x, game, copy);
-	free_tab(copy);
+	init_flood(g);
 }

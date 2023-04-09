@@ -16,9 +16,11 @@ SRCS 		= $(addsuffix .c, $(addprefix srcs/checks/, $(CHECKS))) \
 
 # SRCS = test.c
 
-OBJS = $(SRCS:c=o)
+OBJS_DIR	= objs/
+OBJS		= $(addprefix $(OBJS_DIR), $(SRCS:c=o))
 
-%.o: %.c
+$(OBJS_DIR)%.o: %.c
+	@mkdir -p $(dir $@)
 	@printf "\033[0;33;1mGenerating cub3d objects... %-33.33s\r" $@
 	@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
@@ -32,7 +34,7 @@ all: $(NAME)
 
 clean:
 	@echo "\033[38;5;160;1m\nRemoving objects..."
-	@$(RM) $(OBJS)
+	@$(RM) $(OBJS_DIR)
 	@echo "\033[0m"
 
 fclean: clean

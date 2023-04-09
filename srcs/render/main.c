@@ -6,7 +6,7 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 17:11:56 by hwong             #+#    #+#             */
-/*   Updated: 2023/04/08 20:01:49 by hwong            ###   ########.fr       */
+/*   Updated: 2023/04/09 12:06:19 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,11 @@ static void	game_init( t_game *game )
 	// game->winsize.y = 1080;
 	// game->win = mlx_new_window(game->mlx, game->winsize.x,
 	// 		game->winsize.y, "cub3D");
-	game->player.found = 0;
-	game->player.y = 0;
-	game->player.x = 0;
+	game->p.found = 0;
+	game->p.y = 0;
+	game->p.x = 0;
+	game->p.dir = 0;
+	game->leak = 0;
 	game->msize.y = 0;
 	game->msize.x = 0;
 }

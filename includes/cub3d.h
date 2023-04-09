@@ -58,13 +58,13 @@ typedef struct s_game
 	int			leak;
 	char		**paths;
 	t_texture	*tex;
-	t_player	player;
+	t_player	p;
 }				t_game;
 
 /* CHECKS AND PARSE */
 int		checks( char *file, t_game *game );
 int		parse_mapfile( char *file, t_game *game );
-void	check_map( t_game *game );
+void	check_map( t_game *g );
 /* ITERATIVE FLOOD */
 t_queue	*init_queue( void );
 int		is_q_empty( t_queue *q );
