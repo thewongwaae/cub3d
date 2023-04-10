@@ -6,7 +6,7 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 17:12:14 by hwong             #+#    #+#             */
-/*   Updated: 2023/04/09 11:58:12 by hwong            ###   ########.fr       */
+/*   Updated: 2023/04/10 19:27:56 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,18 @@ static char	**cub_to_array( int fd )
 	res = ft_split(buff, '\n');
 	ft_free(buff);
 	return (res);
+}
+
+// have int array of 6 to track whether something has already been saved or not
+// 
+
+static void	parse_textures( char **mapfile, int *i, t_game *game )
+{
+	int		i;
+	char	*space;
+
+	i = 0;
+	while (mapfile[i])
 }
 
 static void	parse_textures( char **mapfile, int *i, t_game *game )
