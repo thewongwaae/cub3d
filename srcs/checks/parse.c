@@ -6,7 +6,7 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 17:12:14 by hwong             #+#    #+#             */
-/*   Updated: 2023/04/11 16:55:28 by hwong            ###   ########.fr       */
+/*   Updated: 2023/04/11 17:19:34 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,18 @@ static int	all_found( int *found )
 {
 	int	i;
 
-	i = -1;
-	while (++i < 6)
+	printf("all_found\n");
+	i = 0;
+	while (i < 6)
+	{
+		printf("found[%d] : %d\n", i, found[i]);
+		i++;
+	}
+	while (i < 6)
 	{
 		if (found[i] != 1)
 			return (0);
+		i++;
 	}
 	return (1);
 }
@@ -58,10 +65,13 @@ static int	parse_textures( char **mapfile, char **texs, t_game *game )
 	j = 0;
 	while (i < 6)
 	{
-		while (mapfile[j])
+		printf("i is %d\n", i);
+		while (mapfile[j] && !ft_strncmp(mapfile[j], texs[i], ft_slen(texs[i])))
 		{
+			printf("- j is %d\n", j);
 			space = ft_strchr(mapfile[j], ' ');
-			if (!ft_strncmp(mapfile[j], texs[i], ft_slen(texs[i])) && space)
+			printf("- space is %s\n", space);
+			if (space)
 			{
 				game->paths[i] = ft_strdup(space + 1);
 				game->foundtex[i] += 1;
@@ -73,7 +83,11 @@ static int	parse_textures( char **mapfile, char **texs, t_game *game )
 		i++;
 	}
 	if (!all_found(game->foundtex))
+	{
+		printf("returning 0\n");
 		return (0);
+	}
+	printf("returning %d\n", game->foundtex[6]);
 	return (game->foundtex[6]);
 }
 
