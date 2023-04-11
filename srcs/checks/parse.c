@@ -6,7 +6,7 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 17:12:14 by hwong             #+#    #+#             */
-/*   Updated: 2023/04/10 19:27:56 by hwong            ###   ########.fr       */
+/*   Updated: 2023/04/11 16:55:28 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,41 +35,46 @@ static char	**cub_to_array( int fd )
 	return (res);
 }
 
-// have int array of 6 to track whether something has already been saved or not
-// 
+static int	all_found( int *found )
+{
+	int	i;
 
-static void	parse_textures( char **mapfile, int *i, t_game *game )
+	i = -1;
+	while (++i < 6)
+	{
+		if (found[i] != 1)
+			return (0);
+	}
+	return (1);
+}
+
+static int	parse_textures( char **mapfile, char **texs, t_game *game )
 {
 	int		i;
+	int		j;
 	char	*space;
 
 	i = 0;
-	while (mapfile[i])
-}
-
-static void	parse_textures( char **mapfile, int *i, t_game *game )
-{
-	int		j;
-	int		k;
-	char	*space;
-
 	j = 0;
-	k = 0;
-	while (ft_strncmp(mapfile[j], "C ", 2))
+	while (i < 6)
 	{
-		space = ft_strchr(mapfile[j], ' ');
-		if (space)
+		while (mapfile[j])
 		{
-			game->paths[k] = ft_strdup(space + 1);
-			(*i)++;
-			k++;
+			space = ft_strchr(mapfile[j], ' ');
+			if (!ft_strncmp(mapfile[j], texs[i], ft_slen(texs[i])) && space)
+			{
+				game->paths[i] = ft_strdup(space + 1);
+				game->foundtex[i] += 1;
+				if (j > game->foundtex[6])
+					game->foundtex[6] = j;
+			}
+			j++;
 		}
-		j++;
+		i++;
 	}
-	game->paths[k] = ft_strdup(&mapfile[j][2]);
-	(*i)++;
-	game->paths[k + 1] = NULL;
-	//load_textures(game);
+	if (!all_found(game->foundtex))
+		return (0);
+	return (game->foundtex[6]);
 }
 
 static int	parse_map( char **mapfile, t_game *game )
@@ -105,11 +110,16 @@ static int	parse_map( char **mapfile, t_game *game )
 	Convert file to 2d array
 	Convert xpm textures and floor/ceiling rgb to mlx values
 	Copy map into seperate 2d array, error check
+
+	Note: since using int i to keep track of where we've
+	read until in the array, if a texture path is placed
+	below the mapfile, 
 */
 int	parse_mapfile( char *file, t_game *game )
 {
 	int		fd;
 	char	**mapfile;
+	char	**texs;
 	int		i;
 
 	i = 0;
@@ -117,12 +127,93 @@ int	parse_mapfile( char *file, t_game *game )
 	if (fd == -1)
 		return (write(2, "Error: File not found", 22));
 	mapfile = cub_to_array(fd);
+	if (!mapfile)
+		return (write(2, "Error: Failed to open", 22));
 	close(fd);
 	game->paths = malloc(sizeof(char *) * 7);
-	parse_textures(mapfile, &i, game);
+	// parse_textures(mapfile, &i, game);
+	texs = ft_split("NO ,SO ,WE ,EA ,F ,C ", ',');
+	i = parse_textures(mapfile, texs, game);
+	free_tab(texs);
+	if (i == 0)
+		return (write(2, "Error: Incorrect path format", 28));
 	free_tab(game->paths);
 	if (parse_map(&mapfile[i], game))
 		return (1);
 	free_tab(mapfile);
 	return (0);
 }
+
+
+// static int	parse_textures( char **mapfile, char **texs, t_game *game )
+// {
+// 	int		i;
+// 	int		foundtex[6];
+// 	char	*space;
+
+// 	i = 0;
+// 	ft_memset(foundtex, 0, 6);
+// 	while (mapfile[i])
+// 	{
+// 		space = ft_strchr(mapfile[i], ' ');
+// 		if (!strncmp(mapfile[i], "NO ", 3) && space)
+// 		{
+// 			game->paths[0] = ft_strdup(space + 1);
+// 			foundtex[0] += 1;
+// 		}
+// 		if (!strncmp(mapfile[i], "SO ", 3) && space)
+// 		{
+// 			game->paths[1] = ft_strdup(space + 1);
+// 			foundtex[1] += 1;
+// 		}
+// 		if (!strncmp(mapfile[i], "WE ", 3) && space)
+// 		{
+// 			game->paths[2] = ft_strdup(space + 1);
+// 			foundtex[2] += 1;
+// 		}
+// 		if (!strncmp(mapfile[i], "EA ", 3) && space)
+// 		{
+// 			game->paths[3] = ft_strdup(space + 1);
+// 			foundtex[3] += 1;
+// 		}
+// 		if (!strncmp(mapfile[i], "F ", 2) && space)
+// 		{
+// 			game->paths[4] = ft_strdup(space + 1);
+// 			foundtex[4] += 1;
+// 		}
+// 		if (!strncmp(mapfile[i], "C ", 2) && space)
+// 		{
+// 			game->paths[5] = ft_strdup(space + 1);
+// 			foundtex[5] += 1;
+// 		}
+// 		i++;
+// 	}
+// 	if (!all_found(foundtex))
+// 		return (0);
+// 	return (i - 1);
+// }
+
+// static void	parse_textures( char **mapfile, int *i, t_game *game )
+// {
+// 	int		j;
+// 	int		k;
+// 	char	*space;
+
+// 	j = 0;
+// 	k = 0;
+// 	while (ft_strncmp(mapfile[j], "C ", 2))
+// 	{
+// 		space = ft_strchr(mapfile[j], ' ');
+// 		if (space)
+// 		{
+// 			game->paths[k] = ft_strdup(space + 1);
+// 			k++;
+// 		}
+// 		(*i)++;
+// 		j++;
+// 	}
+// 	game->paths[k] = ft_strdup(&mapfile[j][2]);
+// 	(*i)++;
+// 	game->paths[k + 1] = NULL;
+// 	//load_textures(game);
+// }

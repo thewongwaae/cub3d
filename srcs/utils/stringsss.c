@@ -6,7 +6,7 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 00:41:23 by hwong             #+#    #+#             */
-/*   Updated: 2023/04/08 01:10:31 by hwong            ###   ########.fr       */
+/*   Updated: 2023/04/11 10:08:00 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,4 +44,16 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 	while (s1[i] && s2[i] && s1[i] == s2[i] && i < n - 1)
 		i++;
 	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+}
+
+void	*ft_memset(void *s, int c, size_t n)
+{
+	unsigned char	*temp;
+
+	if (!s)
+		return (NULL);
+	temp = (unsigned char *)s;
+	while (n-- > 0)
+		*(temp++) = (char) c;
+	return (s);
 }

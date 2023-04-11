@@ -1,4 +1,15 @@
-#pragma once
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cub3d.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/04/11 16:37:23 by hwong             #+#    #+#             */
+/*   Updated: 2023/04/11 16:38:24 by hwong            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef CUB3D_H
 # define CUB3D_H
 
@@ -36,8 +47,8 @@ typedef struct s_texture
 	void	*south;
 	void	*east;
 	void	*west;
-	int 	floor;
-	int 	ceiling;
+	int		floor;
+	int		ceiling;
 }	t_texture;
 
 typedef struct s_player
@@ -57,6 +68,7 @@ typedef struct s_game
 	t_vec		msize;
 	int			leak;
 	char		**paths;
+	int			foundtex[7];
 	t_texture	*tex;
 	t_player	p;
 }				t_game;
@@ -91,12 +103,12 @@ char	*ft_strchr( const char *s, int c );
 char	*ft_strrchr( const char *s, int c );
 int		ft_strcmp( const char *s1, const char *s2 );
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
-int 	is_space( char c );
+int		is_space( char c );
 int		is_digit( char c );
 int		ft_atoi( const char *s );
 char	*ft_strtok( char *s, char sep );
 void	ft_bzero(void *str, size_t n);
 void	*ft_calloc(size_t nitems, size_t size);
-
+void	*ft_memset(void *s, int c, size_t n);
 
 #endif
