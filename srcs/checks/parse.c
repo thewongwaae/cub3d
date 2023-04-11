@@ -6,7 +6,7 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 17:12:14 by hwong             #+#    #+#             */
-/*   Updated: 2023/04/11 17:19:34 by hwong            ###   ########.fr       */
+/*   Updated: 2023/04/11 18:19:19 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ static int	all_found( int *found )
 		printf("found[%d] : %d\n", i, found[i]);
 		i++;
 	}
+	i = 0;
 	while (i < 6)
 	{
 		if (found[i] != 1)
@@ -66,17 +67,21 @@ static int	parse_textures( char **mapfile, char **texs, t_game *game )
 	while (i < 6)
 	{
 		printf("i is %d\n", i);
-		while (mapfile[j] && !ft_strncmp(mapfile[j], texs[i], ft_slen(texs[i])))
+		j = 0;
+		while (mapfile[j])
 		{
-			printf("- j is %d\n", j);
-			space = ft_strchr(mapfile[j], ' ');
-			printf("- space is %s\n", space);
-			if (space)
+			if (!ft_strncmp(mapfile[j], texs[i], ft_slen(texs[i])))
 			{
-				game->paths[i] = ft_strdup(space + 1);
-				game->foundtex[i] += 1;
-				if (j > game->foundtex[6])
-					game->foundtex[6] = j;
+				printf("- j is %d\n", j);
+				space = ft_strchr(mapfile[j], ' ');
+				printf("- space is %s\n", space);
+				if (space)
+				{
+					game->paths[i] = ft_strdup(space + 1);
+					game->foundtex[i] += 1;
+					if (j > game->foundtex[6])
+						game->foundtex[6] = j;
+				}
 			}
 			j++;
 		}
@@ -147,6 +152,11 @@ int	parse_mapfile( char *file, t_game *game )
 	game->paths = malloc(sizeof(char *) * 7);
 	// parse_textures(mapfile, &i, game);
 	texs = ft_split("NO ,SO ,WE ,EA ,F ,C ", ',');
+
+	for (int j = 0; j < 7; j++) {
+		printf("game->foundtex[%d]: %d\n", j, game->foundtex[j]);
+	}
+
 	i = parse_textures(mapfile, texs, game);
 	free_tab(texs);
 	if (i == 0)
