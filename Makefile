@@ -21,12 +21,12 @@ OBJS		= $(addprefix $(OBJS_DIR), $(SRCS:c=o))
 
 $(OBJS_DIR)%.o: %.c
 	@mkdir -p $(dir $@)
-	@printf "\033[0;33;1mGenerating cub3d objects... %-33.33s\r" $@
+	@printf "\033[0;33;1mGenerating cub3D objects... %-33.33s\r" $@
 	@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 $(NAME): $(OBJS)
 	@echo "\n"
-	@echo "\033[0;32;1mCompiling scub3d..."
+	@echo "\033[0;32;1mCompiling cub3D..."
 	@$(CC) $(CFLAGS) $(OBJS) -o $(NAME) #$(MLXA) $(MLX) 
 	@echo "\n\033[0mDone !"
 

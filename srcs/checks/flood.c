@@ -6,7 +6,7 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 17:11:45 by hwong             #+#    #+#             */
-/*   Updated: 2023/04/09 12:13:05 by hwong            ###   ########.fr       */
+/*   Updated: 2023/04/12 14:46:55 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,10 +76,7 @@ static void	init_flood( t_game *game )
 	char	**copy;
 
 	if (!game->p.found || !game->p.dir)
-	{
-		free_tab(game->map);
 		return ;
-	}
 	copy = copy_tab(game->map);
 	flood_iter(game->p.y, game->p.x, game, copy);
 	free_tab(copy);

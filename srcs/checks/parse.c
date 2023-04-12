@@ -6,7 +6,7 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 17:12:14 by hwong             #+#    #+#             */
-/*   Updated: 2023/04/12 10:40:59 by hwong            ###   ########.fr       */
+/*   Updated: 2023/04/12 14:26:26 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,6 @@ static int	all_found( int *found )
 {
 	int	i;
 
-	printf("all_found\n");
-	i = 0;
-	while (i < 6)
-	{
-		printf("found[%d] : %d\n", i, found[i]);
-		i++;
-	}
 	i = 0;
 	while (i < 6)
 	{
@@ -66,15 +59,12 @@ static int	parse_textures( char **mapfile, char **texs, t_game *game )
 	j = 0;
 	while (i < 6)
 	{
-		printf("i is %d\n", i);
 		j = 0;
 		while (mapfile[j])
 		{
 			if (!ft_strncmp(mapfile[j], texs[i], ft_slen(texs[i])))
 			{
-				printf("- j is %d\n", j);
 				space = ft_strchr(mapfile[j], ' ');
-				printf("- space is %s\n", space);
 				if (space)
 				{
 					game->paths[i] = ft_strdup(space + 1);
@@ -87,6 +77,7 @@ static int	parse_textures( char **mapfile, char **texs, t_game *game )
 		}
 		i++;
 	}
+	game->paths[i] = NULL;
 	if (!all_found(game->foundtex))
 	{
 		printf("returning 0\n");
@@ -103,15 +94,12 @@ static int	parse_map( char **mapfile, t_game *game )
 
 	i = 0;
 	j = 0;
-	while (mapfile[i][0] == '\n')
+	while (mapfile[i] && !ismapchar(mapfile[i][0]))
 		i++;
 	while (mapfile[i + j])
 	{
 		if (mapfile[i + j][0] == '\n')
-		{
-			free_tab(mapfile);
 			return (write(2, "Error: Newline in map", 22));
-		}
 		j++;
 	}
 	game->map = malloc(sizeof(char *) * (j + 1));
@@ -152,18 +140,13 @@ int	parse_mapfile( char *file, t_game *game )
 	game->paths = malloc(sizeof(char *) * 7);
 	// parse_textures(mapfile, &i, game);
 	texs = ft_split("NO ,SO ,WE ,EA ,F ,C ", ',');
-
-	for (int j = 0; j < 7; j++) {
-		printf("game->foundtex[%d]: %d\n", j, game->foundtex[j]);
-	}
-
 	i = parse_textures(mapfile, texs, game);
 	free(game->foundtex);
 	free_tab(texs);
 	if (i == 0)
 		return (write(2, "Error: Incorrect path format", 28));
-	free_tab(game->paths);
-	if (parse_map(&mapfile[i], game))
+	//free_tab(game->paths);
+	if (parse_map(mapfile + i, game))
 		return (1);
 	free_tab(mapfile);
 	return (0);
