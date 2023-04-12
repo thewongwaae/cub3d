@@ -6,7 +6,7 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 16:37:23 by hwong             #+#    #+#             */
-/*   Updated: 2023/04/11 16:38:24 by hwong            ###   ########.fr       */
+/*   Updated: 2023/04/12 11:10:18 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ typedef struct s_game
 	t_vec		msize;
 	int			leak;
 	char		**paths;
-	int			foundtex[7];
+	int			*foundtex;
 	t_texture	*tex;
 	t_player	p;
 }				t_game;

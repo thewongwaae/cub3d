@@ -6,7 +6,7 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 17:11:56 by hwong             #+#    #+#             */
-/*   Updated: 2023/04/11 16:39:07 by hwong            ###   ########.fr       */
+/*   Updated: 2023/04/12 11:03:37 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ static void	game_init( t_game *game )
 	// game->winsize.y = 1080;
 	// game->win = mlx_new_window(game->mlx, game->winsize.x,
 	// 		game->winsize.y, "cub3D");
+	game->foundtex = (int *) malloc (sizeof(int) * 7);
 	ft_memset(game->foundtex, 0, 7);
 	game->p.found = 0;
 	game->p.y = 0;

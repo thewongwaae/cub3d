@@ -6,7 +6,7 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 17:12:14 by hwong             #+#    #+#             */
-/*   Updated: 2023/04/11 18:19:19 by hwong            ###   ########.fr       */
+/*   Updated: 2023/04/12 10:40:59 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,6 +158,7 @@ int	parse_mapfile( char *file, t_game *game )
 	}
 
 	i = parse_textures(mapfile, texs, game);
+	free(game->foundtex);
 	free_tab(texs);
 	if (i == 0)
 		return (write(2, "Error: Incorrect path format", 28));
