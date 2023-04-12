@@ -6,6 +6,7 @@
 #define WIN_W 1920
 #define WIN_H 1080
 #define CELL_SIZE 150
+#define PLAYER_SIZE 5
 
 #define MLX_ERROR 1
 
@@ -32,9 +33,8 @@ typedef struct s_img {
 }	t_img;
 
 typedef struct s_player {
-	float pos_x;
-	float pos_y;
-	int size;
+	int pos_x; //in map
+	int pos_y; //in map
 }	t_player;
 
 typedef struct s_data {
@@ -71,22 +71,6 @@ void my_pp(t_img *img, int x, int y, int colour)
 	}
 }
 
-// int render_rect(t_img *img, t_rect rect)
-// {
-// 	int i;
-// 	int j;
-
-// 	i = rect.y; //400 h=500
-// 	while (i < rect.y + rect.height)
-// 	{
-// 		j = rect.x; //600 w=300 
-// 		while (j < rect.x + rect.width)
-// 			my_pp(img, j++, i, rect.colour);
-// 		i++;
-// 	}
-// 	return (0);
-// }
-
 void render_bg(t_img *img, int colour)
 {
 	int i;
@@ -108,15 +92,16 @@ void render_cell(t_img *img, int colour, int h_pix, int w_pix)
 	int i, j;
 
 	i = h_pix;
-	while (i < (h_pix + CELL_SIZE - 5))
+	while (i < (h_pix + CELL_SIZE - 1))
 	{
 		j = w_pix;
-		while (j < (w_pix + CELL_SIZE - 5))
+		while (j < (w_pix + CELL_SIZE - 1))
 			my_pp(img, j++, i, colour);
 		i++;
 	}
 }
 
+//replace h and w comparisons to map sizes
 void render_map_grid(t_img *img)
 {
 	for (int h = 0; h < 5; h++)
@@ -131,20 +116,30 @@ void render_map_grid(t_img *img)
 	}
 }
 
+int calculate_center(int start, int end)
+{
+	int center;
+
+	center = end - ((end - start) / 2);
+	return (center);
+}
+
 //we initialise inside here for now
 void render_player(t_data *data)
 {
-	data->player.pos_x = (2 * CELL_SIZE) / 3; //pixel 300 // /2 = 150?
-	data->player.pos_y = data->player.pos_x * 5;
-	data->player.size = 5;
-
 	int i, j;
+	data->player.pos_x = 1; //coords in map (index x)
+	data->player.pos_y = 3; //index y
 
-	i = data->player.pos_y;
-	while (i < (data->player.pos_y + data->player.size))
+	int center_x, center_y;
+	center_x = calculate_center(data->player.pos_x * CELL_SIZE, (data->player.pos_x + 1) * CELL_SIZE) - 2;
+	center_y = calculate_center(data->player.pos_y * CELL_SIZE, (data->player.pos_y + 1) * CELL_SIZE) - 2;
+
+	i = center_y;
+	while (i < (center_y + PLAYER_SIZE))
 	{
-		j = data->player.pos_x;
-		while (j < (data->player.pos_x + data->player.size))
+		j = center_x;
+		while (j < (center_x + PLAYER_SIZE))
 			my_pp(&data->img, j++, i, PLAYER);
 		i++;
 	}
