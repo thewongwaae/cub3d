@@ -6,7 +6,7 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 17:11:42 by hwong             #+#    #+#             */
-/*   Updated: 2023/04/09 12:14:50 by hwong            ###   ########.fr       */
+/*   Updated: 2023/04/12 14:29:47 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,13 @@ int	checks( char *file, t_game *game )
 		return (1);
 	printf("Mapfile OK\n");
 	check_map(game);
+	printf("\n");
+	for (int i = 0; game->paths[i]; i++)
+		printf("%d: %s\n", i, game->paths[i]);
+	printf("\n");
+	for (int i = 0; game->map[i]; i++)
+		printf("%s\n", game->map[i]);
+	printf("\n");
 	printf("Map leak: %d\n", game->leak);
 	if (game->leak)
 	{

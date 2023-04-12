@@ -1,12 +1,11 @@
-NO ./path_north
-SO ./path_south
-WE ./path_west
-EA ./path_east
-F 255,255,255
 C 0,173,2
-
-      11111
-    11100011
-111110S0011
+WE ./path_west
+SO ./path_south
+EA ./path_east
+NO ./path_north
+F 255,255,255
+  11111
+1110001111
+1111100S11
 1000001111
 1111111

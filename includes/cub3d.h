@@ -6,7 +6,7 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 16:37:23 by hwong             #+#    #+#             */
-/*   Updated: 2023/04/12 11:10:18 by hwong            ###   ########.fr       */
+/*   Updated: 2023/04/12 14:26:09 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,8 +107,9 @@ int		is_space( char c );
 int		is_digit( char c );
 int		ft_atoi( const char *s );
 char	*ft_strtok( char *s, char sep );
-void	ft_bzero(void *str, size_t n);
-void	*ft_calloc(size_t nitems, size_t size);
-void	*ft_memset(void *s, int c, size_t n);
+void	ft_bzero( void *str, size_t n );
+void	*ft_calloc( size_t nitems, size_t size );
+void	*ft_memset( void *s, int c, size_t n );
+int		ismapchar( int ch );
 
 #endif
