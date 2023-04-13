@@ -6,7 +6,7 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 16:37:23 by hwong             #+#    #+#             */
-/*   Updated: 2023/04/12 14:26:09 by hwong            ###   ########.fr       */
+/*   Updated: 2023/04/13 13:48:28 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,14 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <math.h>
-// # include <mlx.h>
+# include <mlx.h>
 
 # define BUFFER_SIZE 1024
+# define WHITE 0XFFFFFF
+# define GREY 0XA6A6A6
+# define BLACK 0X000000
+# define PLAYER 0XF9A3FF
+# define CELL_SIZE 100
 
 typedef struct s_vec
 {
@@ -41,6 +46,15 @@ typedef struct s_queue
 	t_queue_node	*tail;
 }	t_queue;
 
+typedef struct s_img
+{
+	void	*mlx_img;
+	char	*addr;
+	int		bpp;
+	int		line_len;
+	int		endian;
+}	t_img;
+
 typedef struct s_texture
 {
 	void	*north;
@@ -57,6 +71,7 @@ typedef struct s_player
 	int		x;
 	int		y;
 	char	dir;
+	int		size;
 }	t_player;
 
 typedef struct s_game
@@ -65,6 +80,7 @@ typedef struct s_game
 	void		*mlx;
 	void		*win;
 	t_vec		winsize;
+	t_img		img;
 	t_vec		msize;
 	int			leak;
 	char		**paths;
@@ -86,6 +102,9 @@ void	free_queue( t_queue *q );
 
 /* RENDER */
 // void	load_textures( t_game *game );
+void	my_pp( t_img img, int x, int y, int colour );
+void	render_cell( t_img img, int color, int h_pixel, int w_pixel );
+int		render( t_game *game );
 
 /* UTILS */
 // free

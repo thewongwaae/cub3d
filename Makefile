@@ -7,7 +7,7 @@ MLXA		= libmlx.a
 INCLUDES	= -I includes
 
 CHECKS		= checks flood parse queue
-RENDER		= main #keypress #textures
+RENDER		= main pp render #keypress textures
 UTILS		= free gnl split strings stringss stringsss
 
 SRCS 		= $(addsuffix .c, $(addprefix srcs/checks/, $(CHECKS))) \
@@ -27,7 +27,7 @@ $(OBJS_DIR)%.o: %.c
 $(NAME): $(OBJS)
 	@echo "\n"
 	@echo "\033[0;32;1mCompiling cub3D..."
-	@$(CC) $(CFLAGS) $(OBJS) -o $(NAME) #$(MLXA) $(MLX) 
+	@$(CC) $(CFLAGS) $(OBJS) -o $(NAME) $(MLXA) $(MLX) 
 	@echo "\n\033[0mDone !"
 
 all: $(NAME)
@@ -38,7 +38,7 @@ clean:
 	@echo "\033[0m"
 
 fclean: clean
-	@echo "\033[38;5;196;1m\nDeleting cub3d..."
+	@echo "\033[38;5;196;1m\nDeleting cub3D..."
 	@$(RM) $(NAME)
 	@echo "\033[0m"
 

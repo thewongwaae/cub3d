@@ -170,6 +170,7 @@ int main(void)
 		return (MLX_ERROR);
 	}
 
+	// create an image layer for my_pp to draw to
 	data.img.mlx_img = mlx_new_image(data.mlx_ptr, WIN_W, WIN_H);
 	data.img.addr = mlx_get_data_addr(data.img.mlx_img, &data.img.bpp, &data.img.line_len, &data.img.endian);
 

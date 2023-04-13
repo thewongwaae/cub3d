@@ -6,7 +6,7 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 17:12:14 by hwong             #+#    #+#             */
-/*   Updated: 2023/04/12 14:26:26 by hwong            ###   ########.fr       */
+/*   Updated: 2023/04/13 13:36:28 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,11 +79,7 @@ static int	parse_textures( char **mapfile, char **texs, t_game *game )
 	}
 	game->paths[i] = NULL;
 	if (!all_found(game->foundtex))
-	{
-		printf("returning 0\n");
 		return (0);
-	}
-	printf("returning %d\n", game->foundtex[6]);
 	return (game->foundtex[6]);
 }
 
@@ -106,6 +102,8 @@ static int	parse_map( char **mapfile, t_game *game )
 	while (mapfile[i + game->msize.y])
 	{
 		game->map[game->msize.y] = ft_strdup(mapfile[i + game->msize.y]);
+		if (game->msize.x < ft_slen(mapfile[game->msize.y]))
+			game->msize.x = ft_slen(mapfile[game->msize.y]);
 		game->msize.y++;
 	}
 	game->map[game->msize.y] = NULL;
@@ -138,90 +136,14 @@ int	parse_mapfile( char *file, t_game *game )
 		return (write(2, "Error: Failed to open", 22));
 	close(fd);
 	game->paths = malloc(sizeof(char *) * 7);
-	// parse_textures(mapfile, &i, game);
 	texs = ft_split("NO ,SO ,WE ,EA ,F ,C ", ',');
 	i = parse_textures(mapfile, texs, game);
 	free(game->foundtex);
 	free_tab(texs);
 	if (i == 0)
 		return (write(2, "Error: Incorrect path format", 28));
-	//free_tab(game->paths);
 	if (parse_map(mapfile + i, game))
 		return (1);
 	free_tab(mapfile);
 	return (0);
 }
-
-
-// static int	parse_textures( char **mapfile, char **texs, t_game *game )
-// {
-// 	int		i;
-// 	int		foundtex[6];
-// 	char	*space;
-
-// 	i = 0;
-// 	ft_memset(foundtex, 0, 6);
-// 	while (mapfile[i])
-// 	{
-// 		space = ft_strchr(mapfile[i], ' ');
-// 		if (!strncmp(mapfile[i], "NO ", 3) && space)
-// 		{
-// 			game->paths[0] = ft_strdup(space + 1);
-// 			foundtex[0] += 1;
-// 		}
-// 		if (!strncmp(mapfile[i], "SO ", 3) && space)
-// 		{
-// 			game->paths[1] = ft_strdup(space + 1);
-// 			foundtex[1] += 1;
-// 		}
-// 		if (!strncmp(mapfile[i], "WE ", 3) && space)
-// 		{
-// 			game->paths[2] = ft_strdup(space + 1);
-// 			foundtex[2] += 1;
-// 		}
-// 		if (!strncmp(mapfile[i], "EA ", 3) && space)
-// 		{
-// 			game->paths[3] = ft_strdup(space + 1);
-// 			foundtex[3] += 1;
-// 		}
-// 		if (!strncmp(mapfile[i], "F ", 2) && space)
-// 		{
-// 			game->paths[4] = ft_strdup(space + 1);
-// 			foundtex[4] += 1;
-// 		}
-// 		if (!strncmp(mapfile[i], "C ", 2) && space)
-// 		{
-// 			game->paths[5] = ft_strdup(space + 1);
-// 			foundtex[5] += 1;
-// 		}
-// 		i++;
-// 	}
-// 	if (!all_found(foundtex))
-// 		return (0);
-// 	return (i - 1);
-// }
-
-// static void	parse_textures( char **mapfile, int *i, t_game *game )
-// {
-// 	int		j;
-// 	int		k;
-// 	char	*space;
-
-// 	j = 0;
-// 	k = 0;
-// 	while (ft_strncmp(mapfile[j], "C ", 2))
-// 	{
-// 		space = ft_strchr(mapfile[j], ' ');
-// 		if (space)
-// 		{
-// 			game->paths[k] = ft_strdup(space + 1);
-// 			k++;
-// 		}
-// 		(*i)++;
-// 		j++;
-// 	}
-// 	game->paths[k] = ft_strdup(&mapfile[j][2]);
-// 	(*i)++;
-// 	game->paths[k + 1] = NULL;
-// 	//load_textures(game);
-// }
