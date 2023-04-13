@@ -35,8 +35,10 @@ typedef struct s_img {
 typedef struct s_player {
 	int pos_x; //in map
 	int pos_y; 
-	int pix_x; //pixel position
-	int pix_y; 
+	int cell_x; //cell pixel position
+	int cell_y; 
+	int pix_x; //top left player pixel
+	int pix_y;
 }	t_player;
 
 typedef struct s_data {
@@ -46,28 +48,12 @@ typedef struct s_data {
 	t_player player;
 }	t_data;
 
-// int move(int keycode, t_data *data)
-// {
-// 	if (keycode == 13)
-// 		update_move();
-// 	else if (keycode == 1)
-// 		update_move();
-// 	else if (keycode == 0)
-// 		update_move();
-// 	else if (keycode == 2)
-// 		update_move();
-// 	else if (keycode == 53)
-// 	{
-		
-// 	}
-// }
-
 int	player_init(t_player *player)
 {
 	player->pos_x = 3;
-	player->pos_y = 1;
-	player->pix_x = player->pos_x * CELL_SIZE;
-	player->pix_y = player->pos_y * CELL_SIZE;
+	player->pos_y = 2;
+	player->cell_x = player->pos_x * CELL_SIZE;
+	player->cell_y = player->pos_y * CELL_SIZE;
 
 	return (0);
 }
@@ -155,8 +141,7 @@ void render_map_grid(t_img *img)
 		}
 	}
 }
-
-int calculate_center(int start, int end)
+int cell_center(int start, int end)
 {
 	int center;
 
@@ -168,16 +153,18 @@ int calculate_center(int start, int end)
 void render_player(t_data *data)
 {
 	int i, j;
-
-	int center_x, center_y;
-	center_x = calculate_center(data->player.pix_x, data->player.pix_x + CELL_SIZE);
-	center_y = calculate_center(data->player.pix_y, data->player.pix_y + CELL_SIZE);
-
-	i = center_y;
-	while (i < (center_y + PLAYER_SIZE))
+	
+	if (!data->player.pix_x || data->player.pix_y)
 	{
-		j = center_x;
-		while (j < (center_x + PLAYER_SIZE))
+		data->player.pix_x = cell_center(data->player.cell_x, data->player.cell_x + CELL_SIZE);
+		data->player.pix_y = cell_center(data->player.cell_y, data->player.cell_y + CELL_SIZE);
+	}
+
+	i = data->player.pix_y;
+	while (i < (data->player.pix_y + PLAYER_SIZE))
+	{
+		j = data->player.pix_x;
+		while (j < (data->player.pix_x + PLAYER_SIZE))
 			my_pp(&data->img, j++, i, PLAYER);
 		i++;
 	}
@@ -193,12 +180,56 @@ int render(t_data *data)
 	return (0);
 }
 
+void move_up(t_data *data)
+{
+	data->player.pix_y -= 1;
+	render_player(data);
+	printf("up");
+}
+
+void move_down(t_data *data)
+{
+	data->player.pix_y += 1;
+	render_player(data);
+}
+
+void move_left(t_data *data)
+{
+	data->player.pix_x -= 1;
+	render_player(data);
+}
+
+void move_right(t_data *data)
+{
+	data->player.pix_x += 1;
+	render_player(data);
+}
+
+int move(int keycode, t_data *data)
+{
+	if (keycode == 13)
+		move_up(data);
+	// else if (keycode == 1)
+	// 	move_down(data);
+	// else if (keycode == 0)
+	// 	move_left(data);
+	// else if (keycode == 2)
+	// 	move_right(data);
+	// else if (keycode == 53)
+	// {
+		
+	// }
+	render(data);
+	return (0);
+}
+
 int main(void)
 {
 	t_data data;
 
 	data_init(&data);
 	// mlx_hook(data.win_ptr, 2, (1L << 0), move, &data);
+	mlx_key_hook(data.win_ptr, move, &data);
 	mlx_loop_hook(data.mlx_ptr, &render, &data);
 	mlx_loop(data.mlx_ptr);
 
