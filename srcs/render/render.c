@@ -39,26 +39,21 @@ static void	render_map_grid( t_game *game )
 	}
 }
 
-static int	get_center( int start, int end )
-{
-	return (end - ((end - start) / 2));
-}
-
 static void	render_player( t_game *game )
 {
 	int	i;
 	int	j;
-	int	center_x;
-	int	center_y;
+	// int	center_x;
+	// int	center_y;
 
-	center_x = get_center(game->p.x*CELL_SIZE,(game->p.x+1)*CELL_SIZE)-2;
-	center_y = get_center(game->p.y*CELL_SIZE,(game->p.y+1)*CELL_SIZE)-2;
-	i = center_y;
-	while (i < (center_y + game->p.size))
+	// center_x = get_center(game->p.x*CELL_SIZE,(game->p.x+1)*CELL_SIZE)-2;
+	// center_y = get_center(game->p.y*CELL_SIZE,(game->p.y+1)*CELL_SIZE)-2;
+	i = game->p.pix_y;
+	while (i < (game->p.pix_y + game->p.size))
 	{
-		j = center_x;
-		while (j < (center_x + game->p.size))
-			my_pp(game->img, j++, i, PLAYER);
+		j = game->p.pix_x;
+		while (j < (game->p.pix_x + game->p.size))
+			my_pp(game->p.img, j++, i, PLAYER);
 		i++;
 	}
 }

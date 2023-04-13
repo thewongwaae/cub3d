@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
+/*   By: nnorazma <nnorazma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 16:37:23 by hwong             #+#    #+#             */
-/*   Updated: 2023/04/13 13:48:28 by hwong            ###   ########.fr       */
+/*   Updated: 2023/04/13 15:59:34 by nnorazma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,12 @@ typedef struct s_player
 	int		y;
 	char	dir;
 	int		size;
+
+	int		cell_x; //cell pixel position
+	int		cell_y; 
+	int		pix_x; //top left player pixel
+	int		pix_y;
+	t_img	img;
 }	t_player;
 
 typedef struct s_game
@@ -130,5 +136,8 @@ void	ft_bzero( void *str, size_t n );
 void	*ft_calloc( size_t nitems, size_t size );
 void	*ft_memset( void *s, int c, size_t n );
 int		ismapchar( int ch );
+
+// utils
+int		get_center( int start, int end );
 
 #endif

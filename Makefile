@@ -8,7 +8,7 @@ INCLUDES	= -I includes
 
 CHECKS		= checks flood parse queue
 RENDER		= main pp render #keypress textures
-UTILS		= free gnl split strings stringss stringsss
+UTILS		= free gnl split strings stringss stringsss utils
 
 SRCS 		= $(addsuffix .c, $(addprefix srcs/checks/, $(CHECKS))) \
 			$(addsuffix .c, $(addprefix srcs/render/, $(RENDER))) \
