@@ -5,7 +5,7 @@
 
 #define WIN_W 1920
 #define WIN_H 1080
-#define CELL_SIZE 150
+#define CELL_SIZE 100
 #define PLAYER_SIZE 5
 
 #define MLX_ERROR 1
@@ -34,7 +34,9 @@ typedef struct s_img {
 
 typedef struct s_player {
 	int pos_x; //in map
-	int pos_y; //in map
+	int pos_y; 
+	int pix_x; //pixel position
+	int pix_y; 
 }	t_player;
 
 typedef struct s_data {
@@ -44,13 +46,51 @@ typedef struct s_data {
 	t_player player;
 }	t_data;
 
-typedef struct s_rect {
-	int x;
-	int y;
-	int width;
-	int height;
-	int colour;
-}	t_rect;
+// int move(int keycode, t_data *data)
+// {
+// 	if (keycode == 13)
+// 		update_move();
+// 	else if (keycode == 1)
+// 		update_move();
+// 	else if (keycode == 0)
+// 		update_move();
+// 	else if (keycode == 2)
+// 		update_move();
+// 	else if (keycode == 53)
+// 	{
+		
+// 	}
+// }
+
+int	player_init(t_player *player)
+{
+	player->pos_x = 3;
+	player->pos_y = 1;
+	player->pix_x = player->pos_x * CELL_SIZE;
+	player->pix_y = player->pos_y * CELL_SIZE;
+
+	return (0);
+}
+
+int	data_init(t_data *data)
+{
+	data->mlx_ptr = mlx_init();
+	if (data->mlx_ptr == NULL)
+		return (MLX_ERROR);
+
+	data->win_ptr = mlx_new_window(data->mlx_ptr, WIN_W, WIN_H, "TEST CUB3D");
+	if (data->win_ptr == NULL)
+	{
+		free(data->win_ptr);
+		return (MLX_ERROR);
+	}
+
+	data->img.mlx_img = mlx_new_image(data->mlx_ptr, WIN_W, WIN_H);
+	data->img.addr = mlx_get_data_addr(data->img.mlx_img, &data->img.bpp, &data->img.line_len, &data->img.endian);
+
+	player_init(&data->player);
+	return (0);
+}
 
 void my_pp(t_img *img, int x, int y, int colour)
 {
@@ -128,12 +168,10 @@ int calculate_center(int start, int end)
 void render_player(t_data *data)
 {
 	int i, j;
-	data->player.pos_x = 1; //coords in map (index x)
-	data->player.pos_y = 3; //index y
 
 	int center_x, center_y;
-	center_x = calculate_center(data->player.pos_x * CELL_SIZE, (data->player.pos_x + 1) * CELL_SIZE) - 2;
-	center_y = calculate_center(data->player.pos_y * CELL_SIZE, (data->player.pos_y + 1) * CELL_SIZE) - 2;
+	center_x = calculate_center(data->player.pix_x, data->player.pix_x + CELL_SIZE);
+	center_y = calculate_center(data->player.pix_y, data->player.pix_y + CELL_SIZE);
 
 	i = center_y;
 	while (i < (center_y + PLAYER_SIZE))
@@ -159,20 +197,8 @@ int main(void)
 {
 	t_data data;
 
-	data.mlx_ptr = mlx_init();
-	if (data.mlx_ptr == NULL)
-		return (MLX_ERROR);
-
-	data.win_ptr = mlx_new_window(data.mlx_ptr, WIN_W, WIN_H, "TEST CUB3D");
-	if (data.win_ptr == NULL)
-	{
-		free(data.win_ptr);
-		return (MLX_ERROR);
-	}
-
-	data.img.mlx_img = mlx_new_image(data.mlx_ptr, WIN_W, WIN_H);
-	data.img.addr = mlx_get_data_addr(data.img.mlx_img, &data.img.bpp, &data.img.line_len, &data.img.endian);
-
+	data_init(&data);
+	// mlx_hook(data.win_ptr, 2, (1L << 0), move, &data);
 	mlx_loop_hook(data.mlx_ptr, &render, &data);
 	mlx_loop(data.mlx_ptr);
 
