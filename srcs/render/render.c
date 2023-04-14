@@ -62,9 +62,10 @@ int	render( t_game *game )
 {
 	render_bg(game, GREY);
 	render_map_grid(game);
-	render_player(game);
-
 	mlx_put_image_to_window(game->mlx, game->win,
 			game->img.mlx_img, 0, 0);
+	render_player(game);
+	mlx_put_image_to_window(game->mlx, game->win,
+			game->p.img.mlx_img, 0, 0);
 	return (0);
 }

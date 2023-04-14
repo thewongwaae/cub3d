@@ -3,25 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nnorazma <nnorazma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 17:11:56 by hwong             #+#    #+#             */
-/*   Updated: 2023/04/13 16:04:39 by nnorazma         ###   ########.fr       */
+/*   Updated: 2023/04/14 22:49:41 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static void	player_init( t_game *game )
-{
-	game->p.cell_x = game->p.x * CELL_SIZE;
-	game->p.cell_y = game->p.y * CELL_SIZE;
-	game->p.pix_x = get_center(game->p.cell_x, game->p.cell_x + CELL_SIZE);
-	game->p.pix_y = get_center(game->p.cell_y, game->p.cell_y + CELL_SIZE);
-	game->p.img.mlx_img = mlx_new_image(game->mlx, game->p.size, game->p.size);
-	game->p.img.addr = mlx_get_data_addr(game->p.img.mlx_img,
-			&game->p.img.bpp, &game->p.img.line_len, &game->p.img.endian);
-}
 
 static void	game_init( t_game *game )
 {
@@ -48,6 +38,17 @@ static void	init_mlx( t_game *game )
 			game->winsize.x, game->winsize.y);
 	game->img.addr = mlx_get_data_addr(game->img.mlx_img,
 			&game->img.bpp, &game->img.line_len, &game->img.endian);
+}
+
+static void	player_init( t_game *game )
+{
+	game->p.cell_x = game->p.x * CELL_SIZE;
+	game->p.cell_y = game->p.y * CELL_SIZE;
+	game->p.pix_x = get_center(game->p.cell_x, game->p.cell_x + CELL_SIZE);
+	game->p.pix_y = get_center(game->p.cell_y, game->p.cell_y + CELL_SIZE);
+	game->p.img.mlx_img = mlx_new_image(game->mlx, game->winsize.x, game->winsize.x);
+	game->p.img.addr = mlx_get_data_addr(game->p.img.mlx_img,
+			&game->p.img.bpp, &game->p.img.line_len, &game->p.img.endian);
 }
 
 int	main( int ac, char **av )
