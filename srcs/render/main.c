@@ -3,14 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
+/*   By: nnorazma <nnorazma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 17:11:56 by hwong             #+#    #+#             */
-/*   Updated: 2023/04/13 13:55:39 by hwong            ###   ########.fr       */
+/*   Updated: 2023/04/13 16:04:39 by nnorazma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+static void	player_init( t_game *game )
+{
+	game->p.cell_x = game->p.x * CELL_SIZE;
+	game->p.cell_y = game->p.y * CELL_SIZE;
+	game->p.pix_x = get_center(game->p.cell_x, game->p.cell_x + CELL_SIZE);
+	game->p.pix_y = get_center(game->p.cell_y, game->p.cell_y + CELL_SIZE);
+	game->p.img.mlx_img = mlx_new_image(game->mlx, game->p.size, game->p.size);
+	game->p.img.addr = mlx_get_data_addr(game->p.img.mlx_img,
+			&game->p.img.bpp, &game->p.img.line_len, &game->p.img.endian);
+}
 
 static void	game_init( t_game *game )
 {
@@ -21,7 +32,7 @@ static void	game_init( t_game *game )
 	game->p.found = 0;
 	game->p.y = 0;
 	game->p.x = 0;
-	game->p.dir = 0;
+	game->p.dir = 0;	
 	game->p.size = 5;
 	game->leak = 0;
 	game->msize.y = 0;
@@ -49,6 +60,7 @@ int	main( int ac, char **av )
 	if (checks(av[1], &game))
 		return (write(2, ": Invalid file\n", 15));
 	init_mlx(&game);
+	player_init(&game);
 	// mlx_key_hook(game.win, move, &game);
 	// mlx_hook(game.win, 17, (1L << 0), endgame, &game);
 	mlx_loop_hook(game.mlx, &render, &game);
