@@ -6,7 +6,7 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 16:37:23 by hwong             #+#    #+#             */
-/*   Updated: 2023/04/14 21:47:49 by hwong            ###   ########.fr       */
+/*   Updated: 2023/04/15 17:00:50 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include <mlx.h>
 
 # define BUFFER_SIZE 1024
+# define TRANS 0x00000000
 # define WHITE 0XFFFFFF
 # define GREY 0XA6A6A6
 # define BLACK 0X000000
@@ -86,7 +87,8 @@ typedef struct s_game
 	void		*mlx;
 	void		*win;
 	t_vec		winsize;
-	t_img		img;
+	t_img		bg; // new thing
+	t_img		mmap; //img
 	t_vec		msize;
 	int			leak;
 	char		**paths;
@@ -108,6 +110,7 @@ void	free_queue( t_queue *q );
 
 /* RENDER */
 // void	load_textures( t_game *game );
+int		rgba_to_int( int r, int g, int b, double a );
 void	my_pp( t_img img, int x, int y, int colour );
 void	render_cell( t_img img, int color, int h_pixel, int w_pixel );
 int		render( t_game *game );

@@ -10,7 +10,7 @@ static void	render_bg( t_game *game, int colour )
 	{
 		j = 0;
 		while (j < game->winsize.x)
-			my_pp(game->img, j++, i, colour);
+			my_pp(game->bg, j++, i, colour);
 		i++;
 	}
 }
@@ -28,10 +28,10 @@ static void	render_map_grid( t_game *game )
 		while (w < ft_slen(game->map[h]))
 		{
 			if (game->map[h][w] == '1')
-				render_cell(game->img, WHITE,
+				render_cell(game->mmap, WHITE,
 						h*CELL_SIZE, w*CELL_SIZE);
 			else if (game->map[h][w] == '0')
-				render_cell(game->img, BLACK,
+				render_cell(game->mmap, BLACK,
 						h*CELL_SIZE, w*CELL_SIZE);
 			w++;
 		}
@@ -43,11 +43,15 @@ static void	render_player( t_game *game )
 {
 	int	i;
 	int	j;
-	// int	center_x;
-	// int	center_y;
-
-	// center_x = get_center(game->p.x*CELL_SIZE,(game->p.x+1)*CELL_SIZE)-2;
-	// center_y = get_center(game->p.y*CELL_SIZE,(game->p.y+1)*CELL_SIZE)-2;
+	
+	i = 0;
+	while (i < game->msize.y*CELL_SIZE)
+	{
+		j = 0;
+		while (j < game->msize.x*CELL_SIZE)
+			my_pp(game->p.img, j++, i, TRANS);
+		i++;
+	}
 	i = game->p.pix_y;
 	while (i < (game->p.pix_y + game->p.size))
 	{
@@ -61,9 +65,11 @@ static void	render_player( t_game *game )
 int	render( t_game *game )
 {
 	render_bg(game, GREY);
+	mlx_put_image_to_window(game->mlx, game->win,
+			game->bg.mlx_img, 0, 0);
 	render_map_grid(game);
 	mlx_put_image_to_window(game->mlx, game->win,
-			game->img.mlx_img, 0, 0);
+			game->mmap.mlx_img, 0, 0);
 	render_player(game);
 	mlx_put_image_to_window(game->mlx, game->win,
 			game->p.img.mlx_img, 0, 0);

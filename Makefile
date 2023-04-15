@@ -2,13 +2,13 @@ NAME		= cub3D
 CC			= gcc
 RM			= rm -rf
 CFLAGS		= -Wall -Werror -Wextra -fsanitize=address -g3
-# MLX			= -lmlx -framework OpenGL -framework AppKit
-MLX			= -lmlx -framework OpenGL -framework AppKit -L.
+MLX			= -lmlx -framework OpenGL -framework AppKit
+# MLX			= -lmlx -framework OpenGL -framework AppKit -L.
 MLXA		= libmlx.a
-INCLUDES	= -I includes -I mlx
+INCLUDES	= -I includes #-I mlx
 
 CHECKS		= checks flood parse queue
-RENDER		= main pp render #keypress textures
+RENDER		= main pp render textures #keypress
 UTILS		= free gnl split strings stringss stringsss utils
 
 SRCS 		= $(addsuffix .c, $(addprefix srcs/checks/, $(CHECKS))) \

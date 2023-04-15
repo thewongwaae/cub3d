@@ -6,7 +6,7 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 17:11:56 by hwong             #+#    #+#             */
-/*   Updated: 2023/04/14 22:49:41 by hwong            ###   ########.fr       */
+/*   Updated: 2023/04/15 16:51:00 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,14 @@ static void	init_mlx( t_game *game )
 	game->mlx = mlx_init();
 	game->win = mlx_new_window(game->mlx, game->winsize.x,
 			game->winsize.y, "cub3D");
-	game->img.mlx_img = mlx_new_image(game->mlx,
-			game->winsize.x, game->winsize.y);
-	game->img.addr = mlx_get_data_addr(game->img.mlx_img,
-			&game->img.bpp, &game->img.line_len, &game->img.endian);
+	game->bg.mlx_img = mlx_new_image(game->mlx,
+			game->winsize.x,game->winsize.y);
+	game->bg.addr = mlx_get_data_addr(game->bg.mlx_img,
+			&game->bg.bpp,&game->bg.line_len,&game->bg.endian);
+	game->mmap.mlx_img = mlx_new_image(game->mlx,
+			game->msize.x*CELL_SIZE,game->msize.y*CELL_SIZE);
+	game->mmap.addr = mlx_get_data_addr(game->mmap.mlx_img,
+			&game->mmap.bpp,&game->mmap.line_len,&game->mmap.endian);
 }
 
 static void	player_init( t_game *game )
@@ -46,7 +50,8 @@ static void	player_init( t_game *game )
 	game->p.cell_y = game->p.y * CELL_SIZE;
 	game->p.pix_x = get_center(game->p.cell_x, game->p.cell_x + CELL_SIZE);
 	game->p.pix_y = get_center(game->p.cell_y, game->p.cell_y + CELL_SIZE);
-	game->p.img.mlx_img = mlx_new_image(game->mlx, game->winsize.x, game->winsize.x);
+	game->p.img.mlx_img = mlx_new_image(game->mlx,
+			game->msize.x*CELL_SIZE,game->msize.y*CELL_SIZE);
 	game->p.img.addr = mlx_get_data_addr(game->p.img.mlx_img,
 			&game->p.img.bpp, &game->p.img.line_len, &game->p.img.endian);
 }

@@ -6,7 +6,7 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 17:12:14 by hwong             #+#    #+#             */
-/*   Updated: 2023/04/13 13:36:28 by hwong            ###   ########.fr       */
+/*   Updated: 2023/04/15 16:52:57 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,8 +102,8 @@ static int	parse_map( char **mapfile, t_game *game )
 	while (mapfile[i + game->msize.y])
 	{
 		game->map[game->msize.y] = ft_strdup(mapfile[i + game->msize.y]);
-		if (game->msize.x < ft_slen(mapfile[game->msize.y]))
-			game->msize.x = ft_slen(mapfile[game->msize.y]);
+		if (game->msize.x < ft_slen(mapfile[i + game->msize.y]))
+			game->msize.x = ft_slen(mapfile[i + game->msize.y]);
 		game->msize.y++;
 	}
 	game->map[game->msize.y] = NULL;
@@ -118,7 +118,7 @@ static int	parse_map( char **mapfile, t_game *game )
 
 	Note: since using int i to keep track of where we've
 	read until in the array, if a texture path is placed
-	below the mapfile, 
+	below the mapfile, map will definitely not load correctly
 */
 int	parse_mapfile( char *file, t_game *game )
 {
