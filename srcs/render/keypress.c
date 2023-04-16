@@ -6,7 +6,7 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 17:11:51 by hwong             #+#    #+#             */
-/*   Updated: 2023/04/16 16:15:05 by hwong            ###   ########.fr       */
+/*   Updated: 2023/04/16 16:52:54 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	move( int keycode, t_game *game )
 	// 	backward();
 	// else if (keycode == 2 || keycode == 124)
 	// 	right();
-	if (keycode == 53)
+	if (keycode == 53 || keycode == 65307)
 		endgame(game);
 	return (0);
 }

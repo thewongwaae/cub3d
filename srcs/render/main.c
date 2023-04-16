@@ -6,7 +6,7 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 17:11:56 by hwong             #+#    #+#             */
-/*   Updated: 2023/04/16 16:22:15 by hwong            ###   ########.fr       */
+/*   Updated: 2023/04/16 16:50:40 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,8 @@ int	main( int ac, char **av )
 	init_mlx(&game);
 	player_init(&game);
 	mlx_key_hook(game.win, move, &game);
-	mlx_hook(game.win, 17, (1L << 17), endgame, &game);
+	// mlx_hook(game.win, 17, (1L << 17), endgame, &game); // MacOS
+	mlx_hook(game.win, 17, (1L << 0), endgame, &game); // Linux
 	mlx_loop_hook(game.mlx, &render, &game);
 	mlx_loop(game.mlx);
 	//system("leaks cub3D");

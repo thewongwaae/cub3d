@@ -3,9 +3,10 @@ CC			= gcc
 RM			= rm -rf
 CFLAGS		= -Wall -Werror -Wextra -fsanitize=address -g3
 # MLX			= -lmlx -framework OpenGL -framework AppKit
-MLX			= -lmlx -framework OpenGL -framework AppKit -L.
-MLXA		= libmlx.a
-INCLUDES	= -I includes -I mlx
+# MLX			= -lmlx -framework OpenGL -framework AppKit -L.
+MLX			= -Lmlx_linux -lmlx -lXext -lX11
+# MLXA		= libmlx.a
+INCLUDES	= -I includes #-I mlx_linux -O3 #-I mlx
 
 CHECKS		= checks flood parse queue
 RENDER		= main pp render textures keypress
@@ -26,20 +27,19 @@ $(OBJS_DIR)%.o: %.c
 	@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 $(NAME): $(OBJS)
-	@echo "\n"
 	@echo "\033[0;32;1mCompiling cub3D..."
-	@$(CC) $(CFLAGS) $(MLXA) $(MLX) $(OBJS) -o $(NAME) 
+	@$(CC) $(CFLAGS) $(OBJS) -o $(NAME) $(MLX) #$(MLXA)
 	@echo "\n\033[0mDone !"
 
 all: $(NAME)
 
 clean:
-	@echo "\033[38;5;160;1m\nRemoving objects..."
+	@echo "\033[38;5;160;1mRemoving objects..."
 	@$(RM) $(OBJS_DIR)
 	@echo "\033[0m"
 
 fclean: clean
-	@echo "\033[38;5;196;1m\nDeleting cub3D..."
+	@echo "\033[38;5;196;1mDeleting cub3D..."
 	@$(RM) $(NAME)
 	@echo "\033[0m"
 
