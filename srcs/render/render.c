@@ -1,16 +1,16 @@
 #include "cub3d.h"
 
-static void	render_bg( t_game *game, int colour )
+static void	render_bg( t_img img, int h, int w, int color )
 {
-	int i;
-	int j;
-
+	int	i;
+	int	j;
+	
 	i = 0;
-	while (i < game->winsize.y)
+	while (i < h)
 	{
 		j = 0;
-		while (j < game->winsize.x)
-			my_pp(game->bg, j++, i, colour);
+		while (j < w)
+			my_pp(img, j++, i, color);
 		i++;
 	}
 }
@@ -20,8 +20,9 @@ static void	render_map_grid( t_game *game )
 	int	h;
 	int	w;
 
+	render_bg(game->mmap,game->msize.y*CELL_SIZE,
+			game->msize.x*CELL_SIZE,TRANS);
 	h = 0;
-	w = 0;
 	while (h < game->msize.y)
 	{
 		w = 0;
@@ -31,7 +32,7 @@ static void	render_map_grid( t_game *game )
 				render_cell(game->mmap, WHITE,
 						h*CELL_SIZE, w*CELL_SIZE);
 			else if (game->map[h][w] == '0')
-				render_cell(game->mmap, BLACK,
+				render_cell(game->mmap, GREEN,
 						h*CELL_SIZE, w*CELL_SIZE);
 			w++;
 		}
@@ -44,14 +45,8 @@ static void	render_player( t_game *game )
 	int	i;
 	int	j;
 	
-	i = 0;
-	while (i < game->msize.y*CELL_SIZE)
-	{
-		j = 0;
-		while (j < game->msize.x*CELL_SIZE)
-			my_pp(game->p.img, j++, i, TRANS);
-		i++;
-	}
+	render_bg(game->mmap,game->msize.y*CELL_SIZE,
+			game->msize.x*CELL_SIZE,TRANS);
 	i = game->p.pix_y;
 	while (i < (game->p.pix_y + game->p.size))
 	{
@@ -64,7 +59,7 @@ static void	render_player( t_game *game )
 
 int	render( t_game *game )
 {
-	render_bg(game, GREY);
+	render_bg(game->bg,game->winsize.y,game->winsize.x,GREY);
 	mlx_put_image_to_window(game->mlx, game->win,
 			game->bg.mlx_img, 0, 0);
 	render_map_grid(game);

@@ -6,7 +6,7 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 16:37:23 by hwong             #+#    #+#             */
-/*   Updated: 2023/04/15 17:00:50 by hwong            ###   ########.fr       */
+/*   Updated: 2023/04/16 11:21:05 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,10 @@
 # include <mlx.h>
 
 # define BUFFER_SIZE 1024
-# define TRANS 0x00000000
+# define TRANS 0XFF000000
 # define WHITE 0XFFFFFF
 # define GREY 0XA6A6A6
+# define GREEN 0X90EE90
 # define BLACK 0X000000
 # define PLAYER 0XF9A3FF
 # define CELL_SIZE 100
