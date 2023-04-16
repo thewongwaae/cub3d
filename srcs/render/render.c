@@ -45,7 +45,7 @@ static void	render_player( t_game *game )
 	int	i;
 	int	j;
 	
-	render_bg(game->mmap,game->msize.y*CELL_SIZE,
+	render_bg(game->p.img,game->msize.y*CELL_SIZE,
 			game->msize.x*CELL_SIZE,TRANS);
 	i = game->p.pix_y;
 	while (i < (game->p.pix_y + game->p.size))
