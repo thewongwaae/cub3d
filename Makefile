@@ -8,7 +8,7 @@ MLXA		= libmlx.a
 INCLUDES	= -I includes -I mlx
 
 CHECKS		= checks flood parse queue
-RENDER		= main pp render textures #keypress
+RENDER		= main pp render textures keypress
 UTILS		= free gnl split strings stringss stringsss utils
 
 SRCS 		= $(addsuffix .c, $(addprefix srcs/checks/, $(CHECKS))) \

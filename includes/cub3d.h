@@ -6,7 +6,7 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 16:37:23 by hwong             #+#    #+#             */
-/*   Updated: 2023/04/16 11:21:05 by hwong            ###   ########.fr       */
+/*   Updated: 2023/04/16 16:22:24 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,11 +115,13 @@ int		rgba_to_int( int r, int g, int b, double a );
 void	my_pp( t_img img, int x, int y, int colour );
 void	render_cell( t_img img, int color, int h_pixel, int w_pixel );
 int		render( t_game *game );
+int		move( int keycode, t_game *game );
 
 /* UTILS */
 // free
 void	ft_free( char *var );
 void	free_tab( char **tab );
+int		endgame( t_game *game );
 // GNL
 char	*gnl( int fd );
 // split

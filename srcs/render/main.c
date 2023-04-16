@@ -6,7 +6,7 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 17:11:56 by hwong             #+#    #+#             */
-/*   Updated: 2023/04/15 16:51:00 by hwong            ###   ########.fr       */
+/*   Updated: 2023/04/16 16:22:15 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,14 @@ static void	player_init( t_game *game )
 			&game->p.img.bpp, &game->p.img.line_len, &game->p.img.endian);
 }
 
+int	endgame( t_game *game )
+{
+	free_tab(game->map);
+	mlx_destroy_window(game->mlx, game->win);
+	free(game->mlx);
+	exit(0);
+}
+
 int	main( int ac, char **av )
 {
 	t_game	game;
@@ -67,12 +75,10 @@ int	main( int ac, char **av )
 		return (write(2, ": Invalid file\n", 15));
 	init_mlx(&game);
 	player_init(&game);
-	// mlx_key_hook(game.win, move, &game);
-	// mlx_hook(game.win, 17, (1L << 0), endgame, &game);
+	mlx_key_hook(game.win, move, &game);
+	mlx_hook(game.win, 17, (1L << 17), endgame, &game);
 	mlx_loop_hook(game.mlx, &render, &game);
 	mlx_loop(game.mlx);
 	//system("leaks cub3D");
-	free_tab(game.map);
-	free(game.mlx);
 	return (0);
 }
