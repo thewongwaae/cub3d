@@ -15,6 +15,11 @@ static void	render_bg( t_img img, int h, int w, int color )
 	}
 }
 
+static int	is_walkable( char ch )
+{
+	return (ch == '0'||ch == 'N'||ch == 'S'||ch == 'E'||ch == 'W');
+}
+
 static void	render_map_grid( t_game *game )
 {
 	int	h;
@@ -31,7 +36,7 @@ static void	render_map_grid( t_game *game )
 			if (game->map[h][w] == '1')
 				render_cell(game->mmap, WHITE,
 						h*CELL_SIZE, w*CELL_SIZE);
-			else if (game->map[h][w] == '0')
+			else if (is_walkable(game->map[h][w]))
 				render_cell(game->mmap, GREEN,
 						h*CELL_SIZE, w*CELL_SIZE);
 			w++;

@@ -2,11 +2,11 @@ NAME		= cub3D
 CC			= gcc
 RM			= rm -rf
 CFLAGS		= -Wall -Werror -Wextra -fsanitize=address -g3
-# MLX			= -lmlx -framework OpenGL -framework AppKit
+MLX			= -lmlx -framework OpenGL -framework AppKit
 # MLX			= -lmlx -framework OpenGL -framework AppKit -L.
-MLX			= -Lmlx_linux -lmlx -lXext -lX11
+# MLX			= -Lmlx_linux -lmlx -lXext -lX11
 # MLXA		= libmlx.a
-INCLUDES	= -I includes #-I mlx_linux -O3 #-I mlx
+INCLUDES	= -I includes -I mlx #-I mlx_linux -O3
 
 CHECKS		= checks flood parse queue
 RENDER		= main pp render textures keypress
@@ -27,8 +27,8 @@ $(OBJS_DIR)%.o: %.c
 	@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 $(NAME): $(OBJS)
-	@echo "\033[0;32;1mCompiling cub3D..."
-	@$(CC) $(CFLAGS) $(OBJS) -o $(NAME) $(MLX) #$(MLXA)
+	@echo "\n\n\033[0;32;1mCompiling cub3D..."
+	@$(CC) $(CFLAGS) $(OBJS) -o $(NAME) $(MLX) $(MLXA)
 	@echo "\n\033[0mDone !"
 
 all: $(NAME)
