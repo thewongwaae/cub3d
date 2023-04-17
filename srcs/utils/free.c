@@ -6,7 +6,7 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 17:12:20 by hwong             #+#    #+#             */
-/*   Updated: 2023/04/12 11:11:16 by hwong            ###   ########.fr       */
+/*   Updated: 2023/04/17 12:55:01 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,4 +26,12 @@ void	free_tab( char **tab )
 	while (tab[++i])
 		ft_free(tab[i]);
 	free(tab);
+}
+
+int	endgame( t_game *game )
+{
+	free_tab(game->map);
+	mlx_destroy_window(game->mlx, game->win);
+	free(game->mlx);
+	exit(0);
 }

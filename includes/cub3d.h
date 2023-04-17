@@ -6,7 +6,7 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 16:37:23 by hwong             #+#    #+#             */
-/*   Updated: 2023/04/16 16:22:24 by hwong            ###   ########.fr       */
+/*   Updated: 2023/04/17 13:32:26 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,10 @@ typedef struct s_player
 	int		cell_y; 
 	int		pix_x; //top left player pixel
 	int		pix_y;
+
+	float	pa;
+	float	pdx;
+	float	pdy;
 	t_img	img;
 }	t_player;
 
@@ -145,5 +149,6 @@ int		ismapchar( int ch );
 
 // utils
 int		get_center( int start, int end );
+float	deg_to_rad( int a );
 
 #endif

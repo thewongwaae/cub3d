@@ -6,7 +6,7 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 17:11:51 by hwong             #+#    #+#             */
-/*   Updated: 2023/04/17 10:55:29 by hwong            ###   ########.fr       */
+/*   Updated: 2023/04/17 13:33:01 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,32 @@
 
 static void	forward( t_game *game )
 {
-	printf("up\n");
-	game->p.pix_y -= 10;
-}
-
-static void	left( t_game *game )
-{
-	printf("left\n");
-	game->p.pix_x -= 10;
+	game->p.pix_x += game->p.pdx;
+	game->p.pix_y += game->p.pdy;
 }
 
 static void	backward( t_game *game )
 {
-	game->p.pix_y += 10;
-	printf("down\n");
+	game->p.pix_x -= game->p.pdx;
+	game->p.pix_y -= game->p.pdy;
+}
+
+static void	left( t_game *game )
+{
+	game->p.pa += 0.3;
+	if (game->p.pa < 0)
+		game->p.pa += 2 * M_PI;
+	game->p.pdx = cos(game->p.pa) * 5;
+	game->p.pdy = -sin(game->p.pa) * 5;
 }
 
 static void	right( t_game *game )
 {
-	game->p.pix_x += 10;
-	printf("right\n");
+	game->p.pa -= 0.3;
+	if (game->p.pa > 2 * M_PI)
+		game->p.pa -= 2 * M_PI;
+	game->p.pdx = cos(game->p.pa) * 5;
+	game->p.pdy = -sin(game->p.pa) * 5;
 }
 
 int	move( int keycode, t_game *game )

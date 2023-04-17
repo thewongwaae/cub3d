@@ -6,7 +6,7 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 17:11:56 by hwong             #+#    #+#             */
-/*   Updated: 2023/04/17 10:48:26 by hwong            ###   ########.fr       */
+/*   Updated: 2023/04/17 13:29:41 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,17 @@ static void	init_mlx( t_game *game )
 			&game->mmap.bpp,&game->mmap.line_len,&game->mmap.endian);
 }
 
+static float	set_dir( char ch )
+{
+	if (ch == 'N')
+		return (M_PI / 2);
+	if (ch == 'S')
+		return (3 * M_PI / 2);
+	if (ch == 'W')
+		return (M_PI);
+	return (0);
+}
+
 static void	player_init( t_game *game )
 {
 	game->p.cell_x = game->p.x * CELL_SIZE;
@@ -54,14 +65,9 @@ static void	player_init( t_game *game )
 			game->msize.x*CELL_SIZE,game->msize.y*CELL_SIZE);
 	game->p.img.addr = mlx_get_data_addr(game->p.img.mlx_img,
 			&game->p.img.bpp, &game->p.img.line_len, &game->p.img.endian);
-}
-
-int	endgame( t_game *game )
-{
-	free_tab(game->map);
-	mlx_destroy_window(game->mlx, game->win);
-	free(game->mlx);
-	exit(0);
+	game->p.pa = set_dir(game->p.dir);
+	game->p.pdx = cos(deg_to_rad(game->p.pa));
+	game->p.pdy = -sin(deg_to_rad(game->p.pa));
 }
 
 int	main( int ac, char **av )
