@@ -6,7 +6,7 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 17:11:56 by hwong             #+#    #+#             */
-/*   Updated: 2023/04/18 19:24:33 by hwong            ###   ########.fr       */
+/*   Updated: 2023/04/18 20:35:42 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ static void	game_init( t_game *game )
 	game->leak = 0;
 	game->msize.y = 0;
 	game->msize.x = 0;
+	game->moved = 0;
 }
 
 static void	init_mlx( t_game *game )
@@ -82,7 +83,7 @@ int	main( int ac, char **av )
 	player_init(&game);
 	mlx_hook(game.win, 2, (1L << 0), move, &game);
 	mlx_hook(game.win, 17, (1L << 17), endgame, &game);
-	mlx_loop_hook(game.mlx, &render, &game);
+	mlx_loop_hook(game.mlx, render, &game);
 	mlx_loop(game.mlx);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 19:14:42 by hwong             #+#    #+#             */
-/*   Updated: 2023/04/18 19:15:55 by hwong            ###   ########.fr       */
+/*   Updated: 2023/04/18 20:36:26 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static void	render_bg( t_img img, int h, int w, int color )
 	}
 }
 
-static void	render_map_grid( t_game *game )
+static void	render_minimap( t_game *game )
 {
 	int	h;
 	int	w;
@@ -75,14 +75,21 @@ static void	render_player( t_game *game )
 
 int	render( t_game *game )
 {
-	render_bg(game->bg, game->winsize.y, game->winsize.x, GREY);
-	mlx_put_image_to_window(game->mlx, game->win,
-		game->bg.mlx_img, 0, 0);
-	render_map_grid(game);
-	mlx_put_image_to_window(game->mlx, game->win,
-		game->mmap.mlx_img, 0, 0);
-	render_player(game);
-	mlx_put_image_to_window(game->mlx, game->win,
-		game->p.img.mlx_img, 0, 0);
+	static int	refresh;
+
+	if (refresh == 0 || game->moved != 0)
+	{
+		render_bg(game->bg, game->winsize.y, game->winsize.x, GREY);
+		mlx_put_image_to_window(game->mlx, game->win,
+			game->bg.mlx_img, 0, 0);
+		render_minimap(game);
+		mlx_put_image_to_window(game->mlx, game->win,
+			game->mmap.mlx_img, 0, 0);
+		render_player(game);
+		mlx_put_image_to_window(game->mlx, game->win,
+			game->p.img.mlx_img, 0, 0);
+		game->moved = 0;
+	}
+	refresh++;
 	return (0);
 }

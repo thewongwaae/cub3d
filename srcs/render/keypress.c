@@ -6,7 +6,7 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 17:11:51 by hwong             #+#    #+#             */
-/*   Updated: 2023/04/18 17:12:13 by hwong            ###   ########.fr       */
+/*   Updated: 2023/04/18 20:36:05 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,14 @@ static void	forward( t_game *game )
 {
 	game->p.pix_x += game->p.pdx;
 	game->p.pix_y += game->p.pdy;
+	game->moved = 1;
 }
 
 static void	backward( t_game *game )
 {
 	game->p.pix_x -= game->p.pdx;
 	game->p.pix_y -= game->p.pdy;
+	game->moved = 1;
 }
 
 static void	left( t_game *game )
@@ -31,6 +33,7 @@ static void	left( t_game *game )
 		game->p.pa += 2 * M_PI;
 	game->p.pdx = cos(game->p.pa) * 5;
 	game->p.pdy = -sin(game->p.pa) * 5;
+	game->moved = 1;
 }
 
 static void	right( t_game *game )
@@ -40,6 +43,7 @@ static void	right( t_game *game )
 		game->p.pa -= 2 * M_PI;
 	game->p.pdx = cos(game->p.pa) * 5;
 	game->p.pdy = -sin(game->p.pa) * 5;
+	game->moved = 1;
 }
 
 int	move( int keycode, t_game *game )
