@@ -6,7 +6,7 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 16:41:04 by hwong             #+#    #+#             */
-/*   Updated: 2023/04/18 17:11:46 by hwong            ###   ########.fr       */
+/*   Updated: 2023/04/18 18:55:09 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ void	raycast( t_vec player, t_game *game, int color )
 	while (++i < 60)
 	{
 		angle = game->p.pa - fov / 2 + i * step_angle;
+		printf("%f\n", angle);
 		intersect = get_intersect(game, angle);
 		draw_line(player, intersect, game->p.img, color);
 	}
