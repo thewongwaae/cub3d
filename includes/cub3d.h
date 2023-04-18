@@ -6,7 +6,7 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 16:37:23 by hwong             #+#    #+#             */
-/*   Updated: 2023/04/18 17:10:12 by hwong            ###   ########.fr       */
+/*   Updated: 2023/04/18 19:34:45 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,12 @@ typedef struct s_vec
 	int	x;
 	int	y;
 }	t_vec;
+
+typedef struct s_vecf
+{
+	float	x;
+	float	y;
+}	t_vecf;
 
 /* Iterative flood */
 typedef struct s_queue_node
@@ -106,6 +112,7 @@ typedef struct s_game
 int		checks( char *file, t_game *game );
 int		parse_mapfile( char *file, t_game *game );
 void	check_map( t_game *g );
+int		all_found( int *found );
 /* ITERATIVE FLOOD */
 t_queue	*init_queue( void );
 int		is_q_empty( t_queue *q );
@@ -118,7 +125,6 @@ void	free_queue( t_queue *q );
 int		rgba_to_int( int r, int g, int b, double a );
 void	my_pp( t_img img, int x, int y, int colour );
 void	render_cell( t_img img, int color, int h_pixel, int w_pixel );
-void	draw_line( t_vec p1, t_vec p2, t_img img, int color );
 void	raycast( t_vec player, t_game *game, int color );
 int		render( t_game *game );
 int		move( int keycode, t_game *game );

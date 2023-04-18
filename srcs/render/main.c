@@ -6,12 +6,11 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 17:11:56 by hwong             #+#    #+#             */
-/*   Updated: 2023/04/18 15:34:57 by hwong            ###   ########.fr       */
+/*   Updated: 2023/04/18 19:24:33 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
 
 static void	game_init( t_game *game )
 {
@@ -22,7 +21,7 @@ static void	game_init( t_game *game )
 	game->p.found = 0;
 	game->p.y = 0;
 	game->p.x = 0;
-	game->p.dir = 0;	
+	game->p.dir = 0;
 	game->p.size = 5;
 	game->leak = 0;
 	game->msize.y = 0;
@@ -35,13 +34,13 @@ static void	init_mlx( t_game *game )
 	game->win = mlx_new_window(game->mlx, game->winsize.x,
 			game->winsize.y, "cub3D");
 	game->bg.mlx_img = mlx_new_image(game->mlx,
-			game->winsize.x,game->winsize.y);
+			game->winsize.x, game->winsize.y);
 	game->bg.addr = mlx_get_data_addr(game->bg.mlx_img,
-			&game->bg.bpp,&game->bg.line_len,&game->bg.endian);
+			&game->bg.bpp, &game->bg.line_len, &game->bg.endian);
 	game->mmap.mlx_img = mlx_new_image(game->mlx,
-			game->msize.x*CELL_SIZE,game->msize.y*CELL_SIZE);
+			game->msize.x * CELL_SIZE, game->msize.y * CELL_SIZE);
 	game->mmap.addr = mlx_get_data_addr(game->mmap.mlx_img,
-			&game->mmap.bpp,&game->mmap.line_len,&game->mmap.endian);
+			&game->mmap.bpp, &game->mmap.line_len, &game->mmap.endian);
 }
 
 static float	set_dir( char ch )
@@ -62,7 +61,7 @@ static void	player_init( t_game *game )
 	game->p.pix_x = get_center(game->p.cell_x, game->p.cell_x + CELL_SIZE);
 	game->p.pix_y = get_center(game->p.cell_y, game->p.cell_y + CELL_SIZE);
 	game->p.img.mlx_img = mlx_new_image(game->mlx,
-			game->msize.x*CELL_SIZE,game->msize.y*CELL_SIZE);
+			game->msize.x * CELL_SIZE, game->msize.y * CELL_SIZE);
 	game->p.img.addr = mlx_get_data_addr(game->p.img.mlx_img,
 			&game->p.img.bpp, &game->p.img.line_len, &game->p.img.endian);
 	game->p.pa = set_dir(game->p.dir);
@@ -85,6 +84,5 @@ int	main( int ac, char **av )
 	mlx_hook(game.win, 17, (1L << 17), endgame, &game);
 	mlx_loop_hook(game.mlx, &render, &game);
 	mlx_loop(game.mlx);
-	//system("leaks cub3D");
 	return (0);
 }

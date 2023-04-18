@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   queue.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/04/18 19:26:45 by hwong             #+#    #+#             */
+/*   Updated: 2023/04/18 19:26:49 by hwong            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 t_queue	*init_queue( void )
@@ -22,7 +34,6 @@ void	enqueue( t_queue *q, t_vec val )
 	new_node = (t_queue_node *) malloc (sizeof(t_queue_node));
 	new_node->val = val;
 	new_node->next = NULL;
-
 	if (is_q_empty(q))
 	{
 		q->head = new_node;

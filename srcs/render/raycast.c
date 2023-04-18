@@ -6,7 +6,7 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 16:41:04 by hwong             #+#    #+#             */
-/*   Updated: 2023/04/18 18:55:09 by hwong            ###   ########.fr       */
+/*   Updated: 2023/04/18 19:25:47 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,30 +19,27 @@ static int	get_steps( int dx, int dy )
 	return (abs(dy));
 }
 
-void	draw_line( t_vec p1, t_vec p2, t_img img, int color )
+static void	draw_line( t_vec p1, t_vec p2, t_img img, int color )
 {
-	int		dx;
-	int		dy;
+	t_vec	d;
+	t_vecf	inc;
+	t_vecf	pixel;
 	int		steps;
-	float	x_inc;
-	float	y_inc;
-	float	x;
-	float	y;
 	int		i;
 
-	dx = p2.x - p1.x;
-	dy = p2.y - p1.y;
-	steps = get_steps(dx, dy);
-	x_inc = dx / (float)steps;
-	y_inc = dy / (float)steps;
-	x = (float)p1.x;
-	y = (float)p1.y;
+	d.x = p2.x - p1.x;
+	d.y = p2.y - p1.y;
+	steps = get_steps(d.x, d.y);
+	inc.x = d.x / (float)steps;
+	inc.y = d.y / (float)steps;
+	pixel.x = (float)p1.x;
+	pixel.y = (float)p1.y;
 	i = -1;
 	while (++i <= steps)
 	{
-		my_pp(img, roundf(x), roundf(y), color);
-		x += x_inc;
-		y += y_inc;
+		my_pp(img, roundf(pixel.x), roundf(pixel.y), color);
+		pixel.x += inc.x;
+		pixel.y += inc.y;
 	}
 }
 
@@ -87,7 +84,6 @@ void	raycast( t_vec player, t_game *game, int color )
 	while (++i < 60)
 	{
 		angle = game->p.pa - fov / 2 + i * step_angle;
-		printf("%f\n", angle);
 		intersect = get_intersect(game, angle);
 		draw_line(player, intersect, game->p.img, color);
 	}
