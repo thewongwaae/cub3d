@@ -6,7 +6,7 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 17:11:51 by hwong             #+#    #+#             */
-/*   Updated: 2023/04/17 13:33:01 by hwong            ###   ########.fr       */
+/*   Updated: 2023/04/18 17:12:13 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static void	backward( t_game *game )
 
 static void	left( t_game *game )
 {
-	game->p.pa += 0.3;
+	game->p.pa += 0.1;
 	if (game->p.pa < 0)
 		game->p.pa += 2 * M_PI;
 	game->p.pdx = cos(game->p.pa) * 5;
@@ -35,7 +35,7 @@ static void	left( t_game *game )
 
 static void	right( t_game *game )
 {
-	game->p.pa -= 0.3;
+	game->p.pa -= 0.1;
 	if (game->p.pa > 2 * M_PI)
 		game->p.pa -= 2 * M_PI;
 	game->p.pdx = cos(game->p.pa) * 5;

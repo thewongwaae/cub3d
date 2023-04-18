@@ -6,7 +6,7 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 16:37:23 by hwong             #+#    #+#             */
-/*   Updated: 2023/04/18 15:36:01 by hwong            ###   ########.fr       */
+/*   Updated: 2023/04/18 17:10:12 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,8 +92,8 @@ typedef struct s_game
 	void		*mlx;
 	void		*win;
 	t_vec		winsize;
-	t_img		bg; // new thing
-	t_img		mmap; //img
+	t_img		bg;
+	t_img		mmap;
 	t_vec		msize;
 	int			leak;
 	char		**paths;
@@ -119,6 +119,7 @@ int		rgba_to_int( int r, int g, int b, double a );
 void	my_pp( t_img img, int x, int y, int colour );
 void	render_cell( t_img img, int color, int h_pixel, int w_pixel );
 void	draw_line( t_vec p1, t_vec p2, t_img img, int color );
+void	raycast( t_vec player, t_game *game, int color );
 int		render( t_game *game );
 int		move( int keycode, t_game *game );
 
