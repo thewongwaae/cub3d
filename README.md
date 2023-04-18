@@ -16,11 +16,11 @@
 ## Top-down player movement
 
 * [x] Initialise whatever needs to be initialised for mlx. (Window, etc)
-* [ ] Print a marker to represent the player.
-* [ ] Handle key press, and map them to players movement.
-* [ ] Print out a top-down view of the map, preferably with gridlines. (To act as reference for raycast)
+* [x] Print a marker to represent the player.
+* [x] Handle key press, and map them to players movement.
+* [x] Print out a top-down view of the map, preferably with gridlines. (To act as reference for raycast)
 * [ ] Later on we could maybe minimise this on screen to become the minimap.
-* [ ] Handle player rotation (I don't have brain to make notes on this atm)
+* [x] Handle player rotation (I don't have brain to make notes on this atm)
 
 ## Raycasting
 
