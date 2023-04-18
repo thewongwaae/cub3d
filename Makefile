@@ -9,7 +9,7 @@ MLX			= -lmlx -framework OpenGL -framework AppKit
 INCLUDES	= -I includes -I mlx #-I mlx_linux -O3
 
 CHECKS		= checks flood parse queue
-RENDER		= main pp render textures keypress
+RENDER		= main pp render textures keypress line
 UTILS		= free gnl split strings stringss stringsss utils
 
 SRCS 		= $(addsuffix .c, $(addprefix srcs/checks/, $(CHECKS))) \

@@ -15,11 +15,6 @@ static void	render_bg( t_img img, int h, int w, int color )
 	}
 }
 
-static int	is_walkable( char ch )
-{
-	return (ch == '0'||ch == 'N'||ch == 'S'||ch == 'E'||ch == 'W');
-}
-
 static void	render_map_grid( t_game *game )
 {
 	int	h;
@@ -37,7 +32,7 @@ static void	render_map_grid( t_game *game )
 				render_cell(game->mmap, WHITE,
 						h*CELL_SIZE, w*CELL_SIZE);
 			else if (is_walkable(game->map[h][w]))
-				render_cell(game->mmap, GREEN,
+				render_cell(game->mmap, BLACK,
 						h*CELL_SIZE, w*CELL_SIZE);
 			w++;
 		}
@@ -45,10 +40,20 @@ static void	render_map_grid( t_game *game )
 	}
 }
 
+static void	player_line( t_vec p1, t_game *game, int len, int color )
+{
+	t_vec	p2;
+
+	p2.x = p1.x + len * cos(game->p.pa);
+	p2.y = p1.y - len * sin(game->p.pa);
+	draw_line(p1, p2, game->p.img, color);
+}
+
 static void	render_player( t_game *game )
 {
-	int	i;
-	int	j;
+	int		i;
+	int		j;
+	t_vec	player_pos;
 	
 	render_bg(game->p.img,game->msize.y*CELL_SIZE,
 			game->msize.x*CELL_SIZE,TRANS);
@@ -60,6 +65,9 @@ static void	render_player( t_game *game )
 			my_pp(game->p.img, j++, i, PLAYER);
 		i++;
 	}
+	player_pos.x = game->p.pix_x + game->p.size/2;
+	player_pos.y = game->p.pix_y + game->p.size/2;
+	player_line(player_pos, game, 15, PLAYER);
 }
 
 int	render( t_game *game )
