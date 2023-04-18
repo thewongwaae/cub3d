@@ -6,7 +6,7 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 17:11:56 by hwong             #+#    #+#             */
-/*   Updated: 2023/04/17 13:29:41 by hwong            ###   ########.fr       */
+/*   Updated: 2023/04/18 15:34:57 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,8 @@ static void	player_init( t_game *game )
 	game->p.img.addr = mlx_get_data_addr(game->p.img.mlx_img,
 			&game->p.img.bpp, &game->p.img.line_len, &game->p.img.endian);
 	game->p.pa = set_dir(game->p.dir);
-	game->p.pdx = cos(deg_to_rad(game->p.pa));
-	game->p.pdy = -sin(deg_to_rad(game->p.pa));
+	game->p.pdx = cos(game->p.pa);
+	game->p.pdy = -sin(game->p.pa);
 }
 
 int	main( int ac, char **av )
