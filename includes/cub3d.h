@@ -6,7 +6,7 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 16:37:23 by hwong             #+#    #+#             */
-/*   Updated: 2023/04/19 16:52:00 by hwong            ###   ########.fr       */
+/*   Updated: 2023/04/19 19:25:07 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 # define GREEN 0X90EE90
 # define BLACK 0X000000
 # define PLAYER 0XF9A3FF
-# define CELL_SIZE 35
+# define CELL_SIZE 100
 
 typedef struct s_vec
 {
@@ -107,6 +107,7 @@ typedef struct s_game
 	t_texture	*tex;
 	t_player	p;
 	int			moved;
+	int			mouse_clicked;
 }				t_game;
 
 /* CHECKS AND PARSE */
@@ -121,6 +122,10 @@ void	enqueue( t_queue *q, t_vec val );
 t_vec	dequeue( t_queue *q );
 void	free_queue( t_queue *q );
 
+/* HOOKS */
+int		key_hook( int keycode, t_game *game );
+int		mouse_hook( int x, int y, t_game *game );
+
 /* RENDER */
 // void	load_textures( t_game *game );
 int		rgba_to_int( int r, int g, int b, double a );
@@ -129,7 +134,6 @@ void	render_cell( t_img img, int color, int h_pixel, int w_pixel );
 void	raycast( t_vec player, t_game *game, int color );
 void	render_minimap( t_game *game );
 int		render( t_game *game );
-int		move( int keycode, t_game *game );
 
 /* UTILS */
 // free

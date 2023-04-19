@@ -6,7 +6,7 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 17:11:51 by hwong             #+#    #+#             */
-/*   Updated: 2023/04/19 16:52:56 by hwong            ###   ########.fr       */
+/*   Updated: 2023/04/19 18:36:02 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ static void	right( t_game *game )
 	game->moved = 1;
 }
 
-int	move( int keycode, t_game *game )
+int	key_hook( int keycode, t_game *game )
 {
 	if (keycode == 13 || keycode == 126)
 		forward(game);
