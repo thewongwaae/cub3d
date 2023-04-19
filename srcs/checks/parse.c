@@ -6,7 +6,7 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 17:12:14 by hwong             #+#    #+#             */
-/*   Updated: 2023/04/18 19:34:16 by hwong            ###   ########.fr       */
+/*   Updated: 2023/04/19 10:49:59 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,70 +35,37 @@ static char	**cub_to_array( int fd )
 	return (res);
 }
 
-static void	parseat_index(char **mapfile, char **texs, t_game *game, int index)
-{
-	int		j;
-	char	*space;
-
-	j = 0;
-	while (mapfile[j])
-	{
-		if (!ft_strncmp(mapfile[j], texs[index], ft_slen(texs[index])))
-		{
-			space = ft_strchr(mapfile[j], ' ');
-			if (space)
-			{
-				game->paths[index] = ft_strdup(space + 1);
-				game->foundtex[index] += 1;
-				if (index > game->foundtex[6])
-					game->foundtex[6] = index;
-			}
-		}
-		j++;
-	}
-}
-
-static int	parse_textures(char **mapfile, char **texs, t_game *game)
-{
-	int		i;
-
-	i = 0;
-	while (i < 6)
-	{
-		parseat_index(mapfile, texs, game, i);
-		i++;
-	}
-	game->paths[i] = NULL;
-	if (!all_found(game->foundtex))
-		return (0);
-	return (game->foundtex[6]);
-}
-
-// static int	parse_textures( char **mapfile, char **texs, t_game *game )
+// static void	parseat_index(char **mapfile, char **texs, t_game *game, int index)
 // {
-// 	int		i;
 // 	int		j;
 // 	char	*space;
+
+// 	j = 0;
+// 	while (mapfile[j])
+// 	{
+// 		if (!ft_strncmp(mapfile[j], texs[index], ft_slen(texs[index])))
+// 		{
+// 			space = ft_strchr(mapfile[j], ' ');
+// 			if (space)
+// 			{
+// 				game->paths[index] = ft_strdup(space + 1);
+// 				game->foundtex[index] += 1;
+// 				if (index > game->foundtex[6])
+// 					game->foundtex[6] = index;
+// 			}
+// 		}
+// 		j++;
+// 	}
+// }
+
+// static int	parse_textures(char **mapfile, char **texs, t_game *game)
+// {
+// 	int		i;
 
 // 	i = 0;
 // 	while (i < 6)
 // 	{
-// 		j = 0;
-// 		while (mapfile[j])
-// 		{
-// 			if (!ft_strncmp(mapfile[j], texs[i], ft_slen(texs[i])))
-// 			{
-// 				space = ft_strchr(mapfile[j], ' ');
-// 				if (space)
-// 				{
-// 					game->paths[i] = ft_strdup(space + 1);
-// 					game->foundtex[i] += 1;
-// 					if (j > game->foundtex[6])
-// 						game->foundtex[6] = j;
-// 				}
-// 			}
-// 			j++;
-// 		}
+// 		parseat_index(mapfile, texs, game, i);
 // 		i++;
 // 	}
 // 	game->paths[i] = NULL;
@@ -106,6 +73,39 @@ static int	parse_textures(char **mapfile, char **texs, t_game *game)
 // 		return (0);
 // 	return (game->foundtex[6]);
 // }
+
+static int	parse_textures( char **mapfile, char **texs, t_game *game )
+{
+	int		i;
+	int		j;
+	char	*space;
+
+	i = 0;
+	while (i < 6)
+	{
+		j = 0;
+		while (mapfile[j])
+		{
+			if (!ft_strncmp(mapfile[j], texs[i], ft_slen(texs[i])))
+			{
+				space = ft_strchr(mapfile[j], ' ');
+				if (space)
+				{
+					game->paths[i] = ft_strdup(space + 1);
+					game->foundtex[i] += 1;
+					if (j > game->foundtex[6])
+						game->foundtex[6] = j;
+				}
+			}
+			j++;
+		}
+		i++;
+	}
+	game->paths[i] = NULL;
+	if (!all_found(game->foundtex))
+		return (0);
+	return (game->foundtex[6]);
+}
 
 static int	parse_map( char **mapfile, t_game *game )
 {

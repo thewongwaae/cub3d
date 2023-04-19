@@ -6,7 +6,7 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 16:37:23 by hwong             #+#    #+#             */
-/*   Updated: 2023/04/18 20:35:26 by hwong            ###   ########.fr       */
+/*   Updated: 2023/04/19 10:56:35 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,6 +158,7 @@ int		ismapchar( int ch );
 
 // utils
 int		is_walkable( char ch );
+int		is_in_wall( t_game *game, int x, int y );
 int		get_center( int start, int end );
 
 #endif

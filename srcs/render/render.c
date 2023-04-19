@@ -6,7 +6,7 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 19:14:42 by hwong             #+#    #+#             */
-/*   Updated: 2023/04/18 20:36:26 by hwong            ###   ########.fr       */
+/*   Updated: 2023/04/19 10:46:37 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,15 +77,15 @@ int	render( t_game *game )
 {
 	static int	refresh;
 
+	render_minimap(game);
 	if (refresh == 0 || game->moved != 0)
 	{
 		render_bg(game->bg, game->winsize.y, game->winsize.x, GREY);
+		render_player(game);
 		mlx_put_image_to_window(game->mlx, game->win,
 			game->bg.mlx_img, 0, 0);
-		render_minimap(game);
 		mlx_put_image_to_window(game->mlx, game->win,
 			game->mmap.mlx_img, 0, 0);
-		render_player(game);
 		mlx_put_image_to_window(game->mlx, game->win,
 			game->p.img.mlx_img, 0, 0);
 		game->moved = 0;

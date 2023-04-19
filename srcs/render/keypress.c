@@ -6,7 +6,7 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 17:11:51 by hwong             #+#    #+#             */
-/*   Updated: 2023/04/18 20:36:05 by hwong            ###   ########.fr       */
+/*   Updated: 2023/04/19 10:58:54 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,34 @@
 
 static void	forward( t_game *game )
 {
-	game->p.pix_x += game->p.pdx;
-	game->p.pix_y += game->p.pdy;
-	game->moved = 1;
+	int	new_px;
+	int	new_py;
+
+	new_px = game->p.pix_x + game->p.pdx;
+	new_py = game->p.pix_y + game->p.pdy;
+	if (!is_in_wall(game, new_px, new_py))
+	{
+		game->p.pix_x = new_px;
+		game->p.pix_y = new_py;
+		game->moved = 1;
+	}
+	// game->p.pix_x += game->p.pdx;
+	// game->p.pix_y += game->p.pdy;
 }
 
 static void	backward( t_game *game )
 {
-	game->p.pix_x -= game->p.pdx;
-	game->p.pix_y -= game->p.pdy;
-	game->moved = 1;
+	int	new_px;
+	int	new_py;
+
+	new_px = game->p.pix_x - game->p.pdx;
+	new_py = game->p.pix_y - game->p.pdy;
+	if (!is_in_wall(game, new_px, new_py))
+	{
+		game->p.pix_x = new_px;
+		game->p.pix_y = new_py;
+		game->moved = 1;
+	}
 }
 
 static void	left( t_game *game )

@@ -6,7 +6,7 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 19:12:31 by hwong             #+#    #+#             */
-/*   Updated: 2023/04/18 19:34:24 by hwong            ###   ########.fr       */
+/*   Updated: 2023/04/19 10:56:21 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,4 +35,17 @@ int	all_found( int *found )
 		i++;
 	}
 	return (1);
+}
+
+int	is_in_wall( t_game *game, int x, int y )
+{
+	int	map_x;
+	int	map_y;
+
+	map_x = x / CELL_SIZE;
+	map_y = y / CELL_SIZE;
+	if (map_x < 0 || map_y < 0 || map_x >= game->msize.x
+		|| map_y >= game->msize.y)
+		return (1);
+	return (!is_walkable(game->map[map_y][map_x]));
 }
