@@ -6,7 +6,7 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 16:37:23 by hwong             #+#    #+#             */
-/*   Updated: 2023/04/19 19:25:07 by hwong            ###   ########.fr       */
+/*   Updated: 2023/04/19 21:35:31 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,6 +124,8 @@ void	free_queue( t_queue *q );
 
 /* HOOKS */
 int		key_hook( int keycode, t_game *game );
+int		move_y( int keycode, t_game *game );
+int		move_x( int keycode, t_game *game );
 int		mouse_hook( int x, int y, t_game *game );
 
 /* RENDER */
