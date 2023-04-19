@@ -8,7 +8,7 @@ int	mouse_hook( int x, int y, t_game *game )
 	(void) y;
 	if (prev_x == -1)
 		prev_x = x;
-	dx = x - prev_x;
+	dx = prev_x - x;
 	if (abs(dx) > 5)
 	{
 		game->p.pa += dx * 0.0005;
