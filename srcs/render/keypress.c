@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   keypress.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nnorazma <nnorazma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 17:11:51 by hwong             #+#    #+#             */
-/*   Updated: 2023/04/19 11:48:53 by nnorazma         ###   ########.fr       */
+/*   Updated: 2023/04/19 16:52:56 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,8 @@ static void	left( t_game *game )
 	game->p.pa += 0.1;
 	if (game->p.pa < 0)
 		game->p.pa += 2 * M_PI;
-	game->p.pdx = cos(game->p.pa) * 5;
-	game->p.pdy = -sin(game->p.pa) * 5;
+	game->p.pdx = cos(game->p.pa) * 3;
+	game->p.pdy = -sin(game->p.pa) * 3;
 	game->moved = 1;
 }
 
@@ -57,8 +57,8 @@ static void	right( t_game *game )
 	game->p.pa -= 0.1;
 	if (game->p.pa > 2 * M_PI)
 		game->p.pa -= 2 * M_PI;
-	game->p.pdx = cos(game->p.pa) * 5;
-	game->p.pdy = -sin(game->p.pa) * 5;
+	game->p.pdx = cos(game->p.pa) * 3;
+	game->p.pdy = -sin(game->p.pa) * 3;
 	game->moved = 1;
 }
 
