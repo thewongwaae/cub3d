@@ -6,7 +6,7 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 16:37:23 by hwong             #+#    #+#             */
-/*   Updated: 2023/04/19 21:35:31 by hwong            ###   ########.fr       */
+/*   Updated: 2023/04/19 22:11:27 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <math.h>
+# include <stdbool.h>
 # include <mlx.h>
 
 # define BUFFER_SIZE 1024
@@ -75,7 +76,7 @@ typedef struct s_texture
 
 typedef struct s_player
 {
-	int		found;
+	bool	found;
 	int		x;
 	int		y;
 	char	dir;
@@ -101,13 +102,12 @@ typedef struct s_game
 	t_img		bg;
 	t_img		mmap;
 	t_vec		msize;
-	int			leak;
+	bool		leak;
 	char		**paths;
 	int			*foundtex;
 	t_texture	*tex;
 	t_player	p;
-	int			moved;
-	int			mouse_clicked;
+	bool			moved;
 }				t_game;
 
 /* CHECKS AND PARSE */

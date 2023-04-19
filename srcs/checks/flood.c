@@ -6,7 +6,7 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 17:11:45 by hwong             #+#    #+#             */
-/*   Updated: 2023/04/12 14:46:55 by hwong            ###   ########.fr       */
+/*   Updated: 2023/04/19 22:10:37 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static void	flood_iter( int y, int x, t_game *game, char **map )
 		if (xy.y < 0 || xy.x < 0
 			|| xy.y >= game->msize.y || xy.x >= ft_slen(map[xy.y]))
 		{
-			game->leak = 1;
+			game->leak = true;
 			break ;
 		}
 		if (map[xy.y][xy.x] == '1' || map[xy.y][xy.x] == 'v')
@@ -96,7 +96,7 @@ void	check_map( t_game *g )
 			if (g->map[g->p.y][g->p.x] == 78 || g->map[g->p.y][g->p.x] == 83
 				|| g->map[g->p.y][g->p.x] == 87 || g->map[g->p.y][g->p.x] == 69)
 			{
-				g->p.found = 1;
+				g->p.found = true;
 				g->p.dir = g->map[g->p.y][g->p.x];
 				break ;
 			}

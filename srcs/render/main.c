@@ -6,7 +6,7 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 17:11:56 by hwong             #+#    #+#             */
-/*   Updated: 2023/04/19 21:36:14 by hwong            ###   ########.fr       */
+/*   Updated: 2023/04/19 22:11:08 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,15 @@ static void	game_init( t_game *game )
 	game->winsize.y = 900;
 	game->foundtex = (int *) malloc (sizeof(int) * 7);
 	ft_memset(game->foundtex, 0, 7);
-	game->p.found = 0;
+	game->p.found = false;
 	game->p.y = 0;
 	game->p.x = 0;
 	game->p.dir = 0;
 	game->p.size = 4;
-	game->leak = 0;
+	game->leak = false;
 	game->msize.y = 0;
 	game->msize.x = 0;
-	game->moved = 0;
+	game->moved = false;
 }
 
 static void	init_mlx( t_game *game )

@@ -18,7 +18,7 @@ int	mouse_hook( int x, int y, t_game *game )
 			game->p.pa -= 2 * M_PI;
 		game->p.pdx = cos(game->p.pa) * 3;
 		game->p.pdy = -sin(game->p.pa) * 3;
-		game->moved = 1;
+		game->moved = true;
 		prev_x = x;
 	}
 	return (0);
