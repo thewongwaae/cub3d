@@ -6,7 +6,7 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 19:14:42 by hwong             #+#    #+#             */
-/*   Updated: 2023/04/19 10:46:37 by hwong            ###   ########.fr       */
+/*   Updated: 2023/04/19 11:28:31 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static void	render_bg( t_img img, int h, int w, int color )
 	}
 }
 
-static void	render_minimap( t_game *game )
+void	render_minimap( t_game *game )
 {
 	int	h;
 	int	w;
@@ -77,7 +77,6 @@ int	render( t_game *game )
 {
 	static int	refresh;
 
-	render_minimap(game);
 	if (refresh == 0 || game->moved != 0)
 	{
 		render_bg(game->bg, game->winsize.y, game->winsize.x, GREY);

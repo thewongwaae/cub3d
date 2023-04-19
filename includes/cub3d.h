@@ -6,7 +6,7 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 16:37:23 by hwong             #+#    #+#             */
-/*   Updated: 2023/04/19 10:56:35 by hwong            ###   ########.fr       */
+/*   Updated: 2023/04/19 11:24:26 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,6 +127,7 @@ int		rgba_to_int( int r, int g, int b, double a );
 void	my_pp( t_img img, int x, int y, int colour );
 void	render_cell( t_img img, int color, int h_pixel, int w_pixel );
 void	raycast( t_vec player, t_game *game, int color );
+void	render_minimap( t_game *game );
 int		render( t_game *game );
 int		move( int keycode, t_game *game );
 
