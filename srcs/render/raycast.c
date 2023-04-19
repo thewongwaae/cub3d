@@ -6,7 +6,7 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 16:41:04 by hwong             #+#    #+#             */
-/*   Updated: 2023/04/19 11:21:49 by hwong            ###   ########.fr       */
+/*   Updated: 2023/04/19 13:45:33 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,29 +45,27 @@ static void	draw_line( t_vec p1, t_vec p2, t_img img, int color )
 
 static t_vec	get_intersect( t_game *g, float angle )
 {
-	float	dx;
-	float	dy;
-	float	x;
-	float	y;
+	t_vecf	d;
+	t_vecf	p;
 	t_vec	map;
 
-	dx = cos(angle);
-	dy = -sin(angle);
-	x = g->p.pix_x;
-	y = g->p.pix_y;
+	d.x = cos(angle);
+	d.y = -sin(angle);
+	p.x = g->p.pix_x;
+	p.y = g->p.pix_y;
 	while (1)
 	{
-		x += dx;
-		y += dy;
-		map.x = (int)(x / CELL_SIZE);
-		map.y = (int)(y / CELL_SIZE);
+		p.x += d.x;
+		p.y += d.y;
+		map.x = (int)(p.x / CELL_SIZE);
+		map.y = (int)(p.y / CELL_SIZE);
 		if (map.x < 0 || map.y < 0 || map.x >= g->msize.x
 			|| map.y >= g->msize.y)
 			break ;
 		if (!is_walkable(g->map[map.y][map.x]))
 			break ;
 	}
-	return ((t_vec){.x = x, .y = y});
+	return ((t_vec){.x = p.x, .y = p.y});
 }
 
 void	raycast( t_vec player, t_game *game, int color )

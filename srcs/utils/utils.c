@@ -6,7 +6,7 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 19:12:31 by hwong             #+#    #+#             */
-/*   Updated: 2023/04/19 10:56:21 by hwong            ###   ########.fr       */
+/*   Updated: 2023/04/19 13:46:10 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ int	is_in_wall( t_game *game, int x, int y )
 	int	map_x;
 	int	map_y;
 
-	map_x = x / CELL_SIZE;
-	map_y = y / CELL_SIZE;
+	map_x = (int)(x / CELL_SIZE);
+	map_y = (int)(y / CELL_SIZE);
 	if (map_x < 0 || map_y < 0 || map_x >= game->msize.x
 		|| map_y >= game->msize.y)
 		return (1);
