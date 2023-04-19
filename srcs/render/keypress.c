@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   keypress.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
+/*   By: nnorazma <nnorazma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 17:11:51 by hwong             #+#    #+#             */
-/*   Updated: 2023/04/19 10:58:54 by hwong            ###   ########.fr       */
+/*   Updated: 2023/04/19 11:48:53 by nnorazma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 static void	forward( t_game *game )
 {
-	int	new_px;
-	int	new_py;
+	float new_px;
+	float new_py;
 
 	new_px = game->p.pix_x + game->p.pdx;
 	new_py = game->p.pix_y + game->p.pdy;
@@ -25,14 +25,12 @@ static void	forward( t_game *game )
 		game->p.pix_y = new_py;
 		game->moved = 1;
 	}
-	// game->p.pix_x += game->p.pdx;
-	// game->p.pix_y += game->p.pdy;
 }
 
 static void	backward( t_game *game )
 {
-	int	new_px;
-	int	new_py;
+	float new_px;
+	float new_py;
 
 	new_px = game->p.pix_x - game->p.pdx;
 	new_py = game->p.pix_y - game->p.pdy;
