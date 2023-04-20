@@ -6,7 +6,7 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 16:37:23 by hwong             #+#    #+#             */
-/*   Updated: 2023/04/20 15:09:20 by hwong            ###   ########.fr       */
+/*   Updated: 2023/04/20 15:24:47 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 # define GREEN 0X90EE90
 # define BLACK 0X000000
 # define PLAYER 0XF9A3FF
-# define CELL_SIZE 25
+# define CELL_SIZE 30
 
 typedef struct s_vec
 {
@@ -93,6 +93,15 @@ typedef struct s_player
 	t_img	img;
 }	t_player;
 
+typedef struct s_keys
+{
+	bool	up;
+	bool	down;
+	bool	left;
+	bool	right;
+}	t_keys;
+
+
 typedef struct s_game
 {
 	char		**map;
@@ -107,6 +116,7 @@ typedef struct s_game
 	int			*foundtex;
 	t_texture	*tex;
 	t_player	p;
+	t_keys		key;
 	bool		moved;
 }				t_game;
 
@@ -123,9 +133,12 @@ t_vec	dequeue( t_queue *q );
 void	free_queue( t_queue *q );
 
 /* HOOKS */
-int		key_hook( int keycode, t_game *game );
-int		move_y( int keycode, t_game *game );
-int		move_x( int keycode, t_game *game );
+void	forward( t_game *game );
+void	backward( t_game *game );
+void	left( t_game *game );
+void	right( t_game *game );
+int		key_down( int keycode, t_game *game );
+int		key_up( int keycode, t_game *game );
 int		mouse_hook( int x, int y, t_game *game );
 
 /* RENDER */

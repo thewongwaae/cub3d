@@ -9,7 +9,7 @@ MLX			= -lmlx -framework OpenGL -framework AppKit
 INCLUDES	= -I includes -I mlx #-I mlx_linux -O3
 
 CHECKS		= checks flood parse queue
-HOOKS		= keypress mouse
+HOOKS		= keypress mouse movement
 RENDER		= main pp render textures raycast
 UTILS		= free gnl split strings stringss stringsss utils
 

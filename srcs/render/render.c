@@ -6,7 +6,7 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 19:14:42 by hwong             #+#    #+#             */
-/*   Updated: 2023/04/20 12:40:03 by hwong            ###   ########.fr       */
+/*   Updated: 2023/04/20 15:21:52 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,10 @@ int	render( t_game *game )
 {
 	static int	refresh;
 
+	forward(game);
+	backward(game);
+	left(game);
+	right(game);
 	if (refresh == 0 || game->moved != 0)
 	{
 		render_bg(game->bg, game->winsize.y, game->winsize.x, GREY);
