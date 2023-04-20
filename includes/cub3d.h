@@ -6,7 +6,7 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 16:37:23 by hwong             #+#    #+#             */
-/*   Updated: 2023/04/20 15:55:39 by hwong            ###   ########.fr       */
+/*   Updated: 2023/04/20 23:02:27 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,6 +118,7 @@ typedef struct s_game
 	t_player	p;
 	int			fovdeg;
 	t_keys		key;
+	float		sens;
 	bool		moved;
 }				t_game;
 

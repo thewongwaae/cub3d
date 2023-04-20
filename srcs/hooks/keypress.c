@@ -6,13 +6,13 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 17:11:51 by hwong             #+#    #+#             */
-/*   Updated: 2023/04/20 16:07:47 by hwong            ###   ########.fr       */
+/*   Updated: 2023/04/20 23:09:41 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	change_fov( int keycode, t_game *game )
+static void	change_fov( int keycode, t_game *game )
 {
 	int	new_fov;
 
@@ -33,6 +33,28 @@ void	change_fov( int keycode, t_game *game )
 	game->moved = 1;
 }
 
+static void	change_sens( int keycode, t_game *game )
+{
+	float	new_sens;
+
+	if (keycode == 27)
+	{
+		new_sens = game->sens - 0.05;
+		if (new_sens > 0.00001)
+			game->sens = new_sens;
+		printf("new sens: %f\n", new_sens);
+	}
+	else if (keycode == 24)
+	{
+		new_sens = game->sens + 0.05;
+		if (new_sens < 1)
+			game->sens = new_sens;
+		printf("new sens: %f\n", new_sens);
+	}
+	else if (keycode == 51)
+		game->sens = 0.1;
+}
+
 int	key_down( int keycode, t_game *game )
 {
 	if (keycode == 13 || keycode == 126)
@@ -45,6 +67,8 @@ int	key_down( int keycode, t_game *game )
 		game->key.right = true;
 	if (keycode == 33 || keycode == 30 || keycode == 42)
 		change_fov(keycode, game);
+	if (keycode == 27 || keycode == 24 || keycode == 51)
+		change_sens(keycode, game);
 	if (keycode == 53 || keycode == 65307)
 		endgame(game);
 	return (0);
