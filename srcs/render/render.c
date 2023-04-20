@@ -6,7 +6,7 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 19:14:42 by hwong             #+#    #+#             */
-/*   Updated: 2023/04/19 22:11:08 by hwong            ###   ########.fr       */
+/*   Updated: 2023/04/20 12:40:03 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,9 @@ static void	render_player( t_game *game )
 
 	render_bg(game->p.img, game->msize.y * CELL_SIZE,
 		game->msize.x * CELL_SIZE, TRANS);
+	player.x = game->p.pix_x + game->p.size / 2;
+	player.y = game->p.pix_y + game->p.size / 2;
+	raycast(player, game, GREEN);
 	i = game->p.pix_y;
 	while (i < (game->p.pix_y + game->p.size))
 	{
@@ -68,9 +71,6 @@ static void	render_player( t_game *game )
 			my_pp(game->p.img, j++, i, PLAYER);
 		i++;
 	}
-	player.x = game->p.pix_x + game->p.size / 2;
-	player.y = game->p.pix_y + game->p.size / 2;
-	raycast(player, game, GREEN);
 }
 
 int	render( t_game *game )
