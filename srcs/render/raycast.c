@@ -6,7 +6,7 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 16:41:04 by hwong             #+#    #+#             */
-/*   Updated: 2023/04/20 14:38:07 by hwong            ###   ########.fr       */
+/*   Updated: 2023/04/20 15:57:12 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,10 +76,10 @@ void	raycast( t_vec player, t_game *game, int color )
 	float	angle;
 	t_vec	intersect;
 
-	fov = M_PI / 3;
-	step_angle = fov / 60;
+	fov = deg_to_rad(game->fovdeg);
+	step_angle = fov / game->fovdeg;
 	i = -1;
-	while (++i < 60)
+	while (++i < game->fovdeg)
 	{
 		angle = game->p.pa - fov / 2 + i * step_angle;
 		intersect = get_intersect(game, angle);

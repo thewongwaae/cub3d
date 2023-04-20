@@ -11,7 +11,7 @@ int	mouse_hook( int x, int y, t_game *game )
 	dx = prev_x - x;
 	if (abs(dx) > 5)
 	{
-		game->p.pa += dx * 0.0005;
+		game->p.pa += dx * 0.005;
 		if (game->p.pa < 0)
 			game->p.pa += 2 * M_PI;
 		if (game->p.pa > 2 * M_PI)

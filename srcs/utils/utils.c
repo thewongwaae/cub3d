@@ -6,7 +6,7 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 19:12:31 by hwong             #+#    #+#             */
-/*   Updated: 2023/04/19 13:46:10 by hwong            ###   ########.fr       */
+/*   Updated: 2023/04/20 15:55:27 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,4 +48,9 @@ int	is_in_wall( t_game *game, int x, int y )
 		|| map_y >= game->msize.y)
 		return (1);
 	return (!is_walkable(game->map[map_y][map_x]));
+}
+
+float	deg_to_rad( int angle )
+{
+	return (angle * M_PI / 180);
 }

@@ -6,7 +6,7 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 16:37:23 by hwong             #+#    #+#             */
-/*   Updated: 2023/04/20 15:24:47 by hwong            ###   ########.fr       */
+/*   Updated: 2023/04/20 15:55:39 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 # define GREEN 0X90EE90
 # define BLACK 0X000000
 # define PLAYER 0XF9A3FF
-# define CELL_SIZE 30
+# define CELL_SIZE 100
 
 typedef struct s_vec
 {
@@ -116,6 +116,7 @@ typedef struct s_game
 	int			*foundtex;
 	t_texture	*tex;
 	t_player	p;
+	int			fovdeg;
 	t_keys		key;
 	bool		moved;
 }				t_game;
@@ -180,5 +181,6 @@ int		ismapchar( int ch );
 int		is_walkable( char ch );
 int		is_in_wall( t_game *game, int x, int y );
 int		get_center( int start, int end );
+float	deg_to_rad( int angle );
 
 #endif

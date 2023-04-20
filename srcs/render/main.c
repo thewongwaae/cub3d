@@ -6,7 +6,7 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 17:11:56 by hwong             #+#    #+#             */
-/*   Updated: 2023/04/20 15:21:12 by hwong            ###   ########.fr       */
+/*   Updated: 2023/04/20 15:54:59 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ static void	game_init( t_game *game )
 	game->leak = false;
 	game->msize.y = 0;
 	game->msize.x = 0;
+	game->fovdeg = 60;
 	game->key.up = false;
 	game->key.left = false;
 	game->key.down = false;
