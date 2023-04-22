@@ -1,5 +1,9 @@
 #include "cub3d.h"
 
+/*
+	Moves player forward taking into consideration
+	the current player angle
+*/
 void	forward( t_game *game )
 {
 	float new_px;
@@ -18,6 +22,10 @@ void	forward( t_game *game )
 	}
 }
 
+/*
+	Moves player backward taking into consideration
+	the current player angle
+*/
 void	backward( t_game *game )
 {
 	float new_px;
@@ -36,6 +44,11 @@ void	backward( t_game *game )
 	}
 }
 
+/*
+	Changes the player angle anti-clockwise
+	and recalculates pdx and pdy for
+	forwawrd/backward movement
+*/
 void	left( t_game *game )
 {
 	if (game->key.left == true)
@@ -49,6 +62,11 @@ void	left( t_game *game )
 	}
 }
 
+/*
+	Changes the player angle clockwise
+	and recalculates pdx and pdy for
+	forwawrd/backward movement
+*/
 void	right( t_game *game )
 {
 	if (game->key.right == true)

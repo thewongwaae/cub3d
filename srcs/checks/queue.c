@@ -6,12 +6,15 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 19:26:45 by hwong             #+#    #+#             */
-/*   Updated: 2023/04/18 19:26:49 by hwong            ###   ########.fr       */
+/*   Updated: 2023/04/22 16:52:28 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+/*
+	Allocate and initialise first node of flood queue
+*/
 t_queue	*init_queue( void )
 {
 	t_queue	*q;
@@ -22,11 +25,17 @@ t_queue	*init_queue( void )
 	return (q);
 }
 
+/*
+	Check whether queue is empty
+*/
 int	is_q_empty( t_queue *q )
 {
 	return (q->head == NULL);
 }
 
+/*
+	Add new node wwith specified value to the queue
+*/
 void	enqueue( t_queue *q, t_vec val )
 {
 	t_queue_node	*new_node;
@@ -46,6 +55,9 @@ void	enqueue( t_queue *q, t_vec val )
 	}
 }
 
+/*
+	Free iterative flood queue
+*/
 t_vec	dequeue( t_queue *q )
 {
 	t_queue_node	*tmp_node;
@@ -62,6 +74,9 @@ t_vec	dequeue( t_queue *q )
 	return (val);
 }
 
+/*
+	Free iterative flood queue
+*/
 void	free_queue( t_queue *q )
 {
 	while (!is_q_empty(q))

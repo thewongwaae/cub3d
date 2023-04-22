@@ -6,12 +6,21 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 17:11:56 by hwong             #+#    #+#             */
-/*   Updated: 2023/04/20 23:03:36 by hwong            ###   ########.fr       */
+/*   Updated: 2023/04/22 17:07:26 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+/*
+	Initialise values needed for game start-up
+	Initialise all player variables needed in
+	map verification
+	Intialisie render values and movement keys
+	
+	Note: 'moved' variable is to lower refreshes by
+	only rendering when the player has moved
+*/
 static void	game_init( t_game *game )
 {
 	game->winsize.x = 1600;
@@ -35,6 +44,11 @@ static void	game_init( t_game *game )
 	game->moved = false;
 }
 
+/*
+	Initialise mlx variables needed to start-up window
+	Initialise main game mlx variables
+	Initialise minimap mlx variables
+*/
 static void	init_mlx( t_game *game )
 {
 	game->mlx = mlx_init();
@@ -50,6 +64,10 @@ static void	init_mlx( t_game *game )
 			&game->mmap.bpp, &game->mmap.line_len, &game->mmap.endian);
 }
 
+/*
+	Set initial player direction based on
+	the character ( N | S | W | E ) in the map
+*/
 static float	set_dir( char ch )
 {
 	if (ch == 'N')
@@ -61,6 +79,11 @@ static float	set_dir( char ch )
 	return (0);
 }
 
+/*
+	Initialise player variables needed for movement
+	and render calculations
+	Initialise player mlx variables
+*/
 static void	player_init( t_game *game )
 {
 	game->p.cell_x = game->p.x * CELL_SIZE;
@@ -76,6 +99,16 @@ static void	player_init( t_game *game )
 	game->p.pdy = -sin(game->p.pa);
 }
 
+/*
+	Initialise game variables
+	Run map checks
+	Initialise game mlx
+	Initialise player varaibles
+	Setup image for minimap
+	Set neccesary game hooks
+	Loop the render function
+	Loop the game mlx
+*/
 int	main( int ac, char **av )
 {
 	t_game	game;

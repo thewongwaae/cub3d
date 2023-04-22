@@ -1,5 +1,9 @@
 #include "cub3d.h"
 
+/*
+	Rewrite of mlx_pixel_put such that it draws to
+	an image instead of directly onto the windoww
+*/
 void	my_pp( t_img img, int x, int y, int colour )
 {
 	char	*pixel;
@@ -18,6 +22,9 @@ void	my_pp( t_img img, int x, int y, int colour )
 	}
 }
 
+/*
+	Render a square from specified start pixel
+*/
 void	render_cell( t_img img, int color, int h_pixel, int w_pixel )
 {
 	int	i;

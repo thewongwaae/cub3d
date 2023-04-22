@@ -6,12 +6,15 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 19:14:42 by hwong             #+#    #+#             */
-/*   Updated: 2023/04/20 15:21:52 by hwong            ###   ########.fr       */
+/*   Updated: 2023/04/22 17:14:29 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+/*
+	Draw a solid colour slate onto a specified mlx image
+*/
 static void	render_bg( t_img img, int h, int w, int color )
 {
 	int	i;
@@ -27,6 +30,11 @@ static void	render_bg( t_img img, int h, int w, int color )
 	}
 }
 
+/*
+	Render transparent background
+	Render minimap based on the 2D map array in
+	the game struct
+*/
 void	render_minimap( t_game *game )
 {
 	int	h;
@@ -52,6 +60,11 @@ void	render_minimap( t_game *game )
 	}
 }
 
+/*
+	Render transparent background
+	Render raycast
+	Render a small dot representing the player
+*/
 static void	render_player( t_game *game )
 {
 	int		i;
@@ -73,6 +86,10 @@ static void	render_player( t_game *game )
 	}
 }
 
+/*
+	Modify player position based on input
+	Re-draw and put images to the window
+*/
 int	render( t_game *game )
 {
 	static int	refresh;

@@ -6,12 +6,16 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 17:11:51 by hwong             #+#    #+#             */
-/*   Updated: 2023/04/20 23:09:41 by hwong            ###   ########.fr       */
+/*   Updated: 2023/04/22 16:55:55 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+/*
+	Changes fov value based on key-input
+	15 <= fov >= 360
+*/
 static void	change_fov( int keycode, t_game *game )
 {
 	int	new_fov;
@@ -33,6 +37,9 @@ static void	change_fov( int keycode, t_game *game )
 	game->moved = 1;
 }
 
+/*
+	Changes turn sensitivity based on key-input
+*/
 static void	change_sens( int keycode, t_game *game )
 {
 	float	new_sens;
@@ -55,6 +62,11 @@ static void	change_sens( int keycode, t_game *game )
 		game->sens = 0.1;
 }
 
+/*
+	Triggered on keypress
+	Sets corresponding key boolean to true
+	Handle for end-game and exits
+*/
 int	key_down( int keycode, t_game *game )
 {
 	if (keycode == 13 || keycode == 126)
@@ -74,6 +86,10 @@ int	key_down( int keycode, t_game *game )
 	return (0);
 }
 
+/*
+	Triggered on keyrelease
+	Sets corresponding key boolean to false
+*/
 int	key_up( int keycode, t_game *game )
 {
 	if (keycode == 13 || keycode == 126)

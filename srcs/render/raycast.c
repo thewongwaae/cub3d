@@ -6,12 +6,16 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 16:41:04 by hwong             #+#    #+#             */
-/*   Updated: 2023/04/20 15:57:12 by hwong            ###   ########.fr       */
+/*   Updated: 2023/04/22 17:11:40 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+/*
+	Return which axis has smaller distance
+	from player to wall
+*/
 static int	get_steps( int dx, int dy )
 {
 	if (abs(dx) > abs(dy))
@@ -19,6 +23,9 @@ static int	get_steps( int dx, int dy )
 	return (abs(dy));
 }
 
+/*
+	Draw a line from specified start point to end point
+*/
 static void	draw_line( t_vec p1, t_vec p2, t_img img, int color )
 {
 	t_vec	d;
@@ -43,6 +50,10 @@ static void	draw_line( t_vec p1, t_vec p2, t_img img, int color )
 	}
 }
 
+/*
+	Calculate end point of ray if casted from player
+	at specified angle
+*/
 static t_vec	get_intersect( t_game *g, float angle )
 {
 	t_vecf	d;
@@ -68,6 +79,9 @@ static t_vec	get_intersect( t_game *g, float angle )
 	return ((t_vec){.x = p.x, .y = p.y});
 }
 
+/*
+	Cast rays from center of player character
+*/
 void	raycast( t_vec player, t_game *game, int color )
 {
 	float	fov;

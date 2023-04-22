@@ -1,5 +1,8 @@
 #include "cub3d.h"
 
+/*
+	Changes player angle value based on mouse-x
+*/
 int	mouse_hook( int x, int y, t_game *game )
 {
 	static int	prev_x = -1;

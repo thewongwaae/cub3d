@@ -6,12 +6,16 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 17:11:42 by hwong             #+#    #+#             */
-/*   Updated: 2023/04/16 16:30:00 by hwong            ###   ########.fr       */
+/*   Updated: 2023/04/22 16:47:37 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+/*
+	Check whether a file's etension matches
+	the given string
+*/
 static int	has_extension( char *file, char *ext )
 {
 	const char	*dot;
@@ -24,6 +28,16 @@ static int	has_extension( char *file, char *ext )
 	return (0);
 }
 
+/*
+	Runs all checks and returns verbose error
+	messages
+
+	Check for correct etension (.cub)
+	Check whether file is accessible
+	Check for map validity
+		- Check if map fully enclosed
+		- Check for player existance
+*/
 int	checks( char *file, t_game *game )
 {
 	if (!has_extension(file, "cub"))

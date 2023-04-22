@@ -6,7 +6,7 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 17:11:45 by hwong             #+#    #+#             */
-/*   Updated: 2023/04/19 22:10:37 by hwong            ###   ########.fr       */
+/*   Updated: 2023/04/22 16:48:40 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,10 @@ static void	init_iter( int y, int x, t_vec *xy, t_queue **q )
 	*q = init_queue();
 }
 
+/*
+	Iterative flood implementation to prevent
+	heap buffer overflow
+*/
 static void	flood_iter( int y, int x, t_game *game, char **map )
 {
 	t_vec	xy;
@@ -49,6 +53,9 @@ static void	flood_iter( int y, int x, t_game *game, char **map )
 	free_queue(q);
 }
 
+/*
+	Copy a 2D array into another
+*/
 static char	**copy_tab( char **tab )
 {
 	char	**copy;
@@ -85,6 +92,7 @@ static void	init_flood( t_game *game )
 /*
 	Find player position
 	Start flood from player position
+	If flood node goes out of bounds, found leak
 */
 void	check_map( t_game *g )
 {
