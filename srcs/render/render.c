@@ -6,7 +6,7 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 19:14:42 by hwong             #+#    #+#             */
-/*   Updated: 2023/04/22 17:14:29 by hwong            ###   ########.fr       */
+/*   Updated: 2023/04/22 17:46:16 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,9 @@ void	render_minimap( t_game *game )
 		{
 			if (game->map[h][w] == '1')
 				render_cell(game->mmap, WHITE,
+					h * CELL_SIZE, w * CELL_SIZE);
+			if (game->map[h][w] == '2')
+				render_cell(game->mmap, GREEN,
 					h * CELL_SIZE, w * CELL_SIZE);
 			else if (is_walkable(game->map[h][w]))
 				render_cell(game->mmap, BLACK,

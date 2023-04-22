@@ -6,7 +6,7 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 00:41:23 by hwong             #+#    #+#             */
-/*   Updated: 2023/04/15 16:47:04 by hwong            ###   ########.fr       */
+/*   Updated: 2023/04/22 17:42:44 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	*ft_memset(void *s, int c, size_t n)
 
 int	ismapchar( int ch )
 {
-	if (ch == ' ' || ch == '1' || ch == '0')
+	if (ch == ' ' || ch == '2' || ch == '1' || ch == '0')
 		return (1);
 	return (0);
 }

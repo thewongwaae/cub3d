@@ -10,15 +10,14 @@ INCLUDES	= -I includes -I mlx #-I mlx_linux -O3
 
 CHECKS		= checks flood parse queue
 HOOKS		= keypress mouse movement
-RENDER		= main pp render textures raycast
+INTERACTION	= door
+RENDER		= main pp render textures raycast calculation
 UTILS		= free gnl split strings stringss stringsss utils
 
 SRCS 		= $(addsuffix .c, $(addprefix srcs/checks/, $(CHECKS))) \
 			$(addsuffix .c, $(addprefix srcs/hooks/, $(HOOKS))) \
 			$(addsuffix .c, $(addprefix srcs/render/, $(RENDER))) \
 			$(addsuffix .c, $(addprefix srcs/utils/, $(UTILS)))
-
-# SRCS = test.c
 
 OBJS_DIR	= objs/
 OBJS		= $(addprefix $(OBJS_DIR), $(SRCS:c=o))

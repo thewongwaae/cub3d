@@ -6,7 +6,7 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 16:41:04 by hwong             #+#    #+#             */
-/*   Updated: 2023/04/22 17:11:40 by hwong            ###   ########.fr       */
+/*   Updated: 2023/04/22 18:04:43 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,21 +82,26 @@ static t_vec	get_intersect( t_game *g, float angle )
 /*
 	Cast rays from center of player character
 */
-void	raycast( t_vec player, t_game *game, int color )
+void	raycast( t_vec player, t_game *g, int color )
 {
-	float	fov;
 	float	step_angle;
 	int		i;
 	float	angle;
 	t_vec	intersect;
+	int		dist;
 
-	fov = deg_to_rad(game->fovdeg);
-	step_angle = fov / game->fovdeg;
+	step_angle = deg_to_rad(g->fovdeg) / g->fovdeg;
+	g->p.dist = INT32_MAX;
 	i = -1;
-	while (++i < game->fovdeg)
+	while (++i < g->fovdeg)
 	{
-		angle = game->p.pa - fov / 2 + i * step_angle;
-		intersect = get_intersect(game, angle);
-		draw_line(player, intersect, game->p.img, color);
+		angle = g->p.pa - deg_to_rad(g->fovdeg)
+			/ 2 + i * step_angle;
+		intersect = get_intersect(g, angle);
+		dist = get_dist((t_vec){.x = g->p.pix_x, .y = g->p.pix_y},
+			intersect);
+		if (dist < g->p.dist)
+			g->p.dist = dist;
+		draw_line(player, intersect, g->p.img, color);
 	}
 }
