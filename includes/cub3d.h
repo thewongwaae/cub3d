@@ -6,7 +6,7 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 16:37:23 by hwong             #+#    #+#             */
-/*   Updated: 2023/04/20 23:02:27 by hwong            ###   ########.fr       */
+/*   Updated: 2023/04/22 15:37:59 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,11 +144,12 @@ int		key_up( int keycode, t_game *game );
 int		mouse_hook( int x, int y, t_game *game );
 
 /* RENDER */
-// void	load_textures( t_game *game );
 int		rgba_to_int( int r, int g, int b, double a );
+// void	load_textures( t_game *game );
 void	my_pp( t_img img, int x, int y, int colour );
 void	render_cell( t_img img, int color, int h_pixel, int w_pixel );
 void	raycast( t_vec player, t_game *game, int color );
+int		get_dist( t_vec p1, t_vec p2 );
 void	render_minimap( t_game *game );
 int		render( t_game *game );
 
