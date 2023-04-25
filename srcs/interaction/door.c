@@ -15,7 +15,7 @@ void	open_door( t_game *g )
 			g->map[g->p.its.y][g->p.its.x] = '3';
 		else if (g->map[g->p.its.y][g->p.its.x] == '3')
 			g->map[g->p.its.y][g->p.its.x] = '2';
-		printf("");
+		printf("door interacted\n");
 		g->moved = 1;
 		render_minimap(g);
 	}

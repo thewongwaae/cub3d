@@ -6,7 +6,7 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 16:41:04 by hwong             #+#    #+#             */
-/*   Updated: 2023/04/25 16:06:22 by hwong            ###   ########.fr       */
+/*   Updated: 2023/04/25 17:41:56 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,17 +50,6 @@ static void	draw_line( t_vec p1, t_vec p2, t_img img, int color )
 	}
 }
 
-static void	hit_door( t_vec *its, char **map, t_vec block )
-{
-	t_vec	cell;
-
-	cell.x = (int)(block.x / CELL_SIZE);
-	cell.y = (int)(block.y / CELL_SIZE);
-	if (map[cell.y][cell.x] == '2'
-		|| map[cell.y][cell.x] == '3')
-		*its = (t_vec){.x = cell.x, .y = cell.y};
-}
-
 /*
 	Calculate end point of ray if casted from player
 	at specified angle
@@ -86,9 +75,21 @@ static t_vec	get_intersect( t_game *g, float angle )
 			break ;
 		if (!is_walkable(g->map[map.y][map.x]))
 			break ;
+		if (g->map[map.y][map.x] == '3')
+			g->p.its = (t_vec){.x = map.x, .y = map.y};
 	}
-	hit_door(&g->p.its, g->map, (t_vec){.x = p.x, .y = p.y});
 	return ((t_vec){.x = p.x, .y = p.y});
+}
+
+static void	hit_door( t_vec *its, char **map, t_vec block )
+{
+	t_vec	cell;
+
+	cell.x = (int)(block.x / CELL_SIZE);
+	cell.y = (int)(block.y / CELL_SIZE);
+	if (map[cell.y][cell.x] == '2'
+		|| map[cell.y][cell.x] == '3')
+		*its = (t_vec){.x = cell.x, .y = cell.y};
 }
 
 /*
@@ -115,7 +116,7 @@ void	raycast( t_vec player, t_game *g, int color )
 			its);
 		if (dist < g->p.dist)
 		{
-			
+			hit_door(&g->p.its, g->map, its);
 			g->p.dist = dist;
 		}
 		draw_line(player, its, g->p.img, color);
