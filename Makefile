@@ -16,6 +16,7 @@ UTILS		= free gnl split strings stringss stringsss utils
 
 SRCS 		= $(addsuffix .c, $(addprefix srcs/checks/, $(CHECKS))) \
 			$(addsuffix .c, $(addprefix srcs/hooks/, $(HOOKS))) \
+			$(addsuffix .c, $(addprefix srcs/interaction/, $(INTERACTION))) \
 			$(addsuffix .c, $(addprefix srcs/render/, $(RENDER))) \
 			$(addsuffix .c, $(addprefix srcs/utils/, $(UTILS)))
 

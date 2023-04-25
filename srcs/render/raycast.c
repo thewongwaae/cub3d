@@ -6,7 +6,7 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 16:41:04 by hwong             #+#    #+#             */
-/*   Updated: 2023/04/22 18:04:43 by hwong            ###   ########.fr       */
+/*   Updated: 2023/04/25 16:06:22 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,17 @@ static void	draw_line( t_vec p1, t_vec p2, t_img img, int color )
 	}
 }
 
+static void	hit_door( t_vec *its, char **map, t_vec block )
+{
+	t_vec	cell;
+
+	cell.x = (int)(block.x / CELL_SIZE);
+	cell.y = (int)(block.y / CELL_SIZE);
+	if (map[cell.y][cell.x] == '2'
+		|| map[cell.y][cell.x] == '3')
+		*its = (t_vec){.x = cell.x, .y = cell.y};
+}
+
 /*
 	Calculate end point of ray if casted from player
 	at specified angle
@@ -76,18 +87,20 @@ static t_vec	get_intersect( t_game *g, float angle )
 		if (!is_walkable(g->map[map.y][map.x]))
 			break ;
 	}
+	hit_door(&g->p.its, g->map, (t_vec){.x = p.x, .y = p.y});
 	return ((t_vec){.x = p.x, .y = p.y});
 }
 
 /*
 	Cast rays from center of player character
+	Note: its ~ intersect
 */
 void	raycast( t_vec player, t_game *g, int color )
 {
 	float	step_angle;
 	int		i;
 	float	angle;
-	t_vec	intersect;
+	t_vec	its;
 	int		dist;
 
 	step_angle = deg_to_rad(g->fovdeg) / g->fovdeg;
@@ -97,11 +110,14 @@ void	raycast( t_vec player, t_game *g, int color )
 	{
 		angle = g->p.pa - deg_to_rad(g->fovdeg)
 			/ 2 + i * step_angle;
-		intersect = get_intersect(g, angle);
+		its = get_intersect(g, angle);
 		dist = get_dist((t_vec){.x = g->p.pix_x, .y = g->p.pix_y},
-			intersect);
+			its);
 		if (dist < g->p.dist)
+		{
+			
 			g->p.dist = dist;
-		draw_line(player, intersect, g->p.img, color);
+		}
+		draw_line(player, its, g->p.img, color);
 	}
 }

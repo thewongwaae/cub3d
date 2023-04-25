@@ -6,7 +6,7 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 17:11:51 by hwong             #+#    #+#             */
-/*   Updated: 2023/04/22 17:57:46 by hwong            ###   ########.fr       */
+/*   Updated: 2023/04/25 15:51:21 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,8 @@ static void	change_sens( int keycode, t_game *game )
 */
 int	key_down( int keycode, t_game *game )
 {
+	static int spacebar = 0;
+	
 	if (keycode == 13 || keycode == 126)
 		game->key.up = true;
 	else if (keycode == 0 || keycode == 123)
@@ -75,8 +77,12 @@ int	key_down( int keycode, t_game *game )
 		game->key.down = true;
 	else if (keycode == 2 || keycode == 124)
 		game->key.right = true;
-	// if (keycode == 49)
-	// 	open_door(game);
+	if (keycode == 49)
+	{
+		spacebar++;
+		printf("door cell coordinate: %d, %d, press %d\n", game->p.its.y, game->p.its.x, spacebar);
+		open_door(game);
+	}
 	if (keycode == 33 || keycode == 30 || keycode == 42)
 		change_fov(keycode, game);
 	if (keycode == 27 || keycode == 24 || keycode == 51)

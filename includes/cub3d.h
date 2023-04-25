@@ -6,7 +6,7 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 16:37:23 by hwong             #+#    #+#             */
-/*   Updated: 2023/04/22 18:02:15 by hwong            ###   ########.fr       */
+/*   Updated: 2023/04/25 15:45:08 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 # define WHITE 0XFFFFFF
 # define GREY 0XA6A6A6
 # define GREEN 0X90EE90
+# define BLUE 0XADD8E6
 # define BLACK 0X000000
 # define PLAYER 0XF9A3FF
 # define CELL_SIZE 30
@@ -92,6 +93,7 @@ typedef struct s_player
 	float	pdy;
 
 	int		dist;
+	t_vec	its;
 	t_img	img;
 }	t_player;
 
@@ -141,6 +143,7 @@ void	forward( t_game *game );
 void	backward( t_game *game );
 void	left( t_game *game );
 void	right( t_game *game );
+void	open_door( t_game *g );
 int		key_down( int keycode, t_game *game );
 int		key_up( int keycode, t_game *game );
 int		mouse_hook( int x, int y, t_game *game );

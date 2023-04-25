@@ -6,7 +6,7 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 19:12:31 by hwong             #+#    #+#             */
-/*   Updated: 2023/04/20 15:55:27 by hwong            ###   ########.fr       */
+/*   Updated: 2023/04/25 15:22:21 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	is_walkable( char ch )
 {
 	return (ch == '0' || ch == 'N' || ch == 'S'
-		|| ch == 'E' || ch == 'W');
+		|| ch == 'E' || ch == 'W' || ch == '3');
 }
 
 int	get_center( int start, int end )
