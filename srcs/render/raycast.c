@@ -6,7 +6,7 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 16:41:04 by hwong             #+#    #+#             */
-/*   Updated: 2023/04/27 19:22:44 by hwong            ###   ########.fr       */
+/*   Updated: 2023/04/27 19:31:10 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,7 +123,7 @@ void	raycast( t_vec player, t_game *g, int color )
 		draw_line(player, its, g->p.img, color);
 
 		//=====//
-		cast_3d(g, dist, i);
+		cast_3d(g, dist, i, angle);
 		//=====//
 	}
 }

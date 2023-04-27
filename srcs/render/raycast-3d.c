@@ -1,5 +1,19 @@
 #include "cub3d.h"
 
+// static float	fix_fisheye(t_game *g, float angle, int dist)
+// {
+// 	float	fisheye;
+// 	float	new_dist;
+
+// 	fisheye = g->p.pa - angle;
+// 	if (fisheye < 0)
+// 		fisheye += 2 * M_PI;
+// 	if (fisheye > 2 * M_PI)
+// 		fisheye -= 2 * M_PI;
+// 	new_dist = dist * cos(fisheye);
+// 	return (new_dist);
+// }
+
 //need to fix, crash when trying to fill screen.
 static void	draw_3d(t_game *g, int constant, t_vec start, t_vec end)
 {
@@ -11,7 +25,7 @@ static void	draw_3d(t_game *g, int constant, t_vec start, t_vec end)
 	{
 		ray_h = start.y;
 		while(ray_h <= end.y)
-			my_pp(g->bg, ray_w, ray_h++, DGREEN);
+			my_pp(g->bg, ray_w, ray_h++, PURPLE);
 		ray_w++;
 	}
 }
@@ -20,7 +34,7 @@ static void	draw_3d(t_game *g, int constant, t_vec start, t_vec end)
 	r = ray count
 	lineOff = offset 3d-cast to center of screen
 */
-void	cast_3d(t_game *g, int dist, int r)
+void	cast_3d(t_game *g, int dist, int r, float angle)
 {
 	float	lineH;
 	float	lineOff;
@@ -28,11 +42,13 @@ void	cast_3d(t_game *g, int dist, int r)
 	t_vec	start;
 	t_vec	end;
 
+	(void) angle;
+	// dist = roundf(fix_fisheye(g, angle, dist));
 	/*
 		missing one ray because dividing normally doesnt return whole value,
 		and will round down.
 	*/
-	constant = (g->winsize.x / g->fovdeg) + 0.67; //WTF WHY .675
+	constant = (g->winsize.x / g->fovdeg) + 0.67; //WTF WHY .67
 	printf("\nconstant %f\n", constant);
 	lineH = (g->winsize.y * CELL_SIZE) / dist;
 	if (lineH > g->winsize.y)
