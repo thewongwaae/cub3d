@@ -6,7 +6,7 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 16:41:04 by hwong             #+#    #+#             */
-/*   Updated: 2023/04/27 17:37:33 by hwong            ###   ########.fr       */
+/*   Updated: 2023/04/27 19:22:44 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,7 @@ void	raycast( t_vec player, t_game *g, int color )
 	step_angle = deg_to_rad(g->fovdeg) / g->fovdeg;
 	g->p.dist = INT32_MAX;
 	i = -1;
+	//fixes one missing ray if "<=".
 	while (++i < g->fovdeg)
 	{
 		angle = g->p.pa - deg_to_rad(g->fovdeg)
