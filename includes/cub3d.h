@@ -6,7 +6,7 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 16:37:23 by hwong             #+#    #+#             */
-/*   Updated: 2023/04/25 15:45:08 by hwong            ###   ########.fr       */
+/*   Updated: 2023/04/27 17:34:36 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 # define WHITE 0XFFFFFF
 # define GREY 0XA6A6A6
 # define GREEN 0X90EE90
+# define DGREEN 0X025C02
 # define BLUE 0XADD8E6
 # define BLACK 0X000000
 # define PLAYER 0XF9A3FF
@@ -157,6 +158,7 @@ void	raycast( t_vec player, t_game *game, int color );
 int		get_dist( t_vec p1, t_vec p2 );
 void	render_minimap( t_game *game );
 int		render( t_game *game );
+void	cast_3d(t_game *g, int dist, int r);
 
 /* UTILS */
 // free

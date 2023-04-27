@@ -11,7 +11,7 @@ INCLUDES	= -I includes -I mlx #-I mlx_linux -O3
 CHECKS		= checks flood parse queue
 HOOKS		= keypress mouse movement
 INTERACTION	= door
-RENDER		= main pp render textures raycast calculation
+RENDER		= main pp render textures raycast calculation raycast-3d
 UTILS		= free gnl split strings stringss stringsss utils
 
 SRCS 		= $(addsuffix .c, $(addprefix srcs/checks/, $(CHECKS))) \
