@@ -49,15 +49,12 @@ void	cast_3d(t_game *g, int dist, int r, float angle)
 		and will round down.
 	*/
 	constant = (g->winsize.x / g->fovdeg) + 0.67; //WTF WHY .67
-	printf("\nconstant %f\n", constant);
 	lineH = (g->winsize.y * CELL_SIZE) / dist;
 	if (lineH > g->winsize.y)
 		lineH = g->winsize.y;
 	lineOff = (g->winsize.y / 2) - lineH / 2;
 	start = (t_vec){.x = (r * constant), .y = lineOff};
-	printf("start: %d, %d\n", start.x, start.y);
 	end = (t_vec){.x = (r * constant), .y = lineOff + lineH};
-	printf("end: %d, %d\n", end.x, end.y);
 
 	draw_3d(g, roundf(constant), start, end);
 }
