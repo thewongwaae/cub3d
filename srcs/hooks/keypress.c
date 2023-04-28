@@ -6,7 +6,7 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 17:11:51 by hwong             #+#    #+#             */
-/*   Updated: 2023/04/25 15:51:21 by hwong            ###   ########.fr       */
+/*   Updated: 2023/04/28 20:23:52 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,11 @@ static void	change_sens( int keycode, t_game *game )
 	Triggered on keypress
 	Sets corresponding key boolean to true
 	Handle for end-game and exits
+
+	Note: left and right inverted because
+	when displayed, pressing left should scroll
+	screen right, giving the illusion of looking
+	left
 */
 int	key_down( int keycode, t_game *game )
 {
@@ -72,11 +77,11 @@ int	key_down( int keycode, t_game *game )
 	if (keycode == 13 || keycode == 126)
 		game->key.up = true;
 	else if (keycode == 0 || keycode == 123)
-		game->key.left = true;
+		game->key.right = true;
 	else if (keycode == 1 || keycode == 125)
 		game->key.down = true;
 	else if (keycode == 2 || keycode == 124)
-		game->key.right = true;
+		game->key.left = true;
 	if (keycode == 49)
 	{
 		spacebar++;
@@ -101,10 +106,10 @@ int	key_up( int keycode, t_game *game )
 	if (keycode == 13 || keycode == 126)
 		game->key.up = false;
 	else if (keycode == 0 || keycode == 123)
-		game->key.left = false;
+		game->key.right = false;
 	else if (keycode == 1 || keycode == 125)
 		game->key.down = false;
 	else if (keycode == 2 || keycode == 124)
-		game->key.right = false;
+		game->key.left = false;
 	return (0);
 }
