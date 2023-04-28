@@ -30,6 +30,18 @@ static void	draw_3d(t_game *g, int constant, t_vec start, t_vec end)
 	}
 }
 
+static void	check_bounds( t_vec winsize, t_vec *p )
+{
+	if (p->x < 0)
+		p->x = 0;
+	if (p->y < 0)
+		p->y = 0;
+	if (p->x > winsize.x)
+		p->x = winsize.x;
+	if (p->y > winsize.y)
+		p->y = winsize.y;
+}
+
 /*
 	r = ray count
 	lineOff = offset 3d-cast to center of screen
@@ -54,7 +66,8 @@ void	cast_3d(t_game *g, int dist, int r, float angle)
 		lineH = g->winsize.y;
 	lineOff = (g->winsize.y / 2) - lineH / 2;
 	start = (t_vec){.x = (r * constant), .y = lineOff};
+	check_bounds(g->winsize, &start);
 	end = (t_vec){.x = (r * constant), .y = lineOff + lineH};
-
+	check_bounds(g->winsize, &end);
 	draw_3d(g, roundf(constant), start, end);
 }
