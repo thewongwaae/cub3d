@@ -32,3 +32,8 @@
 	* Draw a ray, just so we can see whats going on lol
 * Vertical check (left or right):
 	* Pretty much the same as above.
+
+## ISSUES
+* [ ] door interacts when player is at a 20 or smaller pixel distance from any wall after door position cell is noted. fix is easy, note down block player is currently facing and check whether it is door, if not door, no interact
+* [ ] pure raycast render is rough and jagged, anti-aliasing? later on need take vertex coordinates and map to an mlx image
+* [ ] different wall faces have same color, difficult to make out edges. find out direction of each wall rays hit and map to right color
