@@ -6,7 +6,7 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 19:14:42 by hwong             #+#    #+#             */
-/*   Updated: 2023/04/25 15:45:26 by hwong            ###   ########.fr       */
+/*   Updated: 2023/05/01 16:58:04 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,9 +73,9 @@ void	render_minimap( t_game *game )
 */
 static void	render_player( t_game *game )
 {
-	int		i;
-	int		j;
-	t_vec	player;
+	float	i;
+	float	j;
+	t_vecf	player;
 
 	render_bg(game->p.img, game->msize.y * CELL_SIZE,
 		game->msize.x * CELL_SIZE, TRANS);
@@ -87,8 +87,11 @@ static void	render_player( t_game *game )
 	{
 		j = game->p.pix_x;
 		while (j < (game->p.pix_x + game->p.size))
-			my_pp(game->p.img, j++, i, PLAYER);
-		i++;
+		{
+			my_pp(game->p.img, roundf(j), roundf(i), PLAYER);
+			j += 1.0f;
+		}
+		i += 1.0f;
 	}
 }
 
@@ -98,13 +101,14 @@ static void	render_player( t_game *game )
 */
 int	render( t_game *game )
 {
-	static int	refresh;
+	// static int	refresh;
 
 	forward(game);
 	backward(game);
 	left(game);
 	right(game);
-	if (refresh == 0 || game->moved != 0)
+	// if (refresh == 0 || game->moved != 0)
+	if (game->moved != 0)
 	{
 		render_bg(game->bg, game->winsize.y, game->winsize.x, GREY);
 		render_player(game);
@@ -116,6 +120,6 @@ int	render( t_game *game )
 			game->p.img.mlx_img, 0, 0);
 		game->moved = false;
 	}
-	refresh++;
+	// refresh++;
 	return (0);
 }

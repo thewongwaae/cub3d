@@ -6,7 +6,7 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 16:41:04 by hwong             #+#    #+#             */
-/*   Updated: 2023/04/28 20:22:29 by hwong            ###   ########.fr       */
+/*   Updated: 2023/05/01 16:58:52 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,31 +16,31 @@
 	Return which axis has smaller distance
 	from player to wall
 */
-static int	get_steps( int dx, int dy )
+static float	get_steps( float dx, float dy )
 {
-	if (abs(dx) > abs(dy))
-		return (abs(dx));
-	return (abs(dy));
+	if (fabsf(dx) > fabsf(dy))
+		return ((float)fabsf(dx));
+	return (fabsf(dy));
 }
 
 /*
 	Draw a line from specified start point to end point
 */
-static void	draw_line( t_vec p1, t_vec p2, t_img img, int color )
+static void	draw_line( t_vecf p1, t_vecf p2, t_img img, int color )
 {
-	t_vec	d;
+	t_vecf	d;
 	t_vecf	inc;
 	t_vecf	pixel;
-	int		steps;
+	float	steps;
 	int		i;
 
 	d.x = p2.x - p1.x;
 	d.y = p2.y - p1.y;
 	steps = get_steps(d.x, d.y);
-	inc.x = d.x / (float)steps;
-	inc.y = d.y / (float)steps;
-	pixel.x = (float)p1.x;
-	pixel.y = (float)p1.y;
+	inc.x = d.x / steps;
+	inc.y = d.y / steps;
+	pixel.x = p1.x;
+	pixel.y = p1.y;
 	i = -1;
 	while (++i <= steps)
 	{
@@ -54,7 +54,7 @@ static void	draw_line( t_vec p1, t_vec p2, t_img img, int color )
 	Calculate end point of ray if casted from player
 	at specified angle
 */
-static t_vec	get_intersect( t_game *g, float angle )
+static t_vecf	get_intersect( t_game *g, float angle )
 {
 	t_vecf	d;
 	t_vecf	p;
@@ -78,53 +78,46 @@ static t_vec	get_intersect( t_game *g, float angle )
 		if (g->map[map.y][map.x] == '3')
 			g->p.its = (t_vec){.x = map.x, .y = map.y};
 	}
-	return ((t_vec){.x = p.x, .y = p.y});
+	return ((t_vecf){.x = p.x, .y = p.y});
 }
 
-static void	hit_door( t_vec *its, char **map, t_vec block )
+static void	hit_block( t_vec *its, t_vecf block )
 {
 	t_vec	cell;
 
-	cell.x = (int)(block.x / CELL_SIZE);
-	cell.y = (int)(block.y / CELL_SIZE);
-	if (map[cell.y][cell.x] == '2'
-		|| map[cell.y][cell.x] == '3')
-		*its = (t_vec){.x = cell.x, .y = cell.y};
+	cell.x = roundf(block.x / CELL_SIZE);
+	cell.y = roundf(block.y / CELL_SIZE);
+	*its = (t_vec){.x = cell.x, .y = cell.y};
 }
 
 /*
 	Cast rays from center of player character
 	Note: its ~ intersect
 */
-void	raycast( t_vec player, t_game *g, int color )
+void	raycast( t_vecf player, t_game *g, int color )
 {
-	float	step_angle;
 	int		i;
 	float	angle;
-	t_vec	its;
-	int		dist;
+	t_vecf	its;
+	float	dist;
 
-	step_angle = deg_to_rad(g->fovdeg) / g->fovdeg;
 	g->p.dist = INT32_MAX;
 	i = -1;
-	//fixes one missing ray if "<=".
 	while (++i < g->fovdeg)
 	{
-		angle = g->p.pa - deg_to_rad(g->fovdeg)
-			/ 2 + i * step_angle;
+		angle = g->p.pa - deg_to_rad(g->fovdeg) / 2 + (float)i
+			* deg_to_rad(g->fovdeg) / (float)(g->fovdeg - 1);
 		its = get_intersect(g, angle);
-		dist = get_dist((t_vec){.x = g->p.pix_x, .y = g->p.pix_y},
+		dist = get_dist((t_vecf){.x = g->p.pix_x, .y = g->p.pix_y},
 			its);
-		if (dist < g->p.dist)
+		if ((int)dist < g->p.dist)
 		{
-			hit_door(&g->p.its, g->map, its);
-			g->p.dist = dist;
+			hit_block(&g->p.its, its);
+			g->p.dist = (int)dist;
 		}
-		draw_line(player, its, g->p.img, color);
-
-		//=====//
+		if (i == 0 || i == g->fovdeg - 1)
+			draw_line(player, its, g->p.img, color);
 		cast_3d(g, dist, i, angle);
-		//=====//
 	}
 }
 

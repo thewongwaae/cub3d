@@ -3,11 +3,11 @@
 /*
 	a twist on Pythagorus
 */
-int	get_dist( t_vec p1, t_vec p2 )
+float	get_dist( t_vecf p1, t_vecf p2 )
 {
 	t_vec	d;
 
 	d.x = p2.x - p1.x;
 	d.y = p2.y - p1.y;
-	return (sqrtf(d.x * d.x + d.y * d.y));
+	return (sqrt(d.x * d.x + d.y * d.y));
 }

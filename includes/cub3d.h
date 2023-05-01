@@ -6,7 +6,7 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 16:37:23 by hwong             #+#    #+#             */
-/*   Updated: 2023/04/27 19:45:58 by hwong            ###   ########.fr       */
+/*   Updated: 2023/05/01 17:03:07 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,11 +154,11 @@ int		rgba_to_int( int r, int g, int b, double a );
 // void	load_textures( t_game *game );
 void	my_pp( t_img img, int x, int y, int colour );
 void	render_cell( t_img img, int color, int h_pixel, int w_pixel );
-void	raycast( t_vec player, t_game *game, int color );
-int		get_dist( t_vec p1, t_vec p2 );
+void	raycast( t_vecf player, t_game *game, int color );
+float	get_dist( t_vecf p1, t_vecf p2 );
 void	render_minimap( t_game *game );
 int		render( t_game *game );
-void	cast_3d(t_game *g, int dist, int r, float angle);
+void	cast_3d(t_game *g, float dist, int r, float angle);
 
 /* UTILS */
 // free
