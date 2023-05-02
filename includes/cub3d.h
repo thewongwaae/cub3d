@@ -6,7 +6,7 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 16:37:23 by hwong             #+#    #+#             */
-/*   Updated: 2023/05/02 19:24:06 by hwong            ###   ########.fr       */
+/*   Updated: 2023/05/02 20:13:48 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include <stdlib.h>
 # include <math.h>
 # include <stdbool.h>
-# include <mlx.h>
+# include "../mlx/mlx.h"
 
 # define BUFFER_SIZE 1024
 # define TRANS 0XFF000000

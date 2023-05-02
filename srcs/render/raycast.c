@@ -6,7 +6,7 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 16:41:04 by hwong             #+#    #+#             */
-/*   Updated: 2023/05/02 19:23:47 by hwong            ###   ########.fr       */
+/*   Updated: 2023/05/02 20:19:01 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,17 +90,8 @@ void	raycast( t_vecf player, t_game *g, int color )
 			hit_block(&g->p.its, its);
 			g->p.dist = (int)dist;
 		}
-		draw_line(player, its, g->p.img, color);
+		if (i == 0 || i == g->winsize.x - 1)
+			draw_line(player, its, g->p.img, color);
 		cast_3d(g, dist, i, angle);
 	}
 }
-
-/*
-	float lineH = (mapS * 320)/dist; //320 is new 3d screen height, mapS = cellsize
-	if (lineH >320)
-		lineH = 320;  //maximum wall height
-
-	float lineOff = 160 - lineH / 2; //offset 3d lines to middle of screen
-
-	//every ray (i) is ~8pix wide
-*/

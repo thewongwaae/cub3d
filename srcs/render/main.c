@@ -6,7 +6,7 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 17:11:56 by hwong             #+#    #+#             */
-/*   Updated: 2023/05/02 14:03:30 by hwong            ###   ########.fr       */
+/*   Updated: 2023/05/02 20:14:36 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,6 +121,7 @@ int	main( int ac, char **av )
 	init_mlx(&game);
 	player_init(&game);
 	render_minimap(&game);
+	mlx_mouse_hide();
 	mlx_hook(game.win, 2, (1L << 0), key_down, &game);
 	mlx_hook(game.win, 3, (1L << 0), key_up, &game);
 	mlx_hook(game.win, 6, (1L << 6), mouse_hook, &game);
