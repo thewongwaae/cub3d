@@ -19,7 +19,7 @@ void	my_pp( t_img img, int x, int y, int colour )
 	{
 		i = img.bpp - 8;
 		pixel = img.addr + (y * img.line_len + x * (img.bpp / 8));
-		*(int *)pixel = colour;
+		// *(int *)pixel = colour;
 		while (i >= 0)
 		{
 			if (img.endian != 0)
@@ -40,10 +40,10 @@ void	render_cell( t_img img, int color, int h_pixel, int w_pixel )
 	int	j;
 
 	i = h_pixel;
-	while (i < (h_pixel + CELL_SIZE - 1))
+	while (i < (h_pixel + CELL_SIZE))
 	{
 		j = w_pixel;
-		while (j < (w_pixel + CELL_SIZE - 1))
+		while (j < (w_pixel + CELL_SIZE))
 			my_pp(img, j++, i, color);
 		i++;
 	}

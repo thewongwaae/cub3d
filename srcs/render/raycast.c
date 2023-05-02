@@ -6,7 +6,7 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 16:41:04 by hwong             #+#    #+#             */
-/*   Updated: 2023/05/02 14:42:39 by hwong            ###   ########.fr       */
+/*   Updated: 2023/05/02 19:23:47 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,32 +54,7 @@ static void	draw_line( t_vecf p1, t_vecf p2, t_img img, int color )
 	Calculate end point of ray if casted from player
 	at specified angle
 */
-static t_vecf	get_intersect( t_game *g, float angle )
-{
-	t_vecf	d;
-	t_vecf	p;
-	t_vec	map;
 
-	d.x = cos(angle) * 0.1;
-	d.y = -sin(angle) * 0.1;
-	p.x = g->p.pix_x;
-	p.y = g->p.pix_y;
-	while (1)
-	{
-		p.x += d.x;
-		p.y += d.y;
-		map.x = (int)(p.x / CELL_SIZE);
-		map.y = (int)(p.y / CELL_SIZE);
-		if (map.x < 0 || map.y < 0 || map.x >= g->msize.x
-			|| map.y >= g->msize.y)
-			break ;
-		if (!is_walkable(g->map[map.y][map.x]))
-			break ;
-		if (g->map[map.y][map.x] == '3')
-			g->p.its = (t_vec){.x = map.x, .y = map.y};
-	}
-	return ((t_vecf){.x = p.x, .y = p.y});
-}
 
 static void	hit_block( t_vec *its, t_vecf block )
 {
