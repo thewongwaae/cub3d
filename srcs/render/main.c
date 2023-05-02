@@ -6,7 +6,7 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 17:11:56 by hwong             #+#    #+#             */
-/*   Updated: 2023/04/25 15:28:54 by hwong            ###   ########.fr       */
+/*   Updated: 2023/05/02 14:03:30 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static void	game_init( t_game *game )
 	game->key.down = false;
 	game->key.right = false;
 	game->sens = 0.1;
-	game->moved = false;
+	game->moved = true;
 }
 
 /*

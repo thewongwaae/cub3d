@@ -15,14 +15,14 @@ static float	fix_fisheye(t_game *g, float angle, float dist)
 }
 
 //need to fix, crash when trying to fill screen.
-static void	draw_3d(t_game *g, float constant, t_vecf start, t_vecf end)
+static void	draw_3d(t_game *g, t_vecf start, t_vecf end)
 {
 	float	ray_w;
 	float	ray_h;
 	float	ray_w_end;
 
 	ray_w = start.x;
-	ray_w_end = start.x + constant;
+	ray_w_end = start.x + 1.0f;
 	while (ray_w < ray_w_end)
 	{
 		ray_h = start.y;
@@ -43,17 +43,15 @@ void	cast_3d(t_game *g, float dist, int r, float angle)
 {
 	float	lineH;
 	float	lineOff;
-	float	constant;
 	t_vecf	start;
 	t_vecf	end;
 
 	dist = fix_fisheye(g, angle, dist);
-	constant = (float)g->winsize.x / (float)g->fovdeg;
 	lineH = ((float)g->winsize.y * (float)CELL_SIZE) / (float)dist;
 	if (lineH > (float)g->winsize.y)
 		lineH = (float)g->winsize.y;
 	lineOff = ((float)g->winsize.y / 2.0f) - lineH / 2.0f;
-	start = (t_vecf){.x = (float)r * constant, .y = lineOff};
-	end = (t_vecf){.x = (float)r * constant, .y = lineOff + lineH};
-	draw_3d(g, constant, start, end);
+	start = (t_vecf){.x = (float)r, .y = lineOff};
+	end = (t_vecf){.x = (float)r, .y = lineOff + lineH};
+	draw_3d(g, start, end);
 }

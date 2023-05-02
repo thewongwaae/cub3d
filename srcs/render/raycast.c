@@ -6,7 +6,7 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 16:41:04 by hwong             #+#    #+#             */
-/*   Updated: 2023/05/01 16:58:52 by hwong            ###   ########.fr       */
+/*   Updated: 2023/05/02 14:42:39 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,8 @@ static t_vecf	get_intersect( t_game *g, float angle )
 	t_vecf	p;
 	t_vec	map;
 
-	d.x = cos(angle);
-	d.y = -sin(angle);
+	d.x = cos(angle) * 0.1;
+	d.y = -sin(angle) * 0.1;
 	p.x = g->p.pix_x;
 	p.y = g->p.pix_y;
 	while (1)
@@ -103,10 +103,10 @@ void	raycast( t_vecf player, t_game *g, int color )
 
 	g->p.dist = INT32_MAX;
 	i = -1;
-	while (++i < g->fovdeg)
+	while (++i < g->winsize.x)
 	{
 		angle = g->p.pa - deg_to_rad(g->fovdeg) / 2 + (float)i
-			* deg_to_rad(g->fovdeg) / (float)(g->fovdeg - 1);
+			* deg_to_rad(g->fovdeg) / g->winsize.x;
 		its = get_intersect(g, angle);
 		dist = get_dist((t_vecf){.x = g->p.pix_x, .y = g->p.pix_y},
 			its);
@@ -115,8 +115,7 @@ void	raycast( t_vecf player, t_game *g, int color )
 			hit_block(&g->p.its, its);
 			g->p.dist = (int)dist;
 		}
-		if (i == 0 || i == g->fovdeg - 1)
-			draw_line(player, its, g->p.img, color);
+		draw_line(player, its, g->p.img, color);
 		cast_3d(g, dist, i, angle);
 	}
 }
