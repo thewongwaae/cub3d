@@ -6,7 +6,7 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 19:14:42 by hwong             #+#    #+#             */
-/*   Updated: 2023/05/03 18:03:52 by hwong            ###   ########.fr       */
+/*   Updated: 2023/05/03 19:22:27 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,14 +73,14 @@ void	render_minimap( t_game *game )
 */
 static void	render_player( t_game *game )
 {
-	float	i;
-	float	j;
+	double	i;
+	double	j;
 	t_vecd	player;
 
 	render_bg(game->p.img, game->msize.y * CELL_SIZE,
 		game->msize.x * CELL_SIZE, TRANS);
-	player.x = game->p.pix_x + game->p.size / 2;
-	player.y = game->p.pix_y + game->p.size / 2;
+	player.x = game->p.pix_x + (double)game->p.size / 2.0;
+	player.y = game->p.pix_y + (double)game->p.size / 2.0;
 	raycast(player, game, GREEN);
 	i = game->p.pix_y;
 	while (i < (game->p.pix_y + game->p.size))

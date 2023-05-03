@@ -12,58 +12,28 @@ double	get_dist( t_vecd p1, t_vecd p2 )
 	return (sqrt(d.x * d.x + d.y * d.y));
 }
 
-/*
-	need handle for when intersect falls short or
-	passes through wall due to step size
-*/
-// static t_vecd correct_intersect(t_vecd p, t_vec map)
-// {
-//     t_vecd edge;
-//     double dist_top, dist_bottom, dist_left, dist_right, min_dist;
-
-//     dist_top = fabs(p.y - (map.y * CELL_SIZE));
-//     dist_bottom = fabs(p.y - ((map.y + 1) * CELL_SIZE));
-//     dist_left = fabs(p.x - (map.x * CELL_SIZE));
-//     dist_right = fabs(p.x - ((map.x + 1) * CELL_SIZE));
-//     min_dist = fmin(fmin(dist_top, dist_bottom), fmin(dist_left, dist_right));
-//     if (min_dist == dist_top)
-//     {
-//         edge.x = p.x;
-//         edge.y = map.y * CELL_SIZE;
-//     }
-//     else if (min_dist == dist_bottom)
-//     {
-//         edge.x = p.x;
-//         edge.y = (map.y + 1) * CELL_SIZE;
-//     }
-//     else if (min_dist == dist_left)
-//     {
-//         edge.x = map.x * CELL_SIZE;
-//         edge.y = p.y;
-//     }
-//     else
-//     {
-//         edge.x = (map.x + 1) * CELL_SIZE;
-//         edge.y = p.y;
-//     }
-//     return (edge);
-// }
-
 static t_vecd correct_intersect(t_vecd p, double angle, t_vec map )
 {
-    t_vecd edge;
-    double step_size = 0.01;
+    t_vecd    edge;
+    double    left;
+    double    right;
+    double    up;
+    double    down;
 
-    edge.x = p.x + step_size * cos(angle);
-    edge.y = p.y + step_size * sin(angle);
-    if (edge.x < map.x * CELL_SIZE)
-        edge.x = map.x * CELL_SIZE;
-    else if (edge.x > (map.x + 1) * CELL_SIZE)
-        edge.x = (map.x + 1) * CELL_SIZE;
-    if (edge.y < map.y * CELL_SIZE)
-        edge.y = map.y * CELL_SIZE;
-    else if (edge.y > (map.y + 1) * CELL_SIZE)
-        edge.y = (map.y + 1) * CELL_SIZE;
+    edge.x = p.x + 0.01 * cos(angle);
+    edge.y = p.y + 0.01 * sin(angle);
+    left = ((double)map.x * (double)CELL_SIZE);
+    right = (((double)map.x + 1.0) * (double)CELL_SIZE);
+    up = ((double)map.y * (double)CELL_SIZE);
+    down = (((double)map.y + 1.0) * (double)CELL_SIZE);
+    if (edge.x < left)
+        edge.x = left;
+    else if (edge.x > right)
+        edge.x = right;
+    if (edge.y < up)
+        edge.y = up;
+    else if (edge.y > down)
+        edge.y = down;
     return (edge);
 }
 

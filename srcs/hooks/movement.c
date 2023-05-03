@@ -56,8 +56,8 @@ void	left( t_game *game )
 		game->p.pa += game->sens;
 		if (game->p.pa < 0)
 			game->p.pa += 2 * M_PI;
-		game->p.pdx = cos(game->p.pa) * 3;
-		game->p.pdy = -sin(game->p.pa) * 3;
+		game->p.pdx = cos(game->p.pa) * 2.5;
+		game->p.pdy = -sin(game->p.pa) * 2.5;
 		game->moved = true;
 	}
 }
@@ -74,8 +74,8 @@ void	right( t_game *game )
 		game->p.pa -= game->sens;
 		if (game->p.pa > 2 * M_PI)
 			game->p.pa -= 2 * M_PI;
-		game->p.pdx = cos(game->p.pa) * 3;
-		game->p.pdy = -sin(game->p.pa) * 3;
+		game->p.pdx = cos(game->p.pa) * 2.5;
+		game->p.pdy = -sin(game->p.pa) * 2.5;
 		game->moved = true;
 	}
 }

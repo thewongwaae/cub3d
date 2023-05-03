@@ -6,7 +6,7 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 17:11:56 by hwong             #+#    #+#             */
-/*   Updated: 2023/05/03 18:41:25 by hwong            ###   ########.fr       */
+/*   Updated: 2023/05/03 19:24:49 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,9 +71,9 @@ static void	init_mlx( t_game *game )
 static double	set_dir( char ch )
 {
 	if (ch == 'N')
-		return (M_PI / 2);
+		return (M_PI / 2.0);
 	if (ch == 'S')
-		return (3 * M_PI / 2);
+		return (3 * M_PI / 2.0);
 	if (ch == 'W')
 		return (M_PI);
 	return (0);

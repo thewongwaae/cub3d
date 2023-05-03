@@ -6,7 +6,7 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 16:41:04 by hwong             #+#    #+#             */
-/*   Updated: 2023/05/03 18:43:44 by hwong            ###   ########.fr       */
+/*   Updated: 2023/05/03 19:18:02 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,11 @@
 	Return which axis has smaller distance
 	from player to wall
 */
-static float	get_steps( float dx, float dy )
+static double	get_steps( double dx, double dy )
 {
-	if (fabsf(dx) > fabsf(dy))
-		return ((float)fabsf(dx));
-	return (fabsf(dy));
+	if (fabs(dx) > fabs(dy))
+		return (fabs(dx));
+	return (fabs(dy));
 }
 
 /*
@@ -31,7 +31,7 @@ static void	draw_line( t_vecd p1, t_vecd p2, t_img img, int color )
 	t_vecd	d;
 	t_vecd	inc;
 	t_vecd	pixel;
-	float	steps;
+	double	steps;
 	int		i;
 
 	d.x = p2.x - p1.x;
@@ -50,18 +50,12 @@ static void	draw_line( t_vecd p1, t_vecd p2, t_img img, int color )
 	}
 }
 
-/*
-	Calculate end point of ray if casted from player
-	at specified angle
-*/
-
-
 static void	hit_block( t_vec *its, t_vecd block )
 {
 	t_vec	cell;
 
-	cell.x = roundf(block.x / CELL_SIZE);
-	cell.y = roundf(block.y / CELL_SIZE);
+	cell.x = round(block.x / CELL_SIZE);
+	cell.y = round(block.y / CELL_SIZE);
 	*its = (t_vec){.x = cell.x, .y = cell.y};
 }
 
@@ -80,8 +74,8 @@ void	raycast( t_vecd player, t_game *g, int color )
 	i = -1;
 	while (++i < g->winsize.x)
 	{
-		angle = g->p.pa - deg_to_rad(g->fovdeg) / 2 + (double)i
-			* deg_to_rad(g->fovdeg) / g->winsize.x;
+		angle = g->p.pa - deg_to_rad(g->fovdeg) / 2.0 + (double)i
+			* deg_to_rad(g->fovdeg) / (double)g->winsize.x;
 		its = get_intersect(g, angle);
 		dist = get_dist((t_vecd){.x = g->p.pix_x, .y = g->p.pix_y},
 			its);
@@ -90,7 +84,8 @@ void	raycast( t_vecd player, t_game *g, int color )
 			hit_block(&g->p.its, its);
 			g->p.dist = dist;
 		}
-		draw_line(player, its, g->p.img, color);
+		if (i == g->winsize.x / 2)
+			draw_line(player, its, g->p.img, color);
 		cast_3d(g, dist, i, angle);
 	}
 }
