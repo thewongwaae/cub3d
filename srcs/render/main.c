@@ -6,7 +6,7 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 17:11:56 by hwong             #+#    #+#             */
-/*   Updated: 2023/05/02 20:14:36 by hwong            ###   ########.fr       */
+/*   Updated: 2023/05/03 18:41:25 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ static void	init_mlx( t_game *game )
 	Set initial player direction based on
 	the character ( N | S | W | E ) in the map
 */
-static float	set_dir( char ch )
+static double	set_dir( char ch )
 {
 	if (ch == 'N')
 		return (M_PI / 2);
@@ -86,10 +86,13 @@ static float	set_dir( char ch )
 */
 static void	player_init( t_game *game )
 {
-	game->p.cell_x = game->p.x * CELL_SIZE;
-	game->p.cell_y = game->p.y * CELL_SIZE;
-	game->p.pix_x = get_center(game->p.cell_x, game->p.cell_x + CELL_SIZE);
-	game->p.pix_y = get_center(game->p.cell_y, game->p.cell_y + CELL_SIZE);
+	int	cell_x;
+	int	cell_y;
+
+	cell_x = game->p.x * CELL_SIZE;
+	cell_y = game->p.y * CELL_SIZE;
+	game->p.pix_x = get_center(cell_x, cell_x + CELL_SIZE);
+	game->p.pix_y = get_center(cell_y, cell_y + CELL_SIZE);
 	game->p.img.mlx_img = mlx_new_image(game->mlx,
 			game->msize.x * CELL_SIZE, game->msize.y * CELL_SIZE);
 	game->p.img.addr = mlx_get_data_addr(game->p.img.mlx_img,

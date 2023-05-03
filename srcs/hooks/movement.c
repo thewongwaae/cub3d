@@ -6,8 +6,8 @@
 */
 void	forward( t_game *game )
 {
-	float new_px;
-	float new_py;
+	double new_px;
+	double new_py;
 
 	if (game->key.up == true)
 	{
@@ -28,8 +28,8 @@ void	forward( t_game *game )
 */
 void	backward( t_game *game )
 {
-	float new_px;
-	float new_py;
+	double new_px;
+	double new_py;
 
 	if (game->key.down == true)
 	{

@@ -6,7 +6,7 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 19:12:31 by hwong             #+#    #+#             */
-/*   Updated: 2023/04/25 15:22:21 by hwong            ###   ########.fr       */
+/*   Updated: 2023/05/03 18:44:40 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,10 @@ int	is_walkable( char ch )
 		|| ch == 'E' || ch == 'W' || ch == '3');
 }
 
-int	get_center( int start, int end )
+double	get_center( int start, int end )
 {
-	return (end - ((end - start) / 2));
+	return ((double)end - (((double)end
+		- (double)start) / 2));
 }
 
 int	all_found( int *found )
@@ -50,7 +51,7 @@ int	is_in_wall( t_game *game, int x, int y )
 	return (!is_walkable(game->map[map_y][map_x]));
 }
 
-float	deg_to_rad( int angle )
+double	deg_to_rad( int angle )
 {
-	return (angle * M_PI / 180);
+	return ((double)angle * M_PI / (double)180);
 }

@@ -6,7 +6,7 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 16:37:23 by hwong             #+#    #+#             */
-/*   Updated: 2023/05/02 20:13:48 by hwong            ###   ########.fr       */
+/*   Updated: 2023/05/03 18:44:27 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,11 @@ typedef struct s_vec
 	int	y;
 }	t_vec;
 
-typedef struct s_vecf
+typedef struct s_vecd
 {
-	float	x;
-	float	y;
-}	t_vecf;
+	double	x;
+	double	y;
+}	t_vecd;
 
 /* Iterative flood */
 typedef struct s_queue_node
@@ -84,17 +84,14 @@ typedef struct s_player
 	char	dir;
 	int		size;
 
-	int		cell_x;
-	int		cell_y; 
-	float	pix_x;
-	float	pix_y;
-
-	float	pa;
-	float	pdx;
-	float	pdy;
-
-	int		dist;
+	double	pix_x;
+	double	pix_y;
+	double	pa;
+	double	pdx;
+	double	pdy;
+	double	dist;
 	t_vec	its;
+
 	t_img	img;
 }	t_player;
 
@@ -123,7 +120,7 @@ typedef struct s_game
 	t_player	p;
 	int			fovdeg;
 	t_keys		key;
-	float		sens;
+	double		sens;
 	bool		moved;
 }				t_game;
 
@@ -154,12 +151,12 @@ int		rgba_to_int( int r, int g, int b, double a );
 // void	load_textures( t_game *game );
 void	my_pp( t_img img, int x, int y, int colour );
 void	render_cell( t_img img, int color, int h_pixel, int w_pixel );
-t_vecf	get_intersect( t_game *g, float angle );
-void	raycast( t_vecf player, t_game *game, int color );
-float	get_dist( t_vecf p1, t_vecf p2 );
+t_vecd	get_intersect( t_game *g, double angle );
+void	raycast( t_vecd player, t_game *game, int color );
+double	get_dist( t_vecd p1, t_vecd p2 );
 void	render_minimap( t_game *game );
 int		render( t_game *game );
-void	cast_3d(t_game *g, float dist, int r, float angle);
+void	cast_3d(t_game *g, double dist, int r, double angle);
 
 /* UTILS */
 // free
@@ -190,7 +187,7 @@ int		ismapchar( int ch );
 // utils
 int		is_walkable( char ch );
 int		is_in_wall( t_game *game, int x, int y );
-int		get_center( int start, int end );
-float	deg_to_rad( int angle );
+double	get_center( int start, int end );
+double	deg_to_rad( int angle );
 
 #endif

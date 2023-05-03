@@ -8,13 +8,13 @@ int	mouse_hook( int x, int y, t_game *g )
 	static int	prev_x = -1;
 	int			dx;
 
-	mlx_mouse_hide();
 	(void) y;
 	if (prev_x == -1)
 		prev_x = x;
 	dx = x - prev_x;
 	if (abs(dx) > 5)
 	{
+		mlx_mouse_hide();
 		g->p.pa += dx * 0.005;
 		if (g->p.pa < 0)
 			g->p.pa += 2 * M_PI;
