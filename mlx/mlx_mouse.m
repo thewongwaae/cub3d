@@ -20,20 +20,20 @@ int	mlx_mouse_show()
   return (0);
 }
 
-int	mlx_mouse_move(mlx_win_list_t *win, int x, int y)
+int mlx_mouse_move(mlx_win_list_t *win, int x, int y)
 {
-  CGPoint	point;
-  NSRect	pos;
-  id	thewin;
+	CGPoint point;
+	NSRect pos;
+	id thewin;
 
-  thewin = [(id)(win->winid) win];
-  pos = [thewin frame];
-  //  printf("got win pos %f %f\n", pos.origin.x, pos.origin.y);
-  point.x = pos.origin.x + x;
-  point.y = NSHeight([[thewin screen] frame]) - NSHeight([(id)(win->winid) frame]) - pos.origin.y + 1 + y;
-  CGWarpMouseCursorPosition(point);
-  CGAssociateMouseAndMouseCursorPosition(true);
-  return (0);
+	thewin = (id)(win->winid);
+	pos = [thewin frame];
+	NSScreen *screen = [[thewin window] screen];
+	point.x = pos.origin.x + x;
+	point.y = NSHeight([screen frame]) - NSHeight([thewin frame]) - pos.origin.y + 1 + y;
+	CGWarpMouseCursorPosition(point);
+	CGAssociateMouseAndMouseCursorPosition(true);
+	return (0);
 }
 
 

@@ -4,9 +4,8 @@ RM			= rm -rf
 CFLAGS		= -Wall -Werror -Wextra -fsanitize=address -g3
 MLX			= -lmlx -framework OpenGL -framework AppKit
 # MLX			= -lmlx -framework OpenGL -framework AppKit -L.
-# MLX			= -Lmlx_linux -lmlx -lXext -lX11
 MLXA		= libmlx.a
-INCLUDES	= -I includes #-I mlx -I mlx_linux -O3
+INCLUDES	= -I includes #-I mlx
 
 CHECKS		= checks flood parse queue
 HOOKS		= keypress mouse movement
