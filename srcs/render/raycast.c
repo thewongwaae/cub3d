@@ -6,7 +6,7 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 16:41:04 by hwong             #+#    #+#             */
-/*   Updated: 2023/05/03 19:18:02 by hwong            ###   ########.fr       */
+/*   Updated: 2023/05/05 19:00:23 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void	raycast( t_vecd player, t_game *g, int color )
 	i = -1;
 	while (++i < g->winsize.x)
 	{
-		angle = g->p.pa - deg_to_rad(g->fovdeg) / 2.0 + (double)i
+		angle = g->p.pa + deg_to_rad(g->fovdeg) / 2.0 - (double)i
 			* deg_to_rad(g->fovdeg) / (double)g->winsize.x;
 		its = get_intersect(g, angle);
 		dist = get_dist((t_vecd){.x = g->p.pix_x, .y = g->p.pix_y},

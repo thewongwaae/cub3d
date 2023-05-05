@@ -53,7 +53,7 @@ void	left( t_game *game )
 {
 	if (game->key.left == true)
 	{
-		game->p.pa += game->sens;
+		game->p.pa -= game->sens;
 		if (game->p.pa < 0)
 			game->p.pa += 2 * M_PI;
 		game->p.pdx = cos(game->p.pa) * 2.5;
@@ -71,7 +71,7 @@ void	right( t_game *game )
 {
 	if (game->key.right == true)
 	{
-		game->p.pa -= game->sens;
+		game->p.pa += game->sens;
 		if (game->p.pa > 2 * M_PI)
 			game->p.pa -= 2 * M_PI;
 		game->p.pdx = cos(game->p.pa) * 2.5;

@@ -1,5 +1,16 @@
 #include "cub3d.h"
 
+static void	change_angle( int dx, t_game *g )
+{
+	g->p.pa -= (double)dx * 0.0025;
+	if (g->p.pa < 0)
+		g->p.pa += 2 * M_PI;
+	if (g->p.pa > 2 * M_PI)
+		g->p.pa -= 2 * M_PI;
+	g->p.pdx = cos(g->p.pa) * 1.5;
+	g->p.pdy = -sin(g->p.pa) * 1.5;
+}
+
 /*
 	Changes player angle value based on mouse-x
 */
@@ -14,17 +25,9 @@ int	mouse_hook( int x, int y, t_game *g )
 	dx = x - prev_x;
 	if (abs(dx) > 5)
 	{
-		mlx_mouse_hide();
-		g->p.pa += dx * 0.005;
-		if (g->p.pa < 0)
-			g->p.pa += 2 * M_PI;
-		if (g->p.pa > 2 * M_PI)
-			g->p.pa -= 2 * M_PI;
-		g->p.pdx = cos(g->p.pa) * 1.5;
-		g->p.pdy = -sin(g->p.pa) * 1.5;
+		change_angle(dx, g);
 		g->moved = true;
 		prev_x = x;
-		//mlx_mouse_move(g->win, g->winsize.x / 2, g->winsize.y / 2);
 	}
 	return (0);
 }
