@@ -6,7 +6,7 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 19:14:42 by hwong             #+#    #+#             */
-/*   Updated: 2023/05/06 17:20:15 by hwong            ###   ########.fr       */
+/*   Updated: 2023/05/06 20:55:44 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,16 @@
 /*
 	Draw a solid colour slate onto a specified mlx image
 */
-static void	render_bg( t_img img, int h, int w, int color )
+static void	render_bg( t_img img, t_vec p1, t_vec p2, int color )
 {
 	int	i;
 	int	j;
 
-	i = 0;
-	while (i < h)
+	i = p1.y;
+	while (i < p2.y)
 	{
-		j = 0;
-		while (j < w)
+		j = p1.x;
+		while (j < p2.x)
 			my_pp(img, j++, i, color);
 		i++;
 	}
@@ -56,8 +56,8 @@ void	render_minimap( t_game *game )
 	int	h;
 	int	w;
 
-	render_bg(game->mmap, game->msize.y * CELL_SIZE,
-		game->msize.x * CELL_SIZE, TRANS);
+	render_bg(game->mmap, (t_vec){0, 0}, (t_vec){game->msize.y * CELL_SIZE,
+		game->msize.x * CELL_SIZE}, TRANS);
 	h = 0;
 	while (h < game->msize.y)
 	{
@@ -82,8 +82,8 @@ static void	render_player( t_game *game )
 	double	j;
 	t_vecd	player;
 
-	render_bg(game->p.img, game->msize.y * CELL_SIZE,
-		game->msize.x * CELL_SIZE, TRANS);
+	render_bg(game->mmap, (t_vec){0, 0}, (t_vec){game->msize.y * CELL_SIZE,
+		game->msize.x * CELL_SIZE}, TRANS);
 	player.x = game->p.pix_x + (double)game->p.size / 2.0;
 	player.y = game->p.pix_y + (double)game->p.size / 2.0;
 	raycast(player, game, GREEN);
@@ -112,8 +112,8 @@ int	render( t_game *g )
 	right(g);
 	if (g->moved == true)
 	{
-		render_bg(g->bg, g->winsize.y, g->winsize.x, g->tex->floor);
-		render_bg(g->bg, g->winsize.y / 2, g->winsize.x, g->tex->ceiling);
+		render_bg(g->bg, (t_vec){0, 0}, (t_vec){g->winsize.y / 2, g->winsize.x}, g->tex->ceiling);
+		render_bg(g->bg, (t_vec){g->winsize.y / 2, 0}, (t_vec){g->winsize.y, g->winsize.x}, g->tex->floor);
 		render_player(g);
 		mlx_put_image_to_window(g->mlx, g->win,
 			g->bg.mlx_img, 0, 0);
