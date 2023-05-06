@@ -6,7 +6,7 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 19:14:42 by hwong             #+#    #+#             */
-/*   Updated: 2023/05/06 20:55:44 by hwong            ###   ########.fr       */
+/*   Updated: 2023/05/06 21:07:57 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,11 @@ static void	render_bg( t_img img, t_vec p1, t_vec p2, int color )
 	int	i;
 	int	j;
 
-	i = p1.y;
-	while (i < p2.y)
+	i = p1.x;
+	while (i < p2.x)
 	{
-		j = p1.x;
-		while (j < p2.x)
+		j = p1.y;
+		while (j < p2.y)
 			my_pp(img, j++, i, color);
 		i++;
 	}
@@ -82,7 +82,7 @@ static void	render_player( t_game *game )
 	double	j;
 	t_vecd	player;
 
-	render_bg(game->mmap, (t_vec){0, 0}, (t_vec){game->msize.y * CELL_SIZE,
+	render_bg(game->p.img, (t_vec){0, 0}, (t_vec){game->msize.y * CELL_SIZE,
 		game->msize.x * CELL_SIZE}, TRANS);
 	player.x = game->p.pix_x + (double)game->p.size / 2.0;
 	player.y = game->p.pix_y + (double)game->p.size / 2.0;
