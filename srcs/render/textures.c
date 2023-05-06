@@ -6,7 +6,7 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 17:12:17 by hwong             #+#    #+#             */
-/*   Updated: 2023/05/06 17:04:29 by hwong            ###   ########.fr       */
+/*   Updated: 2023/05/06 17:16:03 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 /*
 	Bit-shift an integer to store rgb value
 */
-int	rgba_to_int( int r, int g, int b, double a )
+int	rgba_to_int( int r, int g, int b )
 {
 	int	color;
 
@@ -23,11 +23,9 @@ int	rgba_to_int( int r, int g, int b, double a )
 	color |= (int)(b % 256);
 	color |= (int)(g % 256) << 8;
 	color |= (int)(r % 256) << 16;
-	color |= (int)(255 * a) % 256 << 24;
 	return (color);
 }
 
-#include <string.h>
 /*
 	Convert a string rgb value to an int array of 3
 */
@@ -62,9 +60,9 @@ void	load_textures( t_game *game )
 	game->tex->east = mlx_xpm_file_to_image(game->mlx, game->paths[3], &x, &y);
 	c = malloc(sizeof(int) * 3);
 	strrgb_to_rgba(game->paths[4], c);
-	game->tex->floor = rgba_to_int(c[0], c[1], c[2], 1.0);
+	game->tex->floor = rgba_to_int(c[0], c[1], c[2]);
 	strrgb_to_rgba(game->paths[5], c);
-	game->tex->ceiling = rgba_to_int(c[0], c[1], c[2], 1.0);
+	game->tex->ceiling = rgba_to_int(c[0], c[1], c[2]);
 	free(c);
 	free_tab(game->paths);
 }

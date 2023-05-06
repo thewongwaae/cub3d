@@ -6,7 +6,7 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 19:14:42 by hwong             #+#    #+#             */
-/*   Updated: 2023/05/03 19:22:27 by hwong            ###   ########.fr       */
+/*   Updated: 2023/05/06 17:20:15 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,22 @@ static void	render_bg( t_img img, int h, int w, int color )
 	}
 }
 
+static void	draw_cell( char ch, int h, int w, t_game *g )
+{
+	if (ch == '1')
+		render_cell(g->mmap, WHITE,
+			h * CELL_SIZE, w * CELL_SIZE);
+	else if (ch == '2')
+		render_cell(g->mmap, GREEN,
+			h * CELL_SIZE, w * CELL_SIZE);
+	else if (ch == '3')
+		render_cell(g->mmap, BLUE,
+			h * CELL_SIZE, w * CELL_SIZE);
+	else if (is_walkable(ch))
+		render_cell(g->mmap, BLACK,
+			h * CELL_SIZE, w * CELL_SIZE);	
+}
+
 /*
 	Render transparent background
 	Render minimap based on the 2D map array in
@@ -48,18 +64,7 @@ void	render_minimap( t_game *game )
 		w = 0;
 		while (w < ft_slen(game->map[h]))
 		{
-			if (game->map[h][w] == '1')
-				render_cell(game->mmap, WHITE,
-					h * CELL_SIZE, w * CELL_SIZE);
-			else if (game->map[h][w] == '2')
-				render_cell(game->mmap, GREEN,
-					h * CELL_SIZE, w * CELL_SIZE);
-			else if (game->map[h][w] == '3')
-				render_cell(game->mmap, BLUE,
-					h * CELL_SIZE, w * CELL_SIZE);
-			else if (is_walkable(game->map[h][w]))
-				render_cell(game->mmap, BLACK,
-					h * CELL_SIZE, w * CELL_SIZE);
+			draw_cell(game->map[h][w], h, w, game);
 			w++;
 		}
 		h++;
@@ -99,23 +104,24 @@ static void	render_player( t_game *game )
 	Modify player position based on input
 	Re-draw and put images to the window
 */
-int	render( t_game *game )
+int	render( t_game *g )
 {
-	forward(game);
-	backward(game);
-	left(game);
-	right(game);
-	if (game->moved == true)
+	forward(g);
+	backward(g);
+	left(g);
+	right(g);
+	if (g->moved == true)
 	{
-		render_bg(game->bg, game->winsize.y, game->winsize.x, GREY);
-		render_player(game);
-		mlx_put_image_to_window(game->mlx, game->win,
-			game->bg.mlx_img, 0, 0);
-		mlx_put_image_to_window(game->mlx, game->win,
-			game->mmap.mlx_img, 0, 0);
-		mlx_put_image_to_window(game->mlx, game->win,
-			game->p.img.mlx_img, 0, 0);
-		game->moved = false;
+		render_bg(g->bg, g->winsize.y, g->winsize.x, g->tex->floor);
+		render_bg(g->bg, g->winsize.y / 2, g->winsize.x, g->tex->ceiling);
+		render_player(g);
+		mlx_put_image_to_window(g->mlx, g->win,
+			g->bg.mlx_img, 0, 0);
+		mlx_put_image_to_window(g->mlx, g->win,
+			g->mmap.mlx_img, 0, 0);
+		mlx_put_image_to_window(g->mlx, g->win,
+			g->p.img.mlx_img, 0, 0);
+		g->moved = false;
 	}
 	return (0);
 }

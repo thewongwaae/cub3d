@@ -46,5 +46,5 @@ fclean: clean
 
 re: fclean all
 
-test: re
-	make clean
+run: re
+	@make clean
