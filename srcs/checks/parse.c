@@ -6,7 +6,7 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 17:12:14 by hwong             #+#    #+#             */
-/*   Updated: 2023/04/22 16:45:00 by hwong            ###   ########.fr       */
+/*   Updated: 2023/05/06 16:34:46 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,7 +125,6 @@ int	parse_mapfile( char *file, t_game *game )
 	char	**texs;
 	int		i;
 
-	i = 0;
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
 		return (write(2, "Error: File not found", 22));
@@ -140,6 +139,7 @@ int	parse_mapfile( char *file, t_game *game )
 	free_tab(texs);
 	if (i == 0)
 		return (write(2, "Error: Incorrect path format", 28));
+	load_textures(game);
 	if (parse_map(mapfile + i, game))
 		return (1);
 	free_tab(mapfile);

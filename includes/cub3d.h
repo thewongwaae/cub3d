@@ -6,7 +6,7 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 16:37:23 by hwong             #+#    #+#             */
-/*   Updated: 2023/05/04 13:27:11 by hwong            ###   ########.fr       */
+/*   Updated: 2023/05/06 17:04:17 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,7 +148,7 @@ int		mouse_hook( int x, int y, t_game *game );
 
 /* RENDER */
 int		rgba_to_int( int r, int g, int b, double a );
-// void	load_textures( t_game *game );
+void	load_textures( t_game *game );
 void	my_pp( t_img img, int x, int y, int colour );
 void	render_cell( t_img img, int color, int h_pixel, int w_pixel );
 t_vecd	get_intersect( t_game *g, double angle );
@@ -178,10 +178,11 @@ int		ft_strncmp(const char *s1, const char *s2, size_t n);
 int		is_space( char c );
 int		is_digit( char c );
 int		ft_atoi( const char *s );
-char	*ft_strtok( char *s, char sep );
+char	*ft_strtok(char *str, const char *delim);
 void	ft_bzero( void *str, size_t n );
 void	*ft_calloc( size_t nitems, size_t size );
 void	*ft_memset( void *s, int c, size_t n );
+void	*ft_memcpy(void *str1, const void *str2, size_t n);
 int		ismapchar( int ch );
 
 // utils

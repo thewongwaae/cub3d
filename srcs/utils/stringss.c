@@ -6,7 +6,7 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 17:12:30 by hwong             #+#    #+#             */
-/*   Updated: 2023/04/06 17:12:55 by hwong            ###   ########.fr       */
+/*   Updated: 2023/05/06 16:47:28 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,28 +53,21 @@ int	ft_atoi( const char *s )
 	return (res * sign);
 }
 
-char	*ft_strtok( char *s, char sep )
+void	*ft_memcpy(void *str1, const void *str2, size_t n)
 {
-	static char	*stock;
-	char		*ptr;
+	unsigned int		i;
+	unsigned char		*dest;
+	unsigned const char	*str;
 
-	ptr = NULL;
-	if (s)
+	if (str1 == NULL && str2 == NULL)
+		return (NULL);
+	i = 0;
+	dest = (unsigned char *)str1;
+	str = (unsigned char *)str2;
+	while (i < n)
 	{
-		free(stock);
-		stock = ft_strdup(s);
+		*((char *)dest + i) = *((char *)str + i);
+		i++;
 	}
-	while (*stock)
-	{
-		if (!ptr && *stock != sep)
-			ptr = stock;
-		else if (ptr && *stock == sep)
-		{
-			*stock = '\0';
-			stock += 1;
-			break ;
-		}
-		stock++;
-	}
-	return (ptr);
+	return (dest);
 }

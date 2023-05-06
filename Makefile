@@ -11,7 +11,7 @@ CHECKS		= checks flood parse queue
 HOOKS		= keypress mouse movement
 INTERACTION	= door
 RENDER		= main pp render textures raycast calculation raycast-3d
-UTILS		= free gnl split strings stringss stringsss utils
+UTILS		= free gnl split strings stringss stringsss utils ft_strtok
 
 SRCS 		= $(addsuffix .c, $(addprefix srcs/checks/, $(CHECKS))) \
 			$(addsuffix .c, $(addprefix srcs/hooks/, $(HOOKS))) \
