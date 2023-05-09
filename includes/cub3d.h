@@ -6,7 +6,7 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 16:37:23 by hwong             #+#    #+#             */
-/*   Updated: 2023/05/06 17:14:41 by hwong            ###   ########.fr       */
+/*   Updated: 2023/05/09 16:25:59 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,10 +68,14 @@ typedef struct s_img
 
 typedef struct s_texture
 {
-	void	*north;
-	void	*south;
-	void	*east;
-	void	*west;
+	// void	*north;
+	// void	*south;
+	// void	*east;
+	// void	*west;
+	t_img	*north;
+	t_img	*south;
+	t_img	*east;
+	t_img	*west;
 	int		floor;
 	int		ceiling;
 }	t_texture;
@@ -147,7 +151,6 @@ int		key_up( int keycode, t_game *game );
 int		mouse_hook( int x, int y, t_game *game );
 
 /* RENDER */
-int		rgba_to_int( int r, int g, int b );
 void	load_textures( t_game *game );
 void	my_pp( t_img img, int x, int y, int colour );
 void	render_cell( t_img img, int color, int h_pixel, int w_pixel );

@@ -6,7 +6,7 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 17:12:17 by hwong             #+#    #+#             */
-/*   Updated: 2023/05/06 17:16:03 by hwong            ###   ########.fr       */
+/*   Updated: 2023/05/09 16:28:21 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 /*
 	Bit-shift an integer to store rgb value
 */
-int	rgba_to_int( int r, int g, int b )
+static int	rgb_to_int( int r, int g, int b )
 {
 	int	color;
 
@@ -44,25 +44,33 @@ static void	strrgb_to_rgba( const char *strrgb, int *rgba )
 	}
 }
 
+static void	set_textures( t_img *img, t_game *g, char *path )
+{
+	int	x;
+	int	y;
+
+	img = malloc (sizeof(t_img));
+	img->mlx_img = mlx_xpm_file_to_image(g->mlx, path, &x, &y);
+	img->addr = mlx_get_data_addr(img, &img->bpp, &img->line_len, &img->endian);
+}
+
 /*
 	Convert given xpm files into mlx images
 	Convert string rgb values to hexadecimal
 */
-void	load_textures( t_game *game )
+void	load_textures( t_game *g )
 {
-	int	x;
-	int	y;
 	int	*c;
 
-	game->tex->north = mlx_xpm_file_to_image(game->mlx, game->paths[0], &x, &y);
-	game->tex->south = mlx_xpm_file_to_image(game->mlx, game->paths[1], &x, &y);
-	game->tex->west = mlx_xpm_file_to_image(game->mlx, game->paths[2], &x, &y);
-	game->tex->east = mlx_xpm_file_to_image(game->mlx, game->paths[3], &x, &y);
+	set_textures(g->tex->north, g, g->paths[0]);
+	set_textures(g->tex->south, g, g->paths[1]);
+	set_textures(g->tex->west, g, g->paths[2]);
+	set_textures(g->tex->east, g, g->paths[3]);
 	c = malloc(sizeof(int) * 3);
-	strrgb_to_rgba(game->paths[4], c);
-	game->tex->floor = rgba_to_int(c[0], c[1], c[2]);
-	strrgb_to_rgba(game->paths[5], c);
-	game->tex->ceiling = rgba_to_int(c[0], c[1], c[2]);
+	strrgb_to_rgba(g->paths[4], c);
+	g->tex->floor = rgb_to_int(c[0], c[1], c[2]);
+	strrgb_to_rgba(g->paths[5], c);
+	g->tex->ceiling = rgb_to_int(c[0], c[1], c[2]);
 	free(c);
-	free_tab(game->paths);
+	free_tab(g->paths);
 }
