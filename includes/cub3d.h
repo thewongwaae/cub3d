@@ -6,7 +6,7 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 16:37:23 by hwong             #+#    #+#             */
-/*   Updated: 2023/05/09 16:25:59 by hwong            ###   ########.fr       */
+/*   Updated: 2023/05/09 17:16:25 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,14 +68,10 @@ typedef struct s_img
 
 typedef struct s_texture
 {
-	// void	*north;
-	// void	*south;
-	// void	*east;
-	// void	*west;
-	t_img	*north;
-	t_img	*south;
-	t_img	*east;
-	t_img	*west;
+	t_img	north;
+	t_img	south;
+	t_img	east;
+	t_img	west;
 	int		floor;
 	int		ceiling;
 }	t_texture;
@@ -120,7 +116,7 @@ typedef struct s_game
 	bool		leak;
 	char		**paths;
 	int			*foundtex;
-	t_texture	*tex;
+	t_texture	tex;
 	t_player	p;
 	int			fovdeg;
 	t_keys		key;

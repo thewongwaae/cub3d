@@ -6,7 +6,7 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 17:11:56 by hwong             #+#    #+#             */
-/*   Updated: 2023/05/06 16:36:17 by hwong            ###   ########.fr       */
+/*   Updated: 2023/05/09 17:20:39 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static void	game_init( t_game *game )
 	game->winsize.y = 900;
 	game->foundtex = (int *) malloc (sizeof(int) * 7);
 	ft_memset(game->foundtex, 0, 7);
-	game->tex = malloc (sizeof(t_texture));
+	// game->tex = malloc (sizeof(t_texture));
 	game->p.found = false;
 	game->p.y = 0;
 	game->p.x = 0;

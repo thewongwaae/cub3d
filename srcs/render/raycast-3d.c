@@ -28,7 +28,7 @@ static void	draw_3d(t_game *g, t_vecd start, t_vecd end)
 		ray_h = start.y;
 		while(ray_h <= end.y)
 		{
-			my_pp(g->bg, round(ray_w), round(ray_h), PURPLE);
+			my_pp(g->bg, (int)(ray_w), (int)(ray_h), PURPLE);
 			ray_h += 1.0;
 		}
 		ray_w += 1.0;

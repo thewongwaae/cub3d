@@ -6,7 +6,7 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 19:14:42 by hwong             #+#    #+#             */
-/*   Updated: 2023/05/06 21:07:57 by hwong            ###   ########.fr       */
+/*   Updated: 2023/05/09 20:00:28 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ static void	render_player( t_game *game )
 		j = game->p.pix_x;
 		while (j < (game->p.pix_x + game->p.size))
 		{
-			my_pp(game->p.img, round(j), round(i), PLAYER);
+			my_pp(game->p.img, (int)(j), (int)(i), PLAYER);
 			j += 1.0;
 		}
 		i += 1.0;
@@ -112,8 +112,8 @@ int	render( t_game *g )
 	right(g);
 	if (g->moved == true)
 	{
-		render_bg(g->bg, (t_vec){0, 0}, (t_vec){g->winsize.y / 2, g->winsize.x}, g->tex->ceiling);
-		render_bg(g->bg, (t_vec){g->winsize.y / 2, 0}, (t_vec){g->winsize.y, g->winsize.x}, g->tex->floor);
+		render_bg(g->bg, (t_vec){0, 0}, (t_vec){g->winsize.y / 2, g->winsize.x}, g->tex.ceiling);
+		render_bg(g->bg, (t_vec){g->winsize.y / 2, 0}, (t_vec){g->winsize.y, g->winsize.x}, g->tex.floor);
 		render_player(g);
 		mlx_put_image_to_window(g->mlx, g->win,
 			g->bg.mlx_img, 0, 0);
@@ -121,6 +121,8 @@ int	render( t_game *g )
 			g->mmap.mlx_img, 0, 0);
 		mlx_put_image_to_window(g->mlx, g->win,
 			g->p.img.mlx_img, 0, 0);
+		// mlx_put_image_to_window(g->mlx, g->win,
+		// 	g->tex.north.mlx_img, 400, 400);
 		g->moved = false;
 	}
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 17:12:17 by hwong             #+#    #+#             */
-/*   Updated: 2023/05/09 16:28:21 by hwong            ###   ########.fr       */
+/*   Updated: 2023/05/09 17:19:29 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,20 @@ static void	set_textures( t_img *img, t_game *g, char *path )
 	int	x;
 	int	y;
 
+	printf("Loading texture: %s\n", path);
+
 	img = malloc (sizeof(t_img));
 	img->mlx_img = mlx_xpm_file_to_image(g->mlx, path, &x, &y);
-	img->addr = mlx_get_data_addr(img, &img->bpp, &img->line_len, &img->endian);
+
+	if (img->mlx_img == NULL)  // Add this block to print an error if the image loading fails
+    {
+        printf("Failed to load texture: %s\n", path);
+    }
+    else
+    {
+        img->addr = mlx_get_data_addr(img->mlx_img, &img->bpp, &img->line_len, &img->endian);
+    }
+	// (*img)->addr = mlx_get_data_addr((*img), &(*img)->bpp, &(*img)->line_len, &(*img)->endian);
 }
 
 /*
@@ -62,15 +73,15 @@ void	load_textures( t_game *g )
 {
 	int	*c;
 
-	set_textures(g->tex->north, g, g->paths[0]);
-	set_textures(g->tex->south, g, g->paths[1]);
-	set_textures(g->tex->west, g, g->paths[2]);
-	set_textures(g->tex->east, g, g->paths[3]);
+	set_textures(&g->tex.north, g, g->paths[0]);
+	set_textures(&g->tex.south, g, g->paths[1]);
+	set_textures(&g->tex.west, g, g->paths[2]);
+	set_textures(&g->tex.east, g, g->paths[3]);
 	c = malloc(sizeof(int) * 3);
 	strrgb_to_rgba(g->paths[4], c);
-	g->tex->floor = rgb_to_int(c[0], c[1], c[2]);
+	g->tex.floor = rgb_to_int(c[0], c[1], c[2]);
 	strrgb_to_rgba(g->paths[5], c);
-	g->tex->ceiling = rgb_to_int(c[0], c[1], c[2]);
+	g->tex.ceiling = rgb_to_int(c[0], c[1], c[2]);
 	free(c);
 	free_tab(g->paths);
 }

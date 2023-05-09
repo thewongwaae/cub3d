@@ -6,7 +6,7 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 16:41:04 by hwong             #+#    #+#             */
-/*   Updated: 2023/05/09 14:45:03 by hwong            ###   ########.fr       */
+/*   Updated: 2023/05/09 16:32:04 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,8 @@ static void	hit_block( t_vec *its, t_vecd block )
 {
 	t_vec	cell;
 
-	cell.x = round(block.x / (double)CELL_SIZE);
-	cell.y = round(block.y / (double)CELL_SIZE);
+	cell.x = (int)(block.x / (double)CELL_SIZE);
+	cell.y = (int)(block.y / (double)CELL_SIZE);
 	*its = (t_vec){.x = cell.x, .y = cell.y};
 }
 
