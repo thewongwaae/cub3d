@@ -6,7 +6,7 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 17:12:17 by hwong             #+#    #+#             */
-/*   Updated: 2023/05/09 17:19:29 by hwong            ###   ########.fr       */
+/*   Updated: 2023/05/09 20:18:17 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,25 +44,22 @@ static void	strrgb_to_rgba( const char *strrgb, int *rgba )
 	}
 }
 
+/*
+	Allocate memory and set texture values for the
+	specified image
+*/
 static void	set_textures( t_img *img, t_game *g, char *path )
 {
 	int	x;
 	int	y;
 
 	printf("Loading texture: %s\n", path);
-
 	img = malloc (sizeof(t_img));
 	img->mlx_img = mlx_xpm_file_to_image(g->mlx, path, &x, &y);
-
-	if (img->mlx_img == NULL)  // Add this block to print an error if the image loading fails
-    {
+	if (img->mlx_img == NULL)
         printf("Failed to load texture: %s\n", path);
-    }
     else
-    {
         img->addr = mlx_get_data_addr(img->mlx_img, &img->bpp, &img->line_len, &img->endian);
-    }
-	// (*img)->addr = mlx_get_data_addr((*img), &(*img)->bpp, &(*img)->line_len, &(*img)->endian);
 }
 
 /*

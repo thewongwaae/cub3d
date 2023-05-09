@@ -6,7 +6,7 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 16:41:04 by hwong             #+#    #+#             */
-/*   Updated: 2023/05/09 16:32:04 by hwong            ###   ########.fr       */
+/*   Updated: 2023/05/09 20:20:26 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,10 @@ static void	draw_line( t_vecd p1, t_vecd p2, t_img img, int color )
 	}
 }
 
+/*
+	Calculate which block on the map has been
+	intersected by the ray
+*/
 static void	hit_block( t_vec *its, t_vecd block )
 {
 	t_vec	cell;

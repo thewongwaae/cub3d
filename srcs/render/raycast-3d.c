@@ -1,5 +1,9 @@
 #include "cub3d.h"
 
+/*
+	Apply a simple formula to fix the fisheye effect caused by
+	purely using raycast distance
+*/
 static double	fix_fisheye(t_game *g, double angle, double dist)
 {
 	double	fisheye;
@@ -14,7 +18,10 @@ static double	fix_fisheye(t_game *g, double angle, double dist)
 	return (new_dist);
 }
 
-//need to fix, crash when trying to fill screen.
+/*
+	Draw a 1 pixel wide column with specified
+	start and end pixel coordinates
+*/
 static void	draw_3d(t_game *g, t_vecd start, t_vecd end)
 {
 	double	ray_w;

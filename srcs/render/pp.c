@@ -6,9 +6,6 @@
 
 	Added a bounds check to make sure no pixels outside
 	the screen are attempted to be drawn
-
-	NOTE: not sure how this will affect mlx img manipulation
-	later on
 */
 void	my_pp( t_img img, int x, int y, int colour )
 {

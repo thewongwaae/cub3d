@@ -6,7 +6,7 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 19:14:42 by hwong             #+#    #+#             */
-/*   Updated: 2023/05/09 20:00:28 by hwong            ###   ########.fr       */
+/*   Updated: 2023/05/09 20:20:06 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,10 @@ static void	render_bg( t_img img, t_vec p1, t_vec p2, int color )
 	}
 }
 
+/*
+	Draw a square cell with colour based on
+	it's char on the mapfile 
+*/
 static void	draw_cell( char ch, int h, int w, t_game *g )
 {
 	if (ch == '1')
