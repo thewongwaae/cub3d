@@ -2,9 +2,9 @@ NAME		= cub3D
 CC			= gcc
 RM			= rm -rf
 CFLAGS		= -Wall -Werror -Wextra -fsanitize=address -g3
-# MLX			= -lmlx -framework OpenGL -framework AppKit
-MLX			= -lmlx -framework OpenGL -framework AppKit -L.
-MLXA		= libmlx_arm.a
+MLX			= -lmlx -framework OpenGL -framework AppKit
+# MLX			= -lmlx -framework OpenGL -framework AppKit -L.
+MLXA		= libmlx.a
 INCLUDES	= -I includes #-I mlx
 
 CHECKS		= checks flood parse queue
