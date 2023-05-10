@@ -1,8 +1,8 @@
 /* XPM */
-static char *_f083d1c29b040f3ce2490a4beeeed21B3YRMMelprNdLWgs[] = {
+static char *result[] = {
 /* columns rows colors chars-per-pixel */
 "16 16 8 1 ",
-"  c #41816A",
+"& c #41816A",
 ". c #468974",
 "X c #529983",
 "o c #61A59A",
@@ -10,6 +10,7 @@ static char *_f083d1c29b040f3ce2490a4beeeed21B3YRMMelprNdLWgs[] = {
 "+ c #6EB9AE",
 "@ c #82C5BC",
 "# c #95CFC7",
+"  c None",
 /* pixels */
 "+######+@####@+.",
 "#O++++O #++O++O.",

@@ -6,7 +6,7 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 17:11:51 by hwong             #+#    #+#             */
-/*   Updated: 2023/05/01 15:48:30 by hwong            ###   ########.fr       */
+/*   Updated: 2023/05/10 11:55:56 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,11 @@ static void	change_fov( int keycode, t_game *game )
 */
 static void	change_sens( int keycode, t_game *game )
 {
-	float	new_sens;
+	double	new_sens;
 
 	if (keycode == 27)
 	{
-		new_sens = game->sens / 2;
+		new_sens = game->sens / 2.0;
 		if (new_sens > 0.00001)
 			game->sens = new_sens;
 	}

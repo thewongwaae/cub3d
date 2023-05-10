@@ -19,6 +19,8 @@ SRCS 		= $(addsuffix .c, $(addprefix srcs/checks/, $(CHECKS))) \
 			$(addsuffix .c, $(addprefix srcs/render/, $(RENDER))) \
 			$(addsuffix .c, $(addprefix srcs/utils/, $(UTILS)))
 
+# SRCS = test.c
+
 OBJS_DIR	= objs/
 OBJS		= $(addprefix $(OBJS_DIR), $(SRCS:c=o))
 
