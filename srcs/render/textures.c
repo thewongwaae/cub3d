@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   textures.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nnorazma <nnorazma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 17:12:17 by hwong             #+#    #+#             */
-/*   Updated: 2023/05/11 13:39:48 by nnorazma         ###   ########.fr       */
+/*   Updated: 2023/05/11 14:36:19 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,19 +48,10 @@ static void	strrgb_to_rgba( const char *strrgb, int *rgba )
 	Allocate memory and set texture values for the
 	specified image
 */
-static void	set_textures( t_game *g, char *path )
+static void	set_textures( t_img *img, void *mlx, char *path )
 {
-	// int	x;
-	// int	y;
-	t_img	*img;
-
-	img  = &(g->tex->north);
-	// img->x = 0;
-	// img->y = 0;
-	printf("Loading texture: %s\n", path);
-	img->mlx_img = mlx_xpm_file_to_image(g->mlx, path, &img->x, &img->y);
-	// img->mlx_img = mlx_xpm_file_to_image(g->mlx, path, &x, &y);
-	img->addr = mlx_get_data_addr(img->mlx_img, &img->bpp, &img->line_len, &img->endian);
+	img->mlx_img = mlx_xpm_file_to_image(mlx, path, &img->x, &img->y);
+	img->addr =  mlx_get_data_addr(img->mlx_img, &img->bpp, &img->line_len, &img->endian);
 }
 
 /*
@@ -71,10 +62,10 @@ void	load_textures( t_game *g )
 {
 	int	*c;
 
-	set_textures(g, g->paths[0]);
-	// set_textures(g->tex->south, g, g->paths[1]);
-	// set_textures(g->tex->west, g, g->paths[2]);
-	// set_textures(g->tex->east, g, g->paths[3]);
+	set_textures(&g->tex->north, g->mlx, g->paths[0]);
+	set_textures(&g->tex->south, g->mlx, g->paths[1]);
+	set_textures(&g->tex->west, g->mlx, g->paths[2]);
+	set_textures(&g->tex->east, g->mlx, g->paths[3]);
 	c = malloc(sizeof(int) * 3);
 	strrgb_to_rgba(g->paths[4], c);
 	g->tex->floor = rgb_to_int(c[0], c[1], c[2]);

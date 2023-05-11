@@ -6,7 +6,7 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 19:14:42 by hwong             #+#    #+#             */
-/*   Updated: 2023/05/10 18:42:01 by hwong            ###   ########.fr       */
+/*   Updated: 2023/05/11 17:03:55 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,7 +126,13 @@ int	render( t_game *g )
 		mlx_put_image_to_window(g->mlx, g->win,
 			g->p.img.mlx_img, 0, 0);
 		// mlx_put_image_to_window(g->mlx, g->win,
-		// 	g->tex.north.mlx_img, 400, 400);
+		// 	g->tex->north.mlx_img, 400, 400);
+		// mlx_put_image_to_window(g->mlx, g->win,
+		// 	g->tex->south.mlx_img, 500, 500);
+		// mlx_put_image_to_window(g->mlx, g->win,
+		// 	g->tex->west.mlx_img, 600, 600);
+		// mlx_put_image_to_window(g->mlx, g->win,
+		// 	g->tex->east.mlx_img, 700, 700);
 		g->moved = false;
 	}
 	return (0);
