@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   textures.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
+/*   By: nnorazma <nnorazma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 17:12:17 by hwong             #+#    #+#             */
-/*   Updated: 2023/05/11 13:23:12 by hwong            ###   ########.fr       */
+/*   Updated: 2023/05/11 13:39:48 by nnorazma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,10 +55,11 @@ static void	set_textures( t_game *g, char *path )
 	t_img	*img;
 
 	img  = &(g->tex->north);
-	img->x = 0;
-	img->y = 0;
+	// img->x = 0;
+	// img->y = 0;
 	printf("Loading texture: %s\n", path);
-	img->mlx_img = mlx_xpm_file_to_image(g->mlx, "./textures/42_wall.xpm", &img->x, &img->y);
+	img->mlx_img = mlx_xpm_file_to_image(g->mlx, path, &img->x, &img->y);
+	// img->mlx_img = mlx_xpm_file_to_image(g->mlx, path, &x, &y);
 	img->addr = mlx_get_data_addr(img->mlx_img, &img->bpp, &img->line_len, &img->endian);
 }
 
