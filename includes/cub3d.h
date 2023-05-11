@@ -6,7 +6,7 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 16:37:23 by hwong             #+#    #+#             */
-/*   Updated: 2023/05/10 18:41:29 by hwong            ###   ########.fr       */
+/*   Updated: 2023/05/11 13:12:59 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,14 +64,16 @@ typedef struct s_img
 	int		bpp;
 	int		line_len;
 	int		endian;
+	int		x;
+	int		y;
 }	t_img;
 
 typedef struct s_texture
 {
-	t_img	*north;
-	t_img	*south;
-	t_img	*east;
-	t_img	*west;
+	t_img	north;
+	t_img	south;
+	t_img	east;
+	t_img	west;
 	int		floor;
 	int		ceiling;
 }	t_texture;
