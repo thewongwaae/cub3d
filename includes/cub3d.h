@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nnorazma <nnorazma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 16:37:23 by hwong             #+#    #+#             */
-/*   Updated: 2023/05/11 13:36:34 by nnorazma         ###   ########.fr       */
+/*   Updated: 2023/05/11 18:22:51 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,7 +156,7 @@ void	raycast( t_vecd player, t_game *game, int color );
 double	get_dist( t_vecd p1, t_vecd p2 );
 void	render_minimap( t_game *game );
 int		render( t_game *game );
-void	cast_3d(t_game *g, double dist, int r, double angle);
+void	draw_column(t_game *g, double dist, int r, double angle);
 
 /* UTILS */
 // free

@@ -22,23 +22,12 @@ static double	fix_fisheye(t_game *g, double angle, double dist)
 	Draw a 1 pixel wide column with specified
 	start and end pixel coordinates
 */
-static void	draw_3d(t_game *g, t_vecd start, t_vecd end)
+static void	draw_line(t_game *g, t_vecd start, t_vecd end)
 {
-	double	ray_w;
-	double	ray_h;
-	double	ray_w_end;
-
-	ray_w = start.x;
-	ray_w_end = start.x + 1.0;
-	while (ray_w < ray_w_end)
+	while(start.y <= end.y)
 	{
-		ray_h = start.y;
-		while(ray_h <= end.y)
-		{
-			my_pp(g->bg, (int)(ray_w), (int)(ray_h), PURPLE);
-			ray_h += 1.0;
-		}
-		ray_w += 1.0;
+		my_pp(g->bg, (int)(start.x), (int)(start.y), PURPLE);
+		start.y += 1.0;
 	}
 }
 
@@ -46,7 +35,7 @@ static void	draw_3d(t_game *g, t_vecd start, t_vecd end)
 	r = ray count
 	lineOff = offset 3d-cast to center of screen
 */
-void	cast_3d(t_game *g, double dist, int r, double angle)
+void	draw_column(t_game *g, double dist, int r, double angle)
 {
 	double	lineH;
 	double	lineOff;
@@ -60,5 +49,5 @@ void	cast_3d(t_game *g, double dist, int r, double angle)
 	lineOff = ((double)g->winsize.y / 2.0) - lineH / 2.0;
 	start = (t_vecd){.x = (double)r, .y = lineOff};
 	end = (t_vecd){.x = (double)r, .y = lineOff + lineH};
-	draw_3d(g, start, end);
+	draw_line(g, start, end);
 }

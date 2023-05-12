@@ -24,14 +24,14 @@ t_vecd	get_intersect( t_game *g, double angle )
 	p.y = g->p.pix_y;
 	while (1)
 	{
-		p.x += d.x;
-		p.y += d.y;
 		map.x = (int)(p.x / CELL_SIZE);
 		map.y = (int)(p.y / CELL_SIZE);
 		if (!is_walkable(g->map[map.y][map.x]))
 			break ;
 		if (g->map[map.y][map.x] == '3')
 			g->p.its = (t_vec){.x = map.x, .y = map.y};
+		p.x += d.x;
+		p.y += d.y;
 	}
 	return ((t_vecd){.x = p.x, .y = p.y});
 }
