@@ -6,90 +6,96 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 16:41:04 by hwong             #+#    #+#             */
-/*   Updated: 2023/05/11 18:22:51 by hwong            ###   ########.fr       */
+/*   Updated: 2023/05/13 16:23:07 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-/*
-	Return which axis has smaller distance
-	from player to wall
-*/
-static double	get_steps( double dx, double dy )
+static void	get_delta( t_game *g )
 {
-	if (fabs(dx) > fabs(dy))
-		return (fabs(dx));
-	return (fabs(dy));
+	if (g->ray.dir.x == 0)
+		g->ray.delta.x = 1e30;
+	else
+		g->ray.delta.x = fabs(1.0 / g->ray.dir.x);
+	if (g->ray.dir.y == 0)
+		g->ray.delta.y = 1e30;
+	else
+		g->ray.delta.y = fabs(1.0 / g->ray.dir.y);	
 }
 
-/*
-	Draw a line from specified start point to end point
-*/
-static void	draw_line( t_vecd p1, t_vecd p2, t_img img, int color )
+static void	get_side( t_game *g, t_vecd *step )
 {
-	t_vecd	d;
-	t_vecd	inc;
-	t_vecd	pixel;
-	double	steps;
-	int		i;
-
-	d.x = p2.x - p1.x;
-	d.y = p2.y - p1.y;
-	steps = get_steps(d.x, d.y);
-	inc.x = d.x / steps;
-	inc.y = d.y / steps;
-	pixel.x = p1.x;
-	pixel.y = p1.y;
-	i = -1;
-	while (++i <= steps)
+	if (g->ray.dir.x < 0)
 	{
-		my_pp(img, roundf(pixel.x), roundf(pixel.y), color);
-		pixel.x += inc.x;
-		pixel.y += inc.y;
+		step->x = -1;
+		g->ray.side.x = g->ray.delta.x
+			* ((g->p.pix_x / CELL_SIZE) - g->p.map_pos.x);
+	}
+	else
+	{
+		step->x = 1;
+		g->ray.side.x = g->ray.delta.x
+			* (g->p.map_pos.x + 1.0 - (g->p.pix_x / CELL_SIZE));
+	}
+	if (g->ray.dir.y < 0)
+	{
+		step->y = -1;
+		g->ray.side.y = g->ray.delta.y
+			* ((g->p.pix_y / CELL_SIZE) - g->p.map_pos.y);
+	}
+	else
+	{
+		step->y = 1;
+		g->ray.side.y = g->ray.delta.y
+			* (g->p.map_pos.y + 1.0 - (g->p.pix_y / CELL_SIZE));
 	}
 }
 
-/*
-	Calculate which block on the map has been
-	intersected by the ray
-*/
-static void	hit_block( t_vec *its, t_vecd block )
+static void	get_perp_dist( t_game *g, t_vec step, t_vec map_pos )
 {
-	t_vec	cell;
+	bool	hit;
 
-	cell.x = (int)(block.x / (double)CELL_SIZE);
-	cell.y = (int)(block.y / (double)CELL_SIZE);
-	*its = (t_vec){.x = cell.x, .y = cell.y};
+	hit = false;
+	while (hit == false)
+	{
+		if (g->ray.side.x < g->ray.side.y)
+		{
+			g->ray.side.x += g->ray.delta.x;
+			map_pos.x += step.x;
+			g->ray.hit = 0;
+		}
+		else
+		{
+			g->ray.side.y += g->ray.delta.y;
+			map_pos.y += step.y;
+			g->ray.hit = 1;
+		}
+		if (!is_walkable(g->map[map_pos.y][map_pos.x]))
+			g->hit = g->map[map_pos.y][map_pos.x];
+	}
+	if (g->ray.hit == 0)
+		g->ray.perp_dist = g->ray.side.x - g->ray.delta.x;
+	else
+		g->ray.perp_dist = g->ray.side.y - g->ray.delta.y;
 }
 
-/*
-	Cast rays from center of player character
-	Note: its ~ intersect
-*/
-void	raycast( t_vecd player, t_game *g, int color )
+void	raycast( t_game *g )
 {
-	int		i;
-	double	angle;
-	t_vecd	its;
-	double	dist;
+	int		ray;
+	double	camX;
+	t_vec	step;
 
-	g->p.dist = INT32_MAX;
-	i = -1;
-	while (++i < g->winsize.x)
+	ray = -1;
+	while (++ray < g->winsize.x)
 	{
-		angle = g->p.pa + deg_to_rad(g->fovdeg) / 2.0 - (double)i
-			* deg_to_rad(g->fovdeg) / (double)g->winsize.x;
-		its = get_intersect(g, angle);
-		dist = get_dist((t_vecd){.x = g->p.pix_x, .y = g->p.pix_y},
-			its);
-		if (dist < g->p.dist)
-		{
-			hit_block(&g->p.its, its);
-			g->p.dist = dist;
-		}
-		// if (i == g->winsize.x / 2)
-		draw_line(player, its, g->p.img, color);
-		draw_column(g, dist, i, angle);
+		camX = 2.0 * ray / (double)g->winsize.x - 1.0;
+		g->ray.dir.x = g->p.pdir.x - g->p.plane.x * camX;
+		g->ray.dir.y = g->p.pdir.y - g->p.plane.y * camX;
+		get_delta(g);
+		get_side(g, &step);
+		get_perp_dist(g, step, g->p.map_pos);
+		g->ray.height = (int)(g->winsize.y / g->ray.perp_dist);
+		
 	}
 }

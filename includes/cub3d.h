@@ -6,7 +6,7 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 16:37:23 by hwong             #+#    #+#             */
-/*   Updated: 2023/05/11 18:22:51 by hwong            ###   ########.fr       */
+/*   Updated: 2023/05/13 16:08:32 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,9 +88,12 @@ typedef struct s_player
 
 	double	pix_x;
 	double	pix_y;
-	double	pa;
-	double	pdx;
-	double	pdy;
+	// double	pa;
+	// double	pdx;
+	// double	pdy;
+	t_vec	map_pos;
+	t_vecd	pdir;
+	t_vecd	plane;
 	double	dist;
 	t_vec	its;
 
@@ -104,6 +107,16 @@ typedef struct s_keys
 	bool	left;
 	bool	right;
 }	t_keys;
+
+typedef struct s_ray
+{
+	t_vecd	dir;
+	t_vecd	side;
+	t_vecd	delta;
+	bool	hit;
+	int		height;
+	double	perp_dist;
+}	t_ray;
 
 typedef struct s_game
 {
@@ -120,6 +133,8 @@ typedef struct s_game
 	t_texture	*tex;
 	t_player	p;
 	int			fovdeg;
+	t_ray		ray;
+	char		hit;
 	t_keys		key;
 	double		sens;
 	bool		moved;
