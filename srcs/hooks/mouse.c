@@ -6,7 +6,7 @@ static void	change_angle( int dx, t_game *g )
 	double	old_plane_x;
 	double	rot_speed;
 
-	rot_speed = dx * 0.001;
+	rot_speed = dx * 0.01;
 	old_pdir_x = g->p.pdir.x;
 	g->p.pdir.x = g->p.pdir.x * cos(rot_speed) - g->p.pdir.y * sin(rot_speed);
 	g->p.pdir.y = old_pdir_x * sin(rot_speed) + g->p.pdir.y * cos(rot_speed);

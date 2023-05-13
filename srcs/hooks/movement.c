@@ -11,14 +11,22 @@ void	forward( t_game *g )
 
 	if (g->key.up == true)
 	{
-		new.x = g->p.pix_x + (g->p.pdir.x * (3 + 0.1));
+		new.x = g->p.pix_x + (g->p.pdir.x * 0.2);
 		new_map.x = (int)(new.x / CELL_SIZE);
-		new.y = g->p.pix_y + (g->p.pdir.y * (3 + 0.1));
+		new.y = g->p.pix_y + (g->p.pdir.y * 0.2);
 		new_map.y = (int)(new.y / CELL_SIZE);
-		if (is_walkable(g->map[new_map.x][g->p.map_pos.y]))
+		printf("forward mapX %d %d\n", new_map.x, g->p.map_pos.y);
+		if (is_walkable(g->map[g->p.map_pos.y][new_map.x]))
+		{
 			g->p.pix_x = new.x;
-		if (is_walkable(g->map[g->p.map_pos.x][new_map.y]))
+			g->moved = true;
+		}
+		printf("forward mapY %d %d\n", g->p.map_pos.x, new_map.y);
+		if (is_walkable(g->map[new_map.y][g->p.map_pos.x]))
+		{
 			g->p.pix_y = new.y;
+			g->moved = true;
+		}
 	}
 }
 
@@ -33,14 +41,22 @@ void	backward( t_game *g )
 
 	if (g->key.down == true)
 	{
-		new.x = g->p.pix_x - (g->p.pdir.x * (3 + 0.1));
+		new.x = g->p.pix_x - (g->p.pdir.x * 0.2);
 		new_map.x = (int)(new.x / CELL_SIZE);
-		new.y = g->p.pix_y - (g->p.pdir.y * (3 + 0.1));
+		new.y = g->p.pix_y - (g->p.pdir.y * 0.2);
 		new_map.y = (int)(new.y / CELL_SIZE);
-		if (is_walkable(g->map[new_map.x][g->p.map_pos.y]))
+		printf("backward mapX %d %d\n", new_map.x, g->p.map_pos.y);
+		if (is_walkable(g->map[g->p.map_pos.y][new_map.x]))
+		{
 			g->p.pix_x = new.x;
-		if (is_walkable(g->map[g->p.map_pos.x][new_map.y]))
+			g->moved = true;
+		}
+		printf("backward mapY %d %d\n", g->p.map_pos.x, new_map.y);
+		if (is_walkable(g->map[new_map.y][g->p.map_pos.x]))
+		{
 			g->p.pix_y = new.y;
+			g->moved = true;
+		}
 	}
 }
 
@@ -53,14 +69,17 @@ void	left( t_game *g )
 {
 	double old_pdir_x;
 	double old_plane_x;
-	double rot_speed = 0.05;
 
-	old_pdir_x = g->p.pdir.x;
-	g->p.pdir.x = g->p.pdir.x * cos(-rot_speed) - g->p.pdir.y * sin(-rot_speed);
-	g->p.pdir.y = old_pdir_x * sin(-rot_speed) + g->p.pdir.y * cos(-rot_speed);
-	old_plane_x = g->p.plane.x;
-	g->p.plane.x = g->p.plane.x * cos(-rot_speed) - g->p.plane.y * sin(-rot_speed);
-	g->p.plane.y = old_plane_x * sin(-rot_speed) + g->p.plane.y * cos(-rot_speed);
+	if (g->key.left == true)
+	{
+		old_pdir_x = g->p.pdir.x;
+		g->p.pdir.x = g->p.pdir.x * cos(-g->sens) - g->p.pdir.y * sin(-g->sens);
+		g->p.pdir.y = old_pdir_x * sin(-g->sens) + g->p.pdir.y * cos(-g->sens);
+		old_plane_x = g->p.plane.x;
+		g->p.plane.x = g->p.plane.x * cos(-g->sens) - g->p.plane.y * sin(-g->sens);
+		g->p.plane.y = old_plane_x * sin(-g->sens) + g->p.plane.y * cos(-g->sens);
+		g->moved = true;
+	}
 }
 
 /*
@@ -72,12 +91,15 @@ void	right( t_game *g )
 {
 	double old_pdir_x;
 	double old_plane_x;
-	double rot_speed = 0.05;
 
-	old_pdir_x = g->p.pdir.x;
-	g->p.pdir.x = g->p.pdir.x * cos(rot_speed) - g->p.pdir.y * sin(rot_speed);
-	g->p.pdir.y = old_pdir_x * sin(rot_speed) + g->p.pdir.y * cos(rot_speed);
-	old_plane_x = g->p.plane.x;
-	g->p.plane.x = g->p.plane.x * cos(rot_speed) - g->p.plane.y * sin(rot_speed);
-	g->p.plane.y = old_plane_x * sin(rot_speed) + g->p.plane.y * cos(rot_speed);
+	if (g->key.right == true)
+	{
+		old_pdir_x = g->p.pdir.x;
+		g->p.pdir.x = g->p.pdir.x * cos(g->sens) - g->p.pdir.y * sin(g->sens);
+		g->p.pdir.y = old_pdir_x * sin(g->sens) + g->p.pdir.y * cos(g->sens);
+		old_plane_x = g->p.plane.x;
+		g->p.plane.x = g->p.plane.x * cos(g->sens) - g->p.plane.y * sin(g->sens);
+		g->p.plane.y = old_plane_x * sin(g->sens) + g->p.plane.y * cos(g->sens);
+		g->moved = true;
+	}
 }
