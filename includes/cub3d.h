@@ -6,7 +6,7 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 16:37:23 by hwong             #+#    #+#             */
-/*   Updated: 2023/05/13 16:08:32 by hwong            ###   ########.fr       */
+/*   Updated: 2023/05/13 16:29:52 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -167,11 +167,11 @@ void	load_textures( t_game *game );
 void	my_pp( t_img img, int x, int y, int colour );
 void	render_cell( t_img img, int color, int h_pixel, int w_pixel );
 t_vecd	get_intersect( t_game *g, double angle );
-void	raycast( t_vecd player, t_game *game, int color );
+void	raycast( t_game *g );
 double	get_dist( t_vecd p1, t_vecd p2 );
 void	render_minimap( t_game *game );
 int		render( t_game *game );
-void	draw_column(t_game *g, double dist, int r, double angle);
+// void	draw_column(t_game *g, double dist, int r, double angle);
 
 /* UTILS */
 // free

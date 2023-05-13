@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nnorazma <nnorazma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 17:11:56 by hwong             #+#    #+#             */
-/*   Updated: 2023/05/11 13:32:39 by nnorazma         ###   ########.fr       */
+/*   Updated: 2023/05/13 17:06:32 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,28 +21,28 @@
 	Note: 'moved' variable is to lower refreshes by
 	only rendering when the player has moved
 */
-static void	game_init( t_game *game )
+static void	game_init( t_game *g )
 {
-	game->winsize.x = 1600;
-	game->winsize.y = 900;
-	game->foundtex = (int *) malloc (sizeof(int) * 7);
-	ft_memset(game->foundtex, 0, 7);
-	game->tex = malloc (sizeof(t_texture));
-	game->p.found = false;
-	game->p.y = 0;
-	game->p.x = 0;
-	game->p.dir = 0;
-	game->p.size = 4;
-	game->leak = false;
-	game->msize.y = 0;
-	game->msize.x = 0;
-	game->fovdeg = 60;
-	game->key.up = false;
-	game->key.left = false;
-	game->key.down = false;
-	game->key.right = false;
-	game->sens = 0.1;
-	game->moved = true;
+	g->winsize.x = 1600;
+	g->winsize.y = 900;
+	g->foundtex = (int *) malloc (sizeof(int) * 7);
+	ft_memset(g->foundtex, 0, 7);
+	g->tex = malloc (sizeof(t_texture));
+	g->p.found = false;
+	g->p.y = 0;
+	g->p.x = 0;
+	g->p.dir = 0;
+	g->p.size = 4;
+	g->leak = false;
+	g->msize.y = 0;
+	g->msize.x = 0;
+	g->fovdeg = 60;
+	g->key.up = false;
+	g->key.left = false;
+	g->key.down = false;
+	g->key.right = false;
+	g->sens = 0.1;
+	g->moved = true;
 }
 
 /*
@@ -50,34 +50,35 @@ static void	game_init( t_game *game )
 	Initialise main game mlx variables
 	Initialise minimap mlx variables
 */
-static void	init_mlx( t_game *game )
+static void	init_mlx( t_game *g )
 {
-	game->mlx = mlx_init();
-	game->win = mlx_new_window(game->mlx, game->winsize.x,
-			game->winsize.y, "cub3D");
-	game->bg.mlx_img = mlx_new_image(game->mlx,
-			game->winsize.x, game->winsize.y);
-	game->bg.addr = mlx_get_data_addr(game->bg.mlx_img,
-			&game->bg.bpp, &game->bg.line_len, &game->bg.endian);
-	game->mmap.mlx_img = mlx_new_image(game->mlx,
-			game->msize.x * CELL_SIZE, game->msize.y * CELL_SIZE);
-	game->mmap.addr = mlx_get_data_addr(game->mmap.mlx_img,
-			&game->mmap.bpp, &game->mmap.line_len, &game->mmap.endian);
+	g->mlx = mlx_init();
+	g->win = mlx_new_window(g->mlx, g->winsize.x,
+			g->winsize.y, "cub3D");
+	g->bg.mlx_img = mlx_new_image(g->mlx,
+			g->winsize.x, g->winsize.y);
+	g->bg.addr = mlx_get_data_addr(g->bg.mlx_img,
+			&g->bg.bpp, &g->bg.line_len, &g->bg.endian);
+	g->mmap.mlx_img = mlx_new_image(g->mlx,
+			g->msize.x * CELL_SIZE, g->msize.y * CELL_SIZE);
+	g->mmap.addr = mlx_get_data_addr(g->mmap.mlx_img,
+			&g->mmap.bpp, &g->mmap.line_len, &g->mmap.endian);
 }
 
 /*
 	Set initial player direction based on
 	the character ( N | S | W | E ) in the map
 */
-static double	set_dir( char ch )
+static t_vecd	set_dir( char ch )
 {
 	if (ch == 'N')
-		return (M_PI / 2.0);
+		return ((t_vecd){0, -1});
 	if (ch == 'S')
-		return (3 * M_PI / 2.0);
+		return ((t_vecd){0, -1});
 	if (ch == 'W')
-		return (M_PI);
-	return (0);
+		return ((t_vecd){-1, 0});
+	else
+		return ((t_vecd){1, 0});
 }
 
 /*
@@ -85,22 +86,24 @@ static double	set_dir( char ch )
 	and render calculations
 	Initialise player mlx variables
 */
-static void	player_init( t_game *game )
+static void	player_init( t_game *g )
 {
 	int	cell_x;
 	int	cell_y;
 
-	cell_x = game->p.x * CELL_SIZE;
-	cell_y = game->p.y * CELL_SIZE;
-	game->p.pix_x = get_center(cell_x, cell_x + CELL_SIZE);
-	game->p.pix_y = get_center(cell_y, cell_y + CELL_SIZE);
-	game->p.img.mlx_img = mlx_new_image(game->mlx,
-			game->msize.x * CELL_SIZE, game->msize.y * CELL_SIZE);
-	game->p.img.addr = mlx_get_data_addr(game->p.img.mlx_img,
-			&game->p.img.bpp, &game->p.img.line_len, &game->p.img.endian);
-	game->p.pa = set_dir(game->p.dir);
-	game->p.pdx = cos(game->p.pa);
-	game->p.pdy = -sin(game->p.pa);
+	cell_x = g->p.x * CELL_SIZE;
+	cell_y = g->p.y * CELL_SIZE;
+	g->p.pix_x = get_center(cell_x, cell_x + CELL_SIZE);
+	g->p.pix_y = get_center(cell_y, cell_y + CELL_SIZE);
+	g->p.pdir = set_dir(g->p.dir);
+	g->p.plane.x = g->p.pdir.y;
+	g->p.plane.y = -g->p.pdir.x;
+	g->p.map_pos.x = g->p.x;
+	g->p.map_pos.y = g->p.y;
+	g->p.img.mlx_img = mlx_new_image(g->mlx,
+			g->msize.x * CELL_SIZE, g->msize.y * CELL_SIZE);
+	g->p.img.addr = mlx_get_data_addr(g->p.img.mlx_img,
+			&g->p.img.bpp, &g->p.img.line_len, &g->p.img.endian);
 }
 
 /*

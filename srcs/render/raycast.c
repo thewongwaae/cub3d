@@ -6,7 +6,7 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 16:41:04 by hwong             #+#    #+#             */
-/*   Updated: 2023/05/13 16:23:07 by hwong            ###   ########.fr       */
+/*   Updated: 2023/05/13 17:11:03 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static void	get_delta( t_game *g )
 		g->ray.delta.y = fabs(1.0 / g->ray.dir.y);	
 }
 
-static void	get_side( t_game *g, t_vecd *step )
+static void	get_side( t_game *g, t_vec *step )
 {
 	if (g->ray.dir.x < 0)
 	{
@@ -54,10 +54,7 @@ static void	get_side( t_game *g, t_vecd *step )
 
 static void	get_perp_dist( t_game *g, t_vec step, t_vec map_pos )
 {
-	bool	hit;
-
-	hit = false;
-	while (hit == false)
+	while (is_walkable(g->map[map_pos.y][map_pos.x]))
 	{
 		if (g->ray.side.x < g->ray.side.y)
 		{
@@ -71,13 +68,30 @@ static void	get_perp_dist( t_game *g, t_vec step, t_vec map_pos )
 			map_pos.y += step.y;
 			g->ray.hit = 1;
 		}
-		if (!is_walkable(g->map[map_pos.y][map_pos.x]))
-			g->hit = g->map[map_pos.y][map_pos.x];
+		g->hit = g->map[map_pos.y][map_pos.x];
 	}
 	if (g->ray.hit == 0)
 		g->ray.perp_dist = g->ray.side.x - g->ray.delta.x;
 	else
 		g->ray.perp_dist = g->ray.side.y - g->ray.delta.y;
+}
+
+static void	draw_column( int ray, t_game *g )
+{
+	double	offset;
+	t_vecd	start;
+	t_vecd	end;
+
+	if (g->ray.height > (double)g->winsize.y)
+		g->ray.height = (double)g->winsize.y;
+	offset = ((double)g->winsize.y / 2.0) - g->ray.height / 2.0;
+	start = (t_vecd){(double)ray, offset};
+	end = (t_vecd){(double)ray, offset + g->ray.height};
+	while(start.y <= end.y)
+	{
+		my_pp(g->bg, (int)(start.x), (int)(start.y), PURPLE);
+		start.y += 1.0;
+	}
 }
 
 void	raycast( t_game *g )
@@ -96,6 +110,6 @@ void	raycast( t_game *g )
 		get_side(g, &step);
 		get_perp_dist(g, step, g->p.map_pos);
 		g->ray.height = (int)(g->winsize.y / g->ray.perp_dist);
-		
+		draw_column(ray, g);
 	}
 }
