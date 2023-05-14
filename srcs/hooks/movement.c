@@ -16,15 +16,10 @@ void	forward( t_game *g )
 		new.y = g->p.pix_y + g->p.pdir.y;
 		new_map.y = (int)(new.y / CELL_SIZE);
 		// printf("forward mapX %d %d\n", new_map.x, g->p.map_pos.y);
-		if (is_walkable(g->map[g->p.map_pos.y][new_map.x]))
-		{
-			g->p.pix_x = new.x;
-			g->moved = true;
-		}
-		// printf("forward mapY %d %d\n", g->p.map_pos.x, new_map.y);
-		if (is_walkable(g->map[new_map.y][g->p.map_pos.x]))
+		if (is_walkable(g->map[new_map.y][new_map.x]))
 		{
 			g->p.pix_y = new.y;
+			g->p.pix_x = new.x;
 			g->moved = true;
 		}
 	}
@@ -46,15 +41,10 @@ void	backward( t_game *g )
 		new.y = g->p.pix_y - g->p.pdir.y;
 		new_map.y = (int)(new.y / CELL_SIZE);
 		// printf("backward mapX %d %d\n", new_map.x, g->p.map_pos.y);
-		if (is_walkable(g->map[g->p.map_pos.y][new_map.x]))
-		{
-			g->p.pix_x = new.x;
-			g->moved = true;
-		}
-		// printf("backward mapY %d %d\n", g->p.map_pos.x, new_map.y);
-		if (is_walkable(g->map[new_map.y][g->p.map_pos.x]))
+		if (is_walkable(g->map[new_map.y][new_map.x]))
 		{
 			g->p.pix_y = new.y;
+			g->p.pix_x = new.x;
 			g->moved = true;
 		}
 	}
