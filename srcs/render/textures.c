@@ -27,7 +27,7 @@ double	calculate_dist( t_game *g )
 	else
 		dist = g->p.pix_y + g->ray.perp_dist * (g->ray.dir.x * CELL_SIZE);
 
-	
+	dist -= floor(dist); //what happens if its just this?
 	return (dist);
 }
 
@@ -39,5 +39,11 @@ void	draw_texture( t_game *g )
 	t_vec		to_draw;
 
 	dist = calculate_dist(g);
+	to_draw.x = g->ray.line[0].x;
+	to_draw.y = g->ray.line[0].y;
+	while (to_draw.y++ < g->ray.line[1].y)
+	{
+		
+	}
 
 }
