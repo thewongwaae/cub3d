@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
+/*   By: nnorazma <nnorazma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 16:41:04 by hwong             #+#    #+#             */
-/*   Updated: 2023/05/15 14:35:30 by hwong            ###   ########.fr       */
+/*   Updated: 2023/05/15 18:28:31 by nnorazma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,23 +76,40 @@ static void	get_perp_dist( t_game *g, t_vec step, t_vec map_pos )
 		g->ray.perp_dist = g->ray.side.y - g->ray.delta.y;
 }
 
-static void	draw_column( int ray, t_game *g )
-{
-	double	offset;
-	t_vecd	start;
-	t_vecd	end;
+/*
+	sets coordinates of the ray lines to draw on screen
+	line[0].y = top of line
+	line[0].y = bottom of line
 
-	if (g->ray.height > (double)g->winsize.y)
-		g->ray.height = (double)g->winsize.y;
-	offset = ((double)g->winsize.y / 2.0) - g->ray.height / 2.0;
-	start = (t_vecd){(double)ray, offset};
-	end = (t_vecd){(double)ray, offset + g->ray.height};
-	while(start.y <= end.y)
-	{
-		my_pp(g->bg, (int)(start.x), (int)(start.y), PURPLE);
-		start.y += 1.0;
-	}
+	if statement to prevent out of bounds,
+	but is it necessary?
+*/
+static void set_line( t_game *g, int ray )
+{
+	g->ray.line[0].x = ray;
+	g->ray.line[0].y = g->ray.height / -2 + g->winsize.y;
+	g->ray.line[1].y = g->ray.height / 2 + g->winsize.y;
+	if (g->ray.line[1].y >= g->winsize.y)
+		g->ray.line[1].y = g->winsize.y;
 }
+
+// static void	draw_column( int ray, t_game *g )
+// {
+// 	double	offset;
+// 	t_vecd	start;
+// 	t_vecd	end;
+
+// 	if (g->ray.height > (double)g->winsize.y)
+// 		g->ray.height = (double)g->winsize.y;
+// 	offset = ((double)g->winsize.y / 2.0) - g->ray.height / 2.0;
+// 	start = (t_vecd){(double)ray, offset};
+// 	end = (t_vecd){(double)ray, offset + g->ray.height};
+// 	while(start.y <= end.y)
+// 	{
+// 		my_pp(g->bg, (int)(start.x), (int)(start.y), PURPLE);
+// 		start.y += 1.0;
+// 	}
+// }
 
 void	raycast( t_game *g )
 {
@@ -110,6 +127,9 @@ void	raycast( t_game *g )
 		get_side(g, &step);
 		get_perp_dist(g, step, g->p.map_pos);
 		g->ray.height = (int)(g->winsize.y / g->ray.perp_dist);
+		set_line(g, ray);
+		set_current_tex(g, step);
+		draw_texture(g);
 		draw_column(ray, g);
 	}
 }

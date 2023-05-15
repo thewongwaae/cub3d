@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
+/*   By: nnorazma <nnorazma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 16:37:23 by hwong             #+#    #+#             */
-/*   Updated: 2023/05/13 17:30:28 by hwong            ###   ########.fr       */
+/*   Updated: 2023/05/15 17:57:09 by nnorazma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,7 @@ typedef struct s_ray
 	t_vecd	dir;
 	t_vecd	side;
 	t_vecd	delta;
+	t_vec	line[2];
 	bool	hit;
 	int		height;
 	double	perp_dist;
@@ -137,6 +138,7 @@ typedef struct s_game
 	t_vec		msize;
 	t_img		bg;
 	t_img		mmap;
+	t_img		*current_tex;
 }				t_game;
 
 /* CHECKS AND PARSE */
@@ -170,6 +172,7 @@ void	raycast( t_game *g );
 double	get_dist( t_vecd p1, t_vecd p2 );
 void	render_minimap( t_game *game );
 int		render( t_game *game );
+void	set_current_tex( t_game *g, t_vec step );
 // void	draw_column(t_game *g, double dist, int r, double angle);
 
 /* UTILS */
