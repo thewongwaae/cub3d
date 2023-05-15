@@ -6,7 +6,7 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 16:41:04 by hwong             #+#    #+#             */
-/*   Updated: 2023/05/13 17:27:13 by hwong            ###   ########.fr       */
+/*   Updated: 2023/05/15 14:35:30 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ static void	get_perp_dist( t_game *g, t_vec step, t_vec map_pos )
 	}
 	if (g->ray.hit == 0)
 		g->ray.perp_dist = g->ray.side.x - g->ray.delta.x;
-	else
+	else if (g->ray.hit == 1)
 		g->ray.perp_dist = g->ray.side.y - g->ray.delta.y;
 }
 
