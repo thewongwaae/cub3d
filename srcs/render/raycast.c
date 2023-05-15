@@ -6,7 +6,7 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 16:41:04 by hwong             #+#    #+#             */
-/*   Updated: 2023/05/15 14:35:30 by hwong            ###   ########.fr       */
+/*   Updated: 2023/05/15 19:04:10 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static void	get_side( t_game *g, t_vec *step )
 	{
 		step->x = 1;
 		g->ray.side.x = g->ray.delta.x
-			* (g->p.map_pos.x + 1.0 - (g->p.pix_x / CELL_SIZE));
+			* (g->p.map_pos.x + 1 - (g->p.pix_x / CELL_SIZE));
 	}
 	if (g->ray.dir.y < 0)
 	{
@@ -48,7 +48,7 @@ static void	get_side( t_game *g, t_vec *step )
 	{
 		step->y = 1;
 		g->ray.side.y = g->ray.delta.y
-			* (g->p.map_pos.y + 1.0 - (g->p.pix_y / CELL_SIZE));
+			* (g->p.map_pos.y + 1 - (g->p.pix_y / CELL_SIZE));
 	}
 }
 

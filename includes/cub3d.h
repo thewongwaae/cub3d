@@ -6,7 +6,7 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 16:37:23 by hwong             #+#    #+#             */
-/*   Updated: 2023/05/13 17:30:28 by hwong            ###   ########.fr       */
+/*   Updated: 2023/05/15 19:43:33 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,12 @@
 # define WHITE 0XFFFFFF
 # define GREY 0XA6A6A6
 # define GREEN 0X90EE90
+# define DARK_PURPLE 0X590696
+# define PINK 0XC70A80
+# define YELLOW 0XFBCB0A
 # define PURPLE 0X48185C
 # define BLUE 0XADD8E6
 # define BLACK 0X000000
-# define PLAYER 0XF9A3FF
 # define CELL_SIZE 30
 
 typedef struct s_vec
@@ -89,9 +91,6 @@ typedef struct s_player
 	double	pix_x;
 	double	pix_y;
 	double	dist;
-	// double	pa;
-	// double	pdx;
-	// double	pdy;
 	t_vec	map_pos;
 	t_vecd	pdir;
 	t_vecd	plane;
