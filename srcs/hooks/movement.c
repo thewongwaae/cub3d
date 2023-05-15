@@ -4,20 +4,23 @@
 	Moves player forward taking into consideration
 	the current player angle
 */
-void	forward( t_game *game )
+void	forward( t_game *g )
 {
-	double new_px;
-	double new_py;
+	t_vecd	new;
+	t_vec	new_map;
 
-	if (game->key.up == true)
+	if (g->key.up == true)
 	{
-		new_px = game->p.pix_x + game->p.pdx;
-		new_py = game->p.pix_y + game->p.pdy;
-		if (!is_in_wall(game, new_px, new_py))
+		new.x = g->p.pix_x + g->p.pdir.x;
+		new_map.x = (int)(new.x / CELL_SIZE);
+		new.y = g->p.pix_y + g->p.pdir.y;
+		new_map.y = (int)(new.y / CELL_SIZE);
+		// printf("forward mapX %d %d\n", new_map.x, g->p.map_pos.y);
+		if (is_walkable(g->map[new_map.y][new_map.x]))
 		{
-			game->p.pix_x = new_px;
-			game->p.pix_y = new_py;
-			game->moved = true;
+			g->p.pix_y = new.y;
+			g->p.pix_x = new.x;
+			g->moved = true;
 		}
 	}
 }
@@ -26,20 +29,23 @@ void	forward( t_game *game )
 	Moves player backward taking into consideration
 	the current player angle
 */
-void	backward( t_game *game )
+void	backward( t_game *g )
 {
-	double new_px;
-	double new_py;
+	t_vecd	new;
+	t_vec	new_map;
 
-	if (game->key.down == true)
+	if (g->key.down == true)
 	{
-		new_px = game->p.pix_x - game->p.pdx;
-		new_py = game->p.pix_y - game->p.pdy;
-		if (!is_in_wall(game, new_px, new_py))
+		new.x = g->p.pix_x - g->p.pdir.x;
+		new_map.x = (int)(new.x / CELL_SIZE);
+		new.y = g->p.pix_y - g->p.pdir.y;
+		new_map.y = (int)(new.y / CELL_SIZE);
+		// printf("backward mapX %d %d\n", new_map.x, g->p.map_pos.y);
+		if (is_walkable(g->map[new_map.y][new_map.x]))
 		{
-			game->p.pix_x = new_px;
-			game->p.pix_y = new_py;
-			game->moved = true;
+			g->p.pix_y = new.y;
+			g->p.pix_x = new.x;
+			g->moved = true;
 		}
 	}
 }
@@ -47,35 +53,44 @@ void	backward( t_game *game )
 /*
 	Changes the player angle anti-clockwise
 	and recalculates pdx and pdy for
-	forwawrd/backward movement
+	forward/backward movement
 */
-void	left( t_game *game )
+void	left( t_game *g )
 {
-	if (game->key.left == true)
+	double old_pdir_x;
+	double old_plane_x;
+
+	if (g->key.left == true)
 	{
-		game->p.pa -= game->sens;
-		if (game->p.pa < 0)
-			game->p.pa += 2 * M_PI;
-		game->p.pdx = cos(game->p.pa) * 2.5;
-		game->p.pdy = -sin(game->p.pa) * 2.5;
-		game->moved = true;
+		old_pdir_x = g->p.pdir.x;
+		g->p.pdir.x = g->p.pdir.x * cos(g->sens) - g->p.pdir.y * sin(g->sens);
+		g->p.pdir.y = old_pdir_x * sin(g->sens) + g->p.pdir.y * cos(g->sens);
+		old_plane_x = g->p.plane.x;
+		g->p.plane.x = g->p.plane.x * cos(g->sens) - g->p.plane.y * sin(g->sens);
+		g->p.plane.y = old_plane_x * sin(g->sens) + g->p.plane.y * cos(g->sens);
+		g->moved = true;
 	}
 }
 
 /*
 	Changes the player angle clockwise
 	and recalculates pdx and pdy for
-	forwawrd/backward movement
+	forward/backward movement
 */
-void	right( t_game *game )
+void	right( t_game *g )
 {
-	if (game->key.right == true)
+	double old_pdir_x;
+	double old_plane_x;
+
+	if (g->key.right == true)
 	{
-		game->p.pa += game->sens;
-		if (game->p.pa > 2 * M_PI)
-			game->p.pa -= 2 * M_PI;
-		game->p.pdx = cos(game->p.pa) * 2.5;
-		game->p.pdy = -sin(game->p.pa) * 2.5;
-		game->moved = true;
+		old_pdir_x = g->p.pdir.x;
+		g->p.pdir.x = g->p.pdir.x * cos(-g->sens) - g->p.pdir.y * sin(-g->sens);
+		g->p.pdir.y = old_pdir_x * sin(-g->sens) + g->p.pdir.y * cos(-g->sens);
+		old_plane_x = g->p.plane.x;
+		g->p.plane.x = g->p.plane.x * cos(-g->sens) - g->p.plane.y * sin(-g->sens);
+		g->p.plane.y = old_plane_x * sin(-g->sens) + g->p.plane.y * cos(-g->sens);
+		g->moved = true;
 	}
 }
+ 

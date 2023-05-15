@@ -6,7 +6,7 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 16:37:23 by hwong             #+#    #+#             */
-/*   Updated: 2023/05/11 18:22:51 by hwong            ###   ########.fr       */
+/*   Updated: 2023/05/13 17:30:28 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,12 +88,14 @@ typedef struct s_player
 
 	double	pix_x;
 	double	pix_y;
-	double	pa;
-	double	pdx;
-	double	pdy;
 	double	dist;
+	// double	pa;
+	// double	pdx;
+	// double	pdy;
+	t_vec	map_pos;
+	t_vecd	pdir;
+	t_vecd	plane;
 	t_vec	its;
-
 	t_img	img;
 }	t_player;
 
@@ -105,24 +107,36 @@ typedef struct s_keys
 	bool	right;
 }	t_keys;
 
+typedef struct s_ray
+{
+	t_vecd	dir;
+	t_vecd	side;
+	t_vecd	delta;
+	bool	hit;
+	int		height;
+	double	perp_dist;
+}	t_ray;
+
 typedef struct s_game
 {
 	char		**map;
+	char		hit;
+	char		**paths;
 	void		*mlx;
 	void		*win;
-	t_vec		winsize;
-	t_img		bg;
-	t_img		mmap;
-	t_vec		msize;
-	bool		leak;
-	char		**paths;
 	int			*foundtex;
+	int			fovdeg;
+	double		sens;
+	bool		leak;
+	bool		moved;
+	t_ray		ray;
+	t_keys		key;
 	t_texture	*tex;
 	t_player	p;
-	int			fovdeg;
-	t_keys		key;
-	double		sens;
-	bool		moved;
+	t_vec		winsize;
+	t_vec		msize;
+	t_img		bg;
+	t_img		mmap;
 }				t_game;
 
 /* CHECKS AND PARSE */
@@ -152,11 +166,11 @@ void	load_textures( t_game *game );
 void	my_pp( t_img img, int x, int y, int colour );
 void	render_cell( t_img img, int color, int h_pixel, int w_pixel );
 t_vecd	get_intersect( t_game *g, double angle );
-void	raycast( t_vecd player, t_game *game, int color );
+void	raycast( t_game *g );
 double	get_dist( t_vecd p1, t_vecd p2 );
 void	render_minimap( t_game *game );
 int		render( t_game *game );
-void	draw_column(t_game *g, double dist, int r, double angle);
+// void	draw_column(t_game *g, double dist, int r, double angle);
 
 /* UTILS */
 // free
