@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nnorazma <nnorazma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 16:41:04 by hwong             #+#    #+#             */
-/*   Updated: 2023/05/16 14:58:52 by nnorazma         ###   ########.fr       */
+/*   Updated: 2023/05/16 17:55:58 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,14 +98,6 @@ static void set_line( t_game *g, int ray )
 		// printf("ray = %d\nrayH = %d\nline[0].x = %d\nline[0].y = %d\nline[1].y = %d\n\n", ray,g->ray.height , g->ray.line[0].x, g->ray.line[0].y, g->ray.line[1].y);
 	if (g->ray.line[1].y >= g->winsize.y)
 		g->ray.line[1].y = g->winsize.y;
-	offset = ((double)g->winsize.y / 2.0) - g->ray.height / 2.0;
-	start = (t_vecd){(double)ray, offset};
-	end = (t_vecd){(double)ray, offset + g->ray.height};
-	while(start.y <= end.y)
-	{
-		my_pp(g->bg, (int)(start.x), (int)(start.y), PURPLE);
-		start.y += 1.0;
-	}
 }
 
 void	raycast( t_game *g )
