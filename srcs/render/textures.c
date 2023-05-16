@@ -1,76 +1,61 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   textures.c                                         :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/06 17:12:17 by hwong             #+#    #+#             */
-/*   Updated: 2023/05/11 14:36:19 by hwong            ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "cub3d.h"
 
-/*
-	Bit-shift an integer to store rgb value
-*/
-static int	rgb_to_int( int r, int g, int b )
+void	set_current_tex( t_game *g, t_vec step )
 {
-	int	color;
-
-	color = 0;
-	color |= (int)(b % 256);
-	color |= (int)(g % 256) << 8;
-	color |= (int)(r % 256) << 16;
-	return (color);
-}
-
-/*
-	Convert a string rgb value to an int array of 3
-*/
-static void	strrgb_to_rgba( const char *strrgb, int *rgba )
-{
-	char	*tkn;
-	int		i;
-
-	i = 0;
-	tkn = ft_strtok((char *)strrgb, ",");
-	while (tkn)
+	if (g->ray.hit == 0) //horizontal
 	{
-		rgba[i] = ft_atoi(tkn);
-		i++;
-		tkn = ft_strtok(NULL, ",");
+		if (step.x == 1)
+			g->current_tex = &(g->tex->east);
+		else
+			g->current_tex = &(g->tex->west);
+	}
+	else
+	{
+		if (step.y == 1)
+			g->current_tex = &(g->tex->north);
+		else
+			g->current_tex = &(g->tex->south);
 	}
 }
 
-/*
-	Allocate memory and set texture values for the
-	specified image
-*/
-static void	set_textures( t_img *img, void *mlx, char *path )
+static double	calculate_dist( t_game *g )
 {
-	img->mlx_img = mlx_xpm_file_to_image(mlx, path, &img->x, &img->y);
-	img->addr =  mlx_get_data_addr(img->mlx_img, &img->bpp, &img->line_len, &img->endian);
+	double dist;
+
+	if (g->ray.hit == 0)
+		dist = g->p.pix_x + g->ray.perp_dist * (g->ray.dir.y * CELL_SIZE);
+	else
+		dist = g->p.pix_y + g->ray.perp_dist * (g->ray.dir.x * CELL_SIZE);
+
+	dist = (((int)dist % CELL_SIZE) + (dist - floor(dist))) / CELL_SIZE; //what happens if its just this?
+	return (dist);
 }
 
-/*
-	Convert given xpm files into mlx images
-	Convert string rgb values to hexadecimal
-*/
-void	load_textures( t_game *g )
+void	draw_texture( t_game *g )
 {
-	int	*c;
+	char 		*tex_pixel;
+	double		dist;
+	int			colour;
+	t_vec		tex_coord;
+	t_vec		to_draw;
 
-	set_textures(&g->tex->north, g->mlx, g->paths[0]);
-	set_textures(&g->tex->south, g->mlx, g->paths[1]);
-	set_textures(&g->tex->west, g->mlx, g->paths[2]);
-	set_textures(&g->tex->east, g->mlx, g->paths[3]);
-	c = malloc(sizeof(int) * 3);
-	strrgb_to_rgba(g->paths[4], c);
-	g->tex->floor = rgb_to_int(c[0], c[1], c[2]);
-	strrgb_to_rgba(g->paths[5], c);
-	g->tex->ceiling = rgb_to_int(c[0], c[1], c[2]);
-	free(c);
-	free_tab(g->paths);
+	dist = calculate_dist(g);
+	to_draw.x = g->ray.line[0].x;
+	to_draw.y = g->ray.line[0].y;
+	while (to_draw.y++ < g->ray.line[1].y)
+	{
+		tex_coord.x = (int)(dist * g->current_tex->x); //does dist need typecast?
+		tex_coord.y = (int)(((double)(to_draw.y - g->ray.line[0].y)
+					/ (double)g->ray.height) * g->current_tex->y);
+		tex_pixel = g->current_tex->addr
+				+ (tex_coord.y * g->current_tex->line_len
+				+ tex_coord.x * (g->current_tex->bpp / 8));
+		colour = *(unsigned int *)tex_pixel;
+
+		// if (to_draw.x % 80 == 0 && to_draw.y % 100 == 0)
+		// 	printf("to_draw.x = %d\nto_draw.y = %d\ntex_coord.x = %d\ntex_coord.y = %d\n\n", to_draw.x, to_draw.y, tex_coord.x, tex_coord.y);
+
+		my_pp(g->bg, to_draw.x, to_draw.y, colour);
+	}
+
 }
