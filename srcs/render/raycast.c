@@ -6,7 +6,7 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 16:41:04 by hwong             #+#    #+#             */
-/*   Updated: 2023/05/15 19:04:10 by hwong            ###   ########.fr       */
+/*   Updated: 2023/05/16 16:40:05 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,8 +82,6 @@ static void	draw_column( int ray, t_game *g )
 	t_vecd	start;
 	t_vecd	end;
 
-	if (g->ray.height > (double)g->winsize.y)
-		g->ray.height = (double)g->winsize.y;
 	offset = ((double)g->winsize.y / 2.0) - g->ray.height / 2.0;
 	start = (t_vecd){(double)ray, offset};
 	end = (t_vecd){(double)ray, offset + g->ray.height};
