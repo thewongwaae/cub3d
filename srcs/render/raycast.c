@@ -6,7 +6,7 @@
 /*   By: nnorazma <nnorazma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 16:41:04 by hwong             #+#    #+#             */
-/*   Updated: 2023/05/16 13:34:56 by nnorazma         ###   ########.fr       */
+/*   Updated: 2023/05/16 14:58:52 by nnorazma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,11 +86,19 @@ static void	get_perp_dist( t_game *g, t_vec step, t_vec map_pos )
 */
 static void set_line( t_game *g, int ray )
 {
+	int	offset;
+
+	offset = (g->winsize.y / 2) - (g->ray.height / 2);
 	g->ray.line[0].x = ray;
-	g->ray.line[0].y = g->ray.height / -2 + g->winsize.y;
-	g->ray.line[1].y = g->ray.height / 2 + g->winsize.y;
+	// g->ray.line[0].y = (g->ray.height / -2);
+	// g->ray.line[1].y = (g->ray.height / 2);
+	g->ray.line[0].y = offset;
+	g->ray.line[1].y = g->ray.height + offset;
+	if (ray % 80 == 0)
+		// printf("ray = %d\nrayH = %d\nline[0].x = %d\nline[0].y = %d\nline[1].y = %d\n\n", ray,g->ray.height , g->ray.line[0].x, g->ray.line[0].y, g->ray.line[1].y);
 	if (g->ray.line[1].y >= g->winsize.y)
 		g->ray.line[1].y = g->winsize.y;
+	
 }
 
 // static void	draw_column( int ray, t_game *g )

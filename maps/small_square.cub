@@ -1,8 +1,8 @@
+WE ./textures/dirt_1.xpm
+EA ./textures/acacia_log.xpm
+NO ./textures/ancient_debris_side.xpm
+SO ./textures/prismarine_bricks_1.xpm
 C 0,173,2
-WE ./textures/player.xpm
-EA ./textures/player.xpm
-NO ./textures/player.xpm
-SO ./textures/player.xpm
 F 255,255,255
 
 11111
