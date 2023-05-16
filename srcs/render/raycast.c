@@ -6,7 +6,7 @@
 /*   By: nnorazma <nnorazma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 16:41:04 by hwong             #+#    #+#             */
-/*   Updated: 2023/05/15 18:28:31 by nnorazma         ###   ########.fr       */
+/*   Updated: 2023/05/16 13:34:56 by nnorazma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,6 +130,6 @@ void	raycast( t_game *g )
 		set_line(g, ray);
 		set_current_tex(g, step);
 		draw_texture(g);
-		draw_column(ray, g);
+		// draw_column(ray, g);
 	}
 }

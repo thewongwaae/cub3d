@@ -6,7 +6,7 @@
 /*   By: nnorazma <nnorazma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 16:37:23 by hwong             #+#    #+#             */
-/*   Updated: 2023/05/15 17:57:09 by nnorazma         ###   ########.fr       */
+/*   Updated: 2023/05/16 13:35:14 by nnorazma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,7 +173,9 @@ double	get_dist( t_vecd p1, t_vecd p2 );
 void	render_minimap( t_game *game );
 int		render( t_game *game );
 void	set_current_tex( t_game *g, t_vec step );
+void	draw_texture( t_game *g );
 // void	draw_column(t_game *g, double dist, int r, double angle);
+
 
 /* UTILS */
 // free
