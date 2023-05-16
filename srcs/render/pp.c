@@ -37,10 +37,10 @@ void	render_cell( t_img img, int color, int h_pixel, int w_pixel )
 	int	j;
 
 	i = h_pixel;
-	while (i < (h_pixel + CELL_SIZE))
+	while (i < (h_pixel + CELL_SIZE) - 1)
 	{
 		j = w_pixel;
-		while (j < (w_pixel + CELL_SIZE))
+		while (j < (w_pixel + CELL_SIZE) - 1)
 			my_pp(img, j++, i, color);
 		i++;
 	}

@@ -36,7 +36,7 @@ static void	get_side( t_game *g, t_vec *step )
 	{
 		step->x = 1;
 		g->ray.side.x = g->ray.delta.x
-			* (g->p.map_pos.x + 1.0 - (g->p.pix_x / CELL_SIZE));
+			* (g->p.map_pos.x + 1 - (g->p.pix_x / CELL_SIZE));
 	}
 	if (g->ray.dir.y < 0)
 	{
@@ -48,7 +48,7 @@ static void	get_side( t_game *g, t_vec *step )
 	{
 		step->y = 1;
 		g->ray.side.y = g->ray.delta.y
-			* (g->p.map_pos.y + 1.0 - (g->p.pix_y / CELL_SIZE));
+			* (g->p.map_pos.y + 1 - (g->p.pix_y / CELL_SIZE));
 	}
 }
 
@@ -98,26 +98,15 @@ static void set_line( t_game *g, int ray )
 		// printf("ray = %d\nrayH = %d\nline[0].x = %d\nline[0].y = %d\nline[1].y = %d\n\n", ray,g->ray.height , g->ray.line[0].x, g->ray.line[0].y, g->ray.line[1].y);
 	if (g->ray.line[1].y >= g->winsize.y)
 		g->ray.line[1].y = g->winsize.y;
-	
+	offset = ((double)g->winsize.y / 2.0) - g->ray.height / 2.0;
+	start = (t_vecd){(double)ray, offset};
+	end = (t_vecd){(double)ray, offset + g->ray.height};
+	while(start.y <= end.y)
+	{
+		my_pp(g->bg, (int)(start.x), (int)(start.y), PURPLE);
+		start.y += 1.0;
+	}
 }
-
-// static void	draw_column( int ray, t_game *g )
-// {
-// 	double	offset;
-// 	t_vecd	start;
-// 	t_vecd	end;
-
-// 	if (g->ray.height > (double)g->winsize.y)
-// 		g->ray.height = (double)g->winsize.y;
-// 	offset = ((double)g->winsize.y / 2.0) - g->ray.height / 2.0;
-// 	start = (t_vecd){(double)ray, offset};
-// 	end = (t_vecd){(double)ray, offset + g->ray.height};
-// 	while(start.y <= end.y)
-// 	{
-// 		my_pp(g->bg, (int)(start.x), (int)(start.y), PURPLE);
-// 		start.y += 1.0;
-// 	}
-// }
 
 void	raycast( t_game *g )
 {
@@ -138,6 +127,5 @@ void	raycast( t_game *g )
 		set_line(g, ray);
 		set_current_tex(g, step);
 		draw_texture(g);
-		// draw_column(ray, g);
 	}
 }

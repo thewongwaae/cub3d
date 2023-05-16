@@ -6,7 +6,7 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 19:14:42 by hwong             #+#    #+#             */
-/*   Updated: 2023/05/13 17:06:52 by hwong            ###   ########.fr       */
+/*   Updated: 2023/05/15 19:44:44 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static void	render_bg( t_img img, t_vec p1, t_vec p2, int color )
 static void	draw_cell( char ch, int h, int w, t_game *g )
 {
 	if (ch == '1')
-		render_cell(g->mmap, WHITE,
+		render_cell(g->mmap, PINK,
 			h * CELL_SIZE, w * CELL_SIZE);
 	else if (ch == '2')
 		render_cell(g->mmap, GREEN,
@@ -46,7 +46,7 @@ static void	draw_cell( char ch, int h, int w, t_game *g )
 		render_cell(g->mmap, BLUE,
 			h * CELL_SIZE, w * CELL_SIZE);
 	else if (is_walkable(ch))
-		render_cell(g->mmap, BLACK,
+		render_cell(g->mmap, DARK_PURPLE,
 			h * CELL_SIZE, w * CELL_SIZE);	
 }
 
@@ -61,7 +61,7 @@ void	render_minimap( t_game *game )
 	int	w;
 
 	render_bg(game->mmap, (t_vec){0, 0}, (t_vec){game->msize.y * CELL_SIZE,
-		game->msize.x * CELL_SIZE}, TRANS);
+		game->msize.x * CELL_SIZE}, GREY);
 	h = 0;
 	while (h < game->msize.y)
 	{
@@ -84,12 +84,9 @@ static void	render_player( t_game *game )
 {
 	double	i;
 	double	j;
-	t_vecd	player;
 
 	render_bg(game->p.img, (t_vec){0, 0}, (t_vec){game->msize.y * CELL_SIZE,
 		game->msize.x * CELL_SIZE}, TRANS);
-	player.x = game->p.pix_x + (double)game->p.size / 2.0;
-	player.y = game->p.pix_y + (double)game->p.size / 2.0;
 	raycast(game);
 	i = game->p.pix_y;
 	while (i < (game->p.pix_y + game->p.size))
@@ -97,7 +94,7 @@ static void	render_player( t_game *game )
 		j = game->p.pix_x;
 		while (j < (game->p.pix_x + game->p.size))
 		{
-			my_pp(game->p.img, (int)(j), (int)(i), PLAYER);
+			my_pp(game->p.img, (int)(j), (int)(i), YELLOW);
 			j += 1.0;
 		}
 		i += 1.0;
