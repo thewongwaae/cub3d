@@ -6,7 +6,7 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 16:41:04 by hwong             #+#    #+#             */
-/*   Updated: 2023/05/17 17:40:32 by hwong            ###   ########.fr       */
+/*   Updated: 2023/05/17 17:49:55 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ static void set_line( t_game *g, int ray )
 	// g->ray.line[1].y = (g->ray.height / 2);
 	g->ray.line[0].y = offset;
 	g->ray.line[1].y = g->ray.height + offset;
-	if (ray % 80 == 0)
+	// if (ray % 80 == 0)
 		// printf("ray = %d\nrayH = %d\nline[0].x = %d\nline[0].y = %d\nline[1].y = %d\n\n", ray,g->ray.height , g->ray.line[0].x, g->ray.line[0].y, g->ray.line[1].y);
 	if (g->ray.line[1].y >= WINSIZE_Y)
 		g->ray.line[1].y = WINSIZE_Y;
