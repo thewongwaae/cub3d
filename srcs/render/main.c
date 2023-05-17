@@ -6,7 +6,7 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 17:11:56 by hwong             #+#    #+#             */
-/*   Updated: 2023/05/17 17:40:55 by hwong            ###   ########.fr       */
+/*   Updated: 2023/05/17 18:13:16 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ static void	game_init( t_game *g )
 	g->foundtex = (int *) malloc (sizeof(int) * 7);
 	ft_memset(g->foundtex, 0, 7);
 	g->tex = malloc (sizeof(t_texture));
-	g->p.found = false;
-	g->p.y = 0;
-	g->p.x = 0;
+	g->p.found = 0;
+	g->p.map_pos.y = 0;
+	g->p.map_pos.x = 0;
 	g->p.dir = 0;
 	g->p.size = 4;
 	g->leak = false;
@@ -89,15 +89,13 @@ static void	player_init( t_game *g )
 	int	cell_x;
 	int	cell_y;
 
-	cell_x = g->p.x * CELL_SIZE;
-	cell_y = g->p.y * CELL_SIZE;
+	cell_x = g->p.map_pos.x * CELL_SIZE;
+	cell_y = g->p.map_pos.y * CELL_SIZE;
 	g->p.pix_x = get_center(cell_x, cell_x + CELL_SIZE);
 	g->p.pix_y = get_center(cell_y, cell_y + CELL_SIZE);
 	g->p.pdir = set_dir(g->p.dir);
 	g->p.plane.x = g->p.pdir.y;
 	g->p.plane.y = -g->p.pdir.x;
-	g->p.map_pos.x = g->p.x;
-	g->p.map_pos.y = g->p.y;
 	g->p.img.mlx_img = mlx_new_image(g->mlx,
 			g->msize.x * CELL_SIZE, g->msize.y * CELL_SIZE);
 	g->p.img.addr = mlx_get_data_addr(g->p.img.mlx_img,

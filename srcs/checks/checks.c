@@ -6,7 +6,7 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 17:11:42 by hwong             #+#    #+#             */
-/*   Updated: 2023/04/22 16:47:37 by hwong            ###   ########.fr       */
+/*   Updated: 2023/05/17 18:23:26 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,8 @@ int	checks( char *file, t_game *game )
 		return (write(2, "Error: Invalid extension", 25));
 	if (parse_mapfile(file, game))
 		return (1);
-	check_map(game);
+	if (check_map(game) > 1)
+		return (1);
 	if (game->leak)
 	{
 		free_tab(game->map);

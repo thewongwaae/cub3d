@@ -6,7 +6,7 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 16:37:23 by hwong             #+#    #+#             */
-/*   Updated: 2023/05/17 17:40:51 by hwong            ###   ########.fr       */
+/*   Updated: 2023/05/17 18:12:54 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,9 +85,7 @@ typedef struct s_texture
 
 typedef struct s_player
 {
-	bool	found;
-	int		x;
-	int		y;
+	int		found;
 	char	dir;
 	int		size;
 
@@ -145,7 +143,7 @@ typedef struct s_game
 /* CHECKS AND PARSE */
 int		checks( char *file, t_game *game );
 int		parse_mapfile( char *file, t_game *game );
-void	check_map( t_game *g );
+int		check_map( t_game *g );
 int		all_found( int *found );
 /* ITERATIVE FLOOD */
 t_queue	*init_queue( void );

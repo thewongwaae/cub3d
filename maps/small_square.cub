@@ -1,12 +1,12 @@
-WE ./textures/dirt_1.xpm
-EA ./textures/acacia_log.xpm
-NO ./textures/ancient_debris_side.xpm
-SO ./textures/prismarine_bricks_1.xpm
+WE ./textures/debug.xpm
+EA ./textures/debug2.xpm
+NO ./textures/chorus_flower.xpm
+SO ./textures/budding_amethyst.xpm
 C 0,173,2
 F 255,255,255
 
 11111
 10001
 10S01
-10001
+10011
 11111

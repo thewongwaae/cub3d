@@ -6,7 +6,7 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 17:11:45 by hwong             #+#    #+#             */
-/*   Updated: 2023/04/22 16:48:40 by hwong            ###   ########.fr       */
+/*   Updated: 2023/05/17 18:21:59 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,15 +78,16 @@ static char	**copy_tab( char **tab )
 /*
 	Even more stupid shit for norminette
 */
-static void	init_flood( t_game *game )
+static int	init_flood( t_game *game )
 {
 	char	**copy;
 
 	if (!game->p.found || !game->p.dir)
-		return ;
+		return (0);
 	copy = copy_tab(game->map);
-	flood_iter(game->p.y, game->p.x, game, copy);
+	flood_iter(game->p.map_pos.y, game->p.map_pos.x, game, copy);
 	free_tab(copy);
+	return (0);
 }
 
 /*
@@ -94,25 +95,30 @@ static void	init_flood( t_game *game )
 	Start flood from player position
 	If flood node goes out of bounds, found leak
 */
-void	check_map( t_game *g )
+int	check_map( t_game *g )
 {
-	while (g->map[g->p.y])
+	int	x;
+	int	y;
+
+	y = 0;
+	while (g->map[y])
 	{
-		g->p.x = 0;
-		while (g->map[g->p.y][g->p.x])
+		x = 0;
+		while (g->map[y][x])
 		{
-			if (g->map[g->p.y][g->p.x] == 78 || g->map[g->p.y][g->p.x] == 83
-				|| g->map[g->p.y][g->p.x] == 87 || g->map[g->p.y][g->p.x] == 69)
+			if (g->map[y][x] == 78 || g->map[y][x] == 83
+				|| g->map[y][x] == 87 || g->map[y][x] == 69)
 			{
-				g->p.found = true;
-				g->p.dir = g->map[g->p.y][g->p.x];
-				break ;
+				g->p.found++;
+				g->p.map_pos = (t_vec){x, y};
+				g->p.dir = g->map[y][x];
 			}
-			g->p.x++;
+			x++;
 		}
-		if (g->p.found)
-			break ;
-		g->p.y++;
+		y++;
 	}
+	if (g->p.found != 1)
+		return (write(2, "Error: More than 1 player", 26));
 	init_flood(g);
+	return (g->p.found);
 }
