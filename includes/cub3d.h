@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nnorazma <nnorazma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 16:37:23 by hwong             #+#    #+#             */
-/*   Updated: 2023/05/16 13:35:14 by nnorazma         ###   ########.fr       */
+/*   Updated: 2023/05/17 17:40:51 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,9 @@
 # include "../mlx/mlx.h"
 
 # define BUFFER_SIZE 1024
+# define WINSIZE_X 1600
+# define WINSIZE_Y 900
+
 # define TRANS 0XFF000000
 # define WHITE 0XFFFFFF
 # define GREY 0XA6A6A6
@@ -133,7 +136,6 @@ typedef struct s_game
 	t_keys		key;
 	t_texture	*tex;
 	t_player	p;
-	t_vec		winsize;
 	t_vec		msize;
 	t_img		bg;
 	t_img		mmap;

@@ -6,7 +6,7 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 17:11:56 by hwong             #+#    #+#             */
-/*   Updated: 2023/05/13 17:06:32 by hwong            ###   ########.fr       */
+/*   Updated: 2023/05/17 17:40:55 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,6 @@
 */
 static void	game_init( t_game *g )
 {
-	g->winsize.x = 1600;
-	g->winsize.y = 900;
 	g->foundtex = (int *) malloc (sizeof(int) * 7);
 	ft_memset(g->foundtex, 0, 7);
 	g->tex = malloc (sizeof(t_texture));
@@ -53,10 +51,10 @@ static void	game_init( t_game *g )
 static void	init_mlx( t_game *g )
 {
 	g->mlx = mlx_init();
-	g->win = mlx_new_window(g->mlx, g->winsize.x,
-			g->winsize.y, "cub3D");
+	g->win = mlx_new_window(g->mlx, WINSIZE_X,
+			WINSIZE_Y, "cub3D");
 	g->bg.mlx_img = mlx_new_image(g->mlx,
-			g->winsize.x, g->winsize.y);
+			WINSIZE_X, WINSIZE_Y);
 	g->bg.addr = mlx_get_data_addr(g->bg.mlx_img,
 			&g->bg.bpp, &g->bg.line_len, &g->bg.endian);
 	g->mmap.mlx_img = mlx_new_image(g->mlx,

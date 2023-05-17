@@ -6,7 +6,7 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 19:14:42 by hwong             #+#    #+#             */
-/*   Updated: 2023/05/15 19:44:44 by hwong            ###   ########.fr       */
+/*   Updated: 2023/05/17 17:40:32 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,8 +113,8 @@ int	render( t_game *g )
 	right(g);
 	if (g->moved == true)
 	{
-		render_bg(g->bg, (t_vec){0, 0}, (t_vec){g->winsize.y / 2, g->winsize.x}, g->tex->ceiling);
-		render_bg(g->bg, (t_vec){g->winsize.y / 2, 0}, (t_vec){g->winsize.y, g->winsize.x}, g->tex->floor);
+		render_bg(g->bg, (t_vec){0, 0}, (t_vec){WINSIZE_Y / 2, WINSIZE_X}, g->tex->ceiling);
+		render_bg(g->bg, (t_vec){WINSIZE_Y / 2, 0}, (t_vec){WINSIZE_Y, WINSIZE_X}, g->tex->floor);
 		render_player(g);
 		mlx_put_image_to_window(g->mlx, g->win,
 			g->bg.mlx_img, 0, 0);

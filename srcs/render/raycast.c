@@ -6,7 +6,7 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 16:41:04 by hwong             #+#    #+#             */
-/*   Updated: 2023/05/16 17:55:58 by hwong            ###   ########.fr       */
+/*   Updated: 2023/05/17 17:40:32 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ static void set_line( t_game *g, int ray )
 {
 	int	offset;
 
-	offset = (g->winsize.y / 2) - (g->ray.height / 2);
+	offset = (WINSIZE_Y / 2) - (g->ray.height / 2);
 	g->ray.line[0].x = ray;
 	// g->ray.line[0].y = (g->ray.height / -2);
 	// g->ray.line[1].y = (g->ray.height / 2);
@@ -96,8 +96,8 @@ static void set_line( t_game *g, int ray )
 	g->ray.line[1].y = g->ray.height + offset;
 	if (ray % 80 == 0)
 		// printf("ray = %d\nrayH = %d\nline[0].x = %d\nline[0].y = %d\nline[1].y = %d\n\n", ray,g->ray.height , g->ray.line[0].x, g->ray.line[0].y, g->ray.line[1].y);
-	if (g->ray.line[1].y >= g->winsize.y)
-		g->ray.line[1].y = g->winsize.y;
+	if (g->ray.line[1].y >= WINSIZE_Y)
+		g->ray.line[1].y = WINSIZE_Y;
 }
 
 void	raycast( t_game *g )
@@ -107,15 +107,15 @@ void	raycast( t_game *g )
 	t_vec	step;
 
 	ray = -1;
-	while (++ray < g->winsize.x)
+	while (++ray < WINSIZE_X)
 	{
-		camX = 2.0 * ray / (double)g->winsize.x - 1.0;
+		camX = 2.0 * ray / (double)WINSIZE_X - 1.0;
 		g->ray.dir.x = g->p.pdir.x - g->p.plane.x * camX;
 		g->ray.dir.y = g->p.pdir.y - g->p.plane.y * camX;
 		get_delta(g);
 		get_side(g, &step);
 		get_perp_dist(g, step, g->p.map_pos);
-		g->ray.height = (int)(g->winsize.y / g->ray.perp_dist);
+		g->ray.height = (int)(WINSIZE_Y / g->ray.perp_dist);
 		set_line(g, ray);
 		set_current_tex(g, step);
 		draw_texture(g);
