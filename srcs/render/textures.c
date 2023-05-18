@@ -18,33 +18,33 @@ void	set_current_tex( t_game *g, t_vec step )
 	}
 }
 
-static double	calculate_dist( t_game *g )
+static double	get_wall_hit( t_game *g )
 {
-	double dist;
+	double hit;
 
 	if (g->ray.hit == 0)
-		dist = g->p.pix_x + g->ray.perp_dist * (g->ray.dir.y * CELL_SIZE);
+		hit = g->p.pix_y + g->ray.perp_dist * (g->ray.dir.y * CELL_SIZE);
 	else
-		dist = g->p.pix_y + g->ray.perp_dist * (g->ray.dir.x * CELL_SIZE);
+		hit = g->p.pix_x + g->ray.perp_dist * (g->ray.dir.x * CELL_SIZE);
 
-	dist = (((int)dist % CELL_SIZE) + (dist - floor(dist))) / CELL_SIZE; //what happens if its just this?
-	return (dist);
+	hit = (((int)hit % CELL_SIZE) + (hit - floor(hit))) / CELL_SIZE; //what happens if its just this?
+	return (hit);
 }
 
 void	draw_texture( t_game *g )
 {
 	char 		*tex_pixel;
-	double		dist;
+	double		wall_hit;
 	int			colour;
 	t_vec		tex_coord;
 	t_vec		to_draw;
 
-	dist = calculate_dist(g);
+	wall_hit = get_wall_hit(g);
 	to_draw.x = g->ray.line[0].x;
-	to_draw.y = g->ray.line[0].y;
-	while (to_draw.y++ < g->ray.line[1].y)
+	to_draw.y = g->ray.line[0].y - 1;
+	while (++to_draw.y < g->ray.line[1].y)
 	{
-		tex_coord.x = (int)(dist * g->current_tex->x); //does dist need typecast?
+		tex_coord.x = (int)(wall_hit * g->current_tex->x); //does dist need typecast?
 		tex_coord.y = (int)(((double)(to_draw.y - g->ray.line[0].y)
 					/ (double)g->ray.height) * g->current_tex->y);
 		tex_pixel = g->current_tex->addr
