@@ -6,7 +6,7 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 19:14:42 by hwong             #+#    #+#             */
-/*   Updated: 2023/05/17 17:40:32 by hwong            ###   ########.fr       */
+/*   Updated: 2023/05/18 14:26:02 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	render_minimap( t_game *game )
 	int	w;
 
 	render_bg(game->mmap, (t_vec){0, 0}, (t_vec){game->msize.y * CELL_SIZE,
-		game->msize.x * CELL_SIZE}, GREY);
+		game->msize.x * CELL_SIZE}, TRANS);
 	h = 0;
 	while (h < game->msize.y)
 	{
