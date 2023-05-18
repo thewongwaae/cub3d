@@ -6,7 +6,7 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 16:37:23 by hwong             #+#    #+#             */
-/*   Updated: 2023/05/17 18:12:54 by hwong            ###   ########.fr       */
+/*   Updated: 2023/05/18 14:09:02 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,7 +163,7 @@ int		key_up( int keycode, t_game *game );
 int		mouse_hook( int x, int y, t_game *game );
 
 /* RENDER */
-void	load_textures( t_game *game );
+int		load_textures( t_game *game );
 void	my_pp( t_img img, int x, int y, int colour );
 void	render_cell( t_img img, int color, int h_pixel, int w_pixel );
 t_vecd	get_intersect( t_game *g, double angle );
