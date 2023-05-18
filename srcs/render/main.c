@@ -6,7 +6,7 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 17:11:56 by hwong             #+#    #+#             */
-/*   Updated: 2023/05/17 18:13:16 by hwong            ###   ########.fr       */
+/*   Updated: 2023/05/18 14:10:51 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,7 +122,8 @@ int	main( int ac, char **av )
 	if (checks(av[1], &game))
 		return (write(2, ": Invalid file\n", 15));
 	init_mlx(&game);
-	load_textures(&game);
+	if (load_textures(&game))
+		return (write(2, ": Invalid texture\n", 18));
 	player_init(&game);
 	render_minimap(&game);
 	mlx_hook(game.win, 2, (1L << 0), key_down, &game);

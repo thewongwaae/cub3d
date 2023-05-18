@@ -1,7 +1,7 @@
-WE ./textures/debug.xpm
+WE ./textures/basalt_top.xpm
 EA ./textures/debug2.xpm
-NO ./textures/chorus_flower.xpm
-SO ./textures/budding_amethyst.xpm
+NO ./textures/gilded_blackstone.xpm
+SO ./textures/buddit.xpm
 C 0,173,2
 F 255,255,255
 
