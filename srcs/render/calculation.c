@@ -20,8 +20,8 @@ t_vecd	get_intersect( t_game *g, double angle )
 
 	d.x = cos(angle) * 0.1;
 	d.y = -sin(angle) * 0.1;
-	p.x = g->p.pix_x;
-	p.y = g->p.pix_y;
+	p.x = g->p.pix.x;
+	p.y = g->p.pix.y;
 	while (1)
 	{
 		map.x = (int)(p.x / CELL_SIZE);

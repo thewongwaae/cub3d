@@ -6,7 +6,7 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 19:14:42 by hwong             #+#    #+#             */
-/*   Updated: 2023/05/18 14:26:02 by hwong            ###   ########.fr       */
+/*   Updated: 2023/05/18 16:08:48 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,11 +88,11 @@ static void	render_player( t_game *game )
 	render_bg(game->p.img, (t_vec){0, 0}, (t_vec){game->msize.y * CELL_SIZE,
 		game->msize.x * CELL_SIZE}, TRANS);
 	raycast(game);
-	i = game->p.pix_y;
-	while (i < (game->p.pix_y + game->p.size))
+	i = game->p.pix.y;
+	while (i < (game->p.pix.y + game->p.size))
 	{
-		j = game->p.pix_x;
-		while (j < (game->p.pix_x + game->p.size))
+		j = game->p.pix.x;
+		while (j < (game->p.pix.x + game->p.size))
 		{
 			my_pp(game->p.img, (int)(j), (int)(i), YELLOW);
 			j += 1.0;
