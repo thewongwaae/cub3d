@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nnorazma <nnorazma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 17:12:14 by hwong             #+#    #+#             */
-/*   Updated: 2023/05/11 13:32:21 by nnorazma         ###   ########.fr       */
+/*   Updated: 2023/05/19 17:12:34 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,17 +42,48 @@ static char	**cub_to_array( int fd )
 /*
 	Parse the 6 lines of texture information in any order
 */
-static int	parse_textures( char **mapfile, char **texs, t_game *game )
+// static int	parse_textures( char **mapfile, char **texs, t_game *game )
+// {
+// 	int		i;
+// 	int		j;
+// 	char	*space;
+
+// 	i = -1;
+// 	while (++i < 6)
+// 	{
+// 		j = -1;
+// 		while (mapfile[++j])
+// 		{
+// 			if (!ft_strncmp(mapfile[j], texs[i], ft_slen(texs[i])))
+// 			{
+// 				space = ft_strchr(mapfile[j], ' ');
+// 				if (space)
+// 				{
+// 					game->paths[i] = ft_strdup(space + 1);
+// 					game->foundtex[i] += 1;
+// 					if (j > game->foundtex[6])
+// 						game->foundtex[6] = j;
+// 				}
+// 			}
+// 		}
+// 	}
+// 	game->paths[i] = NULL;
+// 	if (!all_found(game->foundtex))
+// 		return (0);
+// 	return (game->foundtex[6]);
+// }
+
+static void	find_texture_paths( char **mapfile, char **texs, t_game *game )
 {
 	int		i;
 	int		j;
 	char	*space;
 
-	i = 0;
-	while (i < 6)
+	i = -1;
+	while (++i < 6)
 	{
-		j = 0;
-		while (mapfile[j])
+		j = -1;
+		while (mapfile[++j])
 		{
 			if (!ft_strncmp(mapfile[j], texs[i], ft_slen(texs[i])))
 			{
@@ -65,11 +96,14 @@ static int	parse_textures( char **mapfile, char **texs, t_game *game )
 						game->foundtex[6] = j;
 				}
 			}
-			j++;
 		}
-		i++;
 	}
 	game->paths[i] = NULL;
+}
+
+static int	parse_textures(char **mapfile, char **texs, t_game *game)
+{
+	find_texture_paths(mapfile, texs, game);
 	if (!all_found(game->foundtex))
 		return (0);
 	return (game->foundtex[6]);
@@ -139,7 +173,6 @@ int	parse_mapfile( char *file, t_game *game )
 	free_tab(texs);
 	if (i == 0)
 		return (write(2, "Error: Incorrect path format", 28));
-	// load_textures(game);
 	if (parse_map(mapfile + i, game))
 		return (1);
 	free_tab(mapfile);

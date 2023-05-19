@@ -59,7 +59,7 @@ void	draw_texture( t_game *g )
 		tex_coord.y = (int)(((double)(to_draw.y - g->ray.line[0].y)
 					/ (double)g->ray.height) * g->current_tex->y);
 		tex_pixel = g->current_tex->addr
-				+ (tex_coord.y * g->current_tex->line_len
+			+ (tex_coord.y * g->current_tex->line_len
 				+ tex_coord.x * (g->current_tex->bpp / 8));
 		colour = *(unsigned int *)tex_pixel;
 		my_pp(g->bg, to_draw.x, to_draw.y, colour);

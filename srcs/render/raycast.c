@@ -6,7 +6,7 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 16:41:04 by hwong             #+#    #+#             */
-/*   Updated: 2023/05/19 16:39:43 by hwong            ###   ########.fr       */
+/*   Updated: 2023/05/19 17:18:02 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static void	get_delta( t_game *g )
 	if (g->ray.dir.y == 0)
 		g->ray.delta.y = 1e30;
 	else
-		g->ray.delta.y = fabs(1.0 / g->ray.dir.y);	
+		g->ray.delta.y = fabs(1.0 / g->ray.dir.y);
 }
 
 static void	get_side( t_game *g, t_vec *step )
@@ -84,7 +84,7 @@ static void	get_perp_dist( t_game *g, t_vec step, t_vec map_pos )
 	if statement to prevent out of bounds,
 	but is it necessary?
 */
-static void set_line( t_game *g, int ray )
+static void	set_line( t_game *g, int ray )
 {
 	int	offset;
 
@@ -99,15 +99,15 @@ static void set_line( t_game *g, int ray )
 void	raycast( t_game *g )
 {
 	int		ray;
-	double	camX;
+	double	cam_x;
 	t_vec	step;
 
 	ray = -1;
 	while (++ray < WINSIZE_X)
 	{
-		camX = 2.0 * ray / (double)WINSIZE_X - 1.0;
-		g->ray.dir.x = g->p.pdir.x - g->p.plane.x * camX;
-		g->ray.dir.y = g->p.pdir.y - g->p.plane.y * camX;
+		cam_x = 2.0 * ray / (double)WINSIZE_X - 1.0;
+		g->ray.dir.x = g->p.pdir.x - g->p.plane.x * cam_x;
+		g->ray.dir.y = g->p.pdir.y - g->p.plane.y * cam_x;
 		get_delta(g);
 		get_side(g, &step);
 		get_perp_dist(g, step, g->p.map_pos);
