@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
+/*   By: nnorazma <nnorazma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 16:37:23 by hwong             #+#    #+#             */
-/*   Updated: 2023/05/18 16:08:53 by hwong            ###   ########.fr       */
+/*   Updated: 2023/05/19 17:32:23 by nnorazma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,11 @@
 # define BLUE 0XADD8E6
 # define BLACK 0X000000
 # define CELL_SIZE 30
+
+typedef	struct s_audio
+{
+	
+}	t_audio;
 
 typedef struct s_vec
 {
