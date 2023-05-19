@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   pp.c                                               :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nnorazma <nnorazma@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/05/19 17:16:39 by nnorazma          #+#    #+#             */
+/*   Updated: 2023/05/19 17:16:58 by nnorazma         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 /*
@@ -16,7 +28,6 @@ void	my_pp( t_img img, int x, int y, int colour )
 	{
 		i = img.bpp - 8;
 		pixel = img.addr + (y * img.line_len + x * (img.bpp / 8));
-		// *(int *)pixel = colour;
 		while (i >= 0)
 		{
 			if (img.endian != 0)
