@@ -6,7 +6,7 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 17:11:56 by hwong             #+#    #+#             */
-/*   Updated: 2023/05/18 14:10:51 by hwong            ###   ########.fr       */
+/*   Updated: 2023/05/19 16:13:53 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ static t_vecd	set_dir( char ch )
 	if (ch == 'N')
 		return ((t_vecd){0, -1});
 	if (ch == 'S')
-		return ((t_vecd){0, -1});
+		return ((t_vecd){0, 1});
 	if (ch == 'W')
 		return ((t_vecd){-1, 0});
 	else
@@ -91,8 +91,8 @@ static void	player_init( t_game *g )
 
 	cell_x = g->p.map_pos.x * CELL_SIZE;
 	cell_y = g->p.map_pos.y * CELL_SIZE;
-	g->p.pix_x = get_center(cell_x, cell_x + CELL_SIZE);
-	g->p.pix_y = get_center(cell_y, cell_y + CELL_SIZE);
+	g->p.pix.x = get_center(cell_x, cell_x + CELL_SIZE);
+	g->p.pix.y = get_center(cell_y, cell_y + CELL_SIZE);
 	g->p.pdir = set_dir(g->p.dir);
 	g->p.plane.x = g->p.pdir.y;
 	g->p.plane.y = -g->p.pdir.x;

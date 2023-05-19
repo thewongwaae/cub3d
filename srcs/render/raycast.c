@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nnorazma <nnorazma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 16:41:04 by hwong             #+#    #+#             */
-/*   Updated: 2023/05/18 15:35:10 by nnorazma         ###   ########.fr       */
+/*   Updated: 2023/05/19 16:39:43 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,25 +30,25 @@ static void	get_side( t_game *g, t_vec *step )
 	{
 		step->x = -1;
 		g->ray.side.x = g->ray.delta.x
-			* ((g->p.pix_x / CELL_SIZE) - g->p.map_pos.x);
+			* ((g->p.pix.x / CELL_SIZE) - g->p.map_pos.x);
 	}
 	else
 	{
 		step->x = 1;
 		g->ray.side.x = g->ray.delta.x
-			* (g->p.map_pos.x + 1 - (g->p.pix_x / CELL_SIZE));
+			* (g->p.map_pos.x + 1.0 - (g->p.pix.x / CELL_SIZE));
 	}
 	if (g->ray.dir.y < 0)
 	{
 		step->y = -1;
 		g->ray.side.y = g->ray.delta.y
-			* ((g->p.pix_y / CELL_SIZE) - g->p.map_pos.y);
+			* ((g->p.pix.y / CELL_SIZE) - g->p.map_pos.y);
 	}
 	else
 	{
 		step->y = 1;
 		g->ray.side.y = g->ray.delta.y
-			* (g->p.map_pos.y + 1 - (g->p.pix_y / CELL_SIZE));
+			* (g->p.map_pos.y + 1.0 - (g->p.pix.y / CELL_SIZE));
 	}
 }
 
@@ -72,7 +72,7 @@ static void	get_perp_dist( t_game *g, t_vec step, t_vec map_pos )
 	}
 	if (g->ray.hit == 0)
 		g->ray.perp_dist = g->ray.side.x - g->ray.delta.x;
-	else if (g->ray.hit == 1)
+	else
 		g->ray.perp_dist = g->ray.side.y - g->ray.delta.y;
 }
 

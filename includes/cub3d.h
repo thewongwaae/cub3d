@@ -6,7 +6,7 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 16:37:23 by hwong             #+#    #+#             */
-/*   Updated: 2023/05/18 14:09:02 by hwong            ###   ########.fr       */
+/*   Updated: 2023/05/18 16:08:53 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,8 +89,7 @@ typedef struct s_player
 	char	dir;
 	int		size;
 
-	double	pix_x;
-	double	pix_y;
+	t_vecd	pix;
 	double	dist;
 	t_vec	map_pos;
 	t_vecd	pdir;
