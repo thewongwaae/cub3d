@@ -19,6 +19,8 @@ void	forward( t_game *g )
 		{
 			g->p.pix.y = new.y;
 			g->p.pix.x = new.x;
+			g->p.map_pos.y = new_map.y;
+			g->p.map_pos.x = new_map.x;
 			g->moved = true;
 		}
 	}
@@ -43,6 +45,8 @@ void	backward( t_game *g )
 		{
 			g->p.pix.y = new.y;
 			g->p.pix.x = new.x;
+			g->p.map_pos.y = new_map.y;
+			g->p.map_pos.x = new_map.x;
 			g->moved = true;
 		}
 	}

@@ -6,7 +6,7 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 17:11:56 by hwong             #+#    #+#             */
-/*   Updated: 2023/05/18 16:08:48 by hwong            ###   ########.fr       */
+/*   Updated: 2023/05/19 16:13:53 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ static t_vecd	set_dir( char ch )
 	if (ch == 'N')
 		return ((t_vecd){0, -1});
 	if (ch == 'S')
-		return ((t_vecd){0, -1});
+		return ((t_vecd){0, 1});
 	if (ch == 'W')
 		return ((t_vecd){-1, 0});
 	else
