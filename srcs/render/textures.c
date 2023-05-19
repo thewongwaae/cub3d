@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   textures.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nnorazma <nnorazma@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/05/19 17:12:52 by nnorazma          #+#    #+#             */
+/*   Updated: 2023/05/19 17:14:18 by nnorazma         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 void	set_current_tex( t_game *g, t_vec step )
@@ -20,7 +32,7 @@ void	set_current_tex( t_game *g, t_vec step )
 
 static double	get_wall_hit( t_game *g )
 {
-	double hit;
+	double	hit;
 
 	if (g->ray.hit == 0)
 		hit = g->p.pix.y + g->ray.perp_dist * (g->ray.dir.y * CELL_SIZE);
@@ -32,7 +44,7 @@ static double	get_wall_hit( t_game *g )
 
 void	draw_texture( t_game *g )
 {
-	char 		*tex_pixel;
+	char		*tex_pixel;
 	double		wall_hit;
 	int			colour;
 	t_vec		tex_coord;
