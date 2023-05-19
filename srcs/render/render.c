@@ -6,7 +6,7 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 19:14:42 by hwong             #+#    #+#             */
-/*   Updated: 2023/05/18 16:08:48 by hwong            ###   ########.fr       */
+/*   Updated: 2023/05/19 17:18:42 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static void	draw_cell( char ch, int h, int w, t_game *g )
 			h * CELL_SIZE, w * CELL_SIZE);
 	else if (is_walkable(ch))
 		render_cell(g->mmap, DARK_PURPLE,
-			h * CELL_SIZE, w * CELL_SIZE);	
+			h * CELL_SIZE, w * CELL_SIZE);
 }
 
 /*
@@ -113,8 +113,10 @@ int	render( t_game *g )
 	right(g);
 	if (g->moved == true)
 	{
-		render_bg(g->bg, (t_vec){0, 0}, (t_vec){WINSIZE_Y / 2, WINSIZE_X}, g->tex->ceiling);
-		render_bg(g->bg, (t_vec){WINSIZE_Y / 2, 0}, (t_vec){WINSIZE_Y, WINSIZE_X}, g->tex->floor);
+		render_bg(g->bg, (t_vec){0, 0}, (t_vec){WINSIZE_Y / 2, WINSIZE_X},
+			g->tex->ceiling);
+		render_bg(g->bg, (t_vec){WINSIZE_Y / 2, 0},
+			(t_vec){WINSIZE_Y, WINSIZE_X}, g->tex->floor);
 		render_player(g);
 		mlx_put_image_to_window(g->mlx, g->win,
 			g->bg.mlx_img, 0, 0);

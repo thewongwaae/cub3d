@@ -16,7 +16,6 @@ void	my_pp( t_img img, int x, int y, int colour )
 	{
 		i = img.bpp - 8;
 		pixel = img.addr + (y * img.line_len + x * (img.bpp / 8));
-		// *(int *)pixel = colour;
 		while (i >= 0)
 		{
 			if (img.endian != 0)

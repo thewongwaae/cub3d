@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   load_textures.c                                    :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/06 17:12:17 by hwong             #+#    #+#             */
-/*   Updated: 2023/05/18 14:19:42 by hwong            ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "cub3d.h"
 
 /*
@@ -59,7 +47,8 @@ static int	set_textures( t_img *img, void *mlx, char *path )
 		return (write(2, path, ft_slen(path)));
 	}
 	img->mlx_img = mlx_xpm_file_to_image(mlx, path, &img->x, &img->y);
-	img->addr =  mlx_get_data_addr(img->mlx_img, &img->bpp, &img->line_len, &img->endian);
+	img->addr = mlx_get_data_addr(img->mlx_img, &img->bpp,
+			&img->line_len, &img->endian);
 	return (0);
 }
 
@@ -67,7 +56,7 @@ static int	set_textures( t_img *img, void *mlx, char *path )
 	Convert given xpm files into mlx images
 	Convert string rgb values to hexadecimal
 */
-int		load_textures( t_game *g )
+int	load_textures( t_game *g )
 {
 	int	*c;
 

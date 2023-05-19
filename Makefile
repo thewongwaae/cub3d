@@ -5,7 +5,7 @@ CFLAGS		= -Wall -Werror -Wextra
 MLX			= -lmlx -framework OpenGL -framework AppKit
 # MLX			= -lmlx -framework OpenGL -framework AppKit -L.
 MLXA		= libmlx.a
-INCLUDES	= -I includes #-I mlx
+INCLUDES	= -I includes
 
 CHECKS		= checks flood parse queue
 HOOKS		= keypress mouse movement

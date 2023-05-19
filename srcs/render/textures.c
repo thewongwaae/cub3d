@@ -20,7 +20,7 @@ void	set_current_tex( t_game *g, t_vec step )
 
 static double	get_wall_hit( t_game *g )
 {
-	double hit;
+	double	hit;
 
 	if (g->ray.hit == 0)
 		hit = g->p.pix.y + g->ray.perp_dist * (g->ray.dir.y * CELL_SIZE);
@@ -32,7 +32,7 @@ static double	get_wall_hit( t_game *g )
 
 void	draw_texture( t_game *g )
 {
-	char 		*tex_pixel;
+	char		*tex_pixel;
 	double		wall_hit;
 	int			colour;
 	t_vec		tex_coord;
@@ -47,7 +47,7 @@ void	draw_texture( t_game *g )
 		tex_coord.y = (int)(((double)(to_draw.y - g->ray.line[0].y)
 					/ (double)g->ray.height) * g->current_tex->y);
 		tex_pixel = g->current_tex->addr
-				+ (tex_coord.y * g->current_tex->line_len
+			+ (tex_coord.y * g->current_tex->line_len
 				+ tex_coord.x * (g->current_tex->bpp / 8));
 		colour = *(unsigned int *)tex_pixel;
 		my_pp(g->bg, to_draw.x, to_draw.y, colour);
