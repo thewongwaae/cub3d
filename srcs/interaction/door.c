@@ -16,13 +16,13 @@
 */
 void	open_door( t_game *g )
 {
-	(void) g;
-	// if (g->p.door == true && g->ray.perp_dist < 21
-	// 	&& (g->p.map_pos.x != g->p.its.x && g->p.map_pos.y != g->p.its.y))
-	// {
-	// 	if (g->map[g->p.its.y][g->p.its.x] == '2')
-	// 		g->map[g->p.its.y][g->p.its.x] = '3';
-	// 	if (g->map[g->p.its.y][g->p.its.x] == '3')
-	// 		g->map[g->p.its.y][g->p.its.x] = '2';
-	// }
+	// (void) g;
+	if (g->p.door == true && g->ray.perp_dist < 21
+		&& (g->p.map_pos.x != g->p.its.x && g->p.map_pos.y != g->p.its.y))
+	{
+		if (g->map[g->p.its.y][g->p.its.x] == '2')
+			g->map[g->p.its.y][g->p.its.x] = '3';
+		if (g->map[g->p.its.y][g->p.its.x] == '3')
+			g->map[g->p.its.y][g->p.its.x] = '2';
+	}
 }

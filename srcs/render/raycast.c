@@ -6,7 +6,7 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 16:41:04 by hwong             #+#    #+#             */
-/*   Updated: 2023/05/19 19:45:49 by hwong            ###   ########.fr       */
+/*   Updated: 2023/05/19 19:54:18 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,16 +52,16 @@ static void	get_side( t_game *g, t_vec *step )
 	}
 }
 
-// static void	check_door( char hit, bool *door, t_vec *its, t_vec map_pos )
-// {
-// 	if (hit == '2' || hit == '3')
-// 	{
-// 		*door = true;
-// 		*its = map_pos;
-// 	}
-// 	else
-// 		*door = false;
-// }
+static void	check_door( char hit, bool *door, t_vec *its, t_vec map_pos )
+{
+	if (hit == '2' || hit == '3')
+	{
+		*door = true;
+		*its = map_pos;
+	}
+	else
+		*door = false;
+}
 
 static void	get_perp_dist( t_game *g, t_vec step, t_vec map_pos )
 {
@@ -80,7 +80,8 @@ static void	get_perp_dist( t_game *g, t_vec step, t_vec map_pos )
 			g->ray.hit = 1;
 		}
 		g->hit = g->map[map_pos.y][map_pos.x];
-		// check_door(g->hit, &g->p.door, &g->p.its, map_pos);
+		if (g->ray.perp_dist < 21)
+			check_door(g->hit, &g->p.door, &g->p.its, map_pos);
 	}
 	if (g->ray.hit == 0)
 		g->ray.perp_dist = g->ray.side.x - g->ray.delta.x;
