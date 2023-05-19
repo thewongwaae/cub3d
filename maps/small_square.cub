@@ -1,9 +1,9 @@
-WE ./textures/basalt_top.xpm
-EA ./textures/debug2.xpm
-NO ./textures/gilded_blackstone.xpm
-SO ./textures/buddit.xpm
-C 0,173,2
-F 255,255,255
+WE ./textures/gilded_blackstone.xpm
+EA ./textures/black_glazed_terracotta.xpm
+NO ./textures/basalt_top.xpm
+SO ./textures/budding_amethyst.xpm
+C 0,0,0
+F 148,8,3
 
 11111
 10001
