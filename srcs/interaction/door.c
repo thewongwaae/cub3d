@@ -16,14 +16,13 @@
 */
 void	open_door( t_game *g )
 {
-	if (g->p.dist < 21 && (g->map[g->p.its.y][g->p.its.x] == '2'
-		|| g->map[g->p.its.y][g->p.its.x] == '3'))
-	{
-		if (g->map[g->p.its.y][g->p.its.x] == '2')
-			g->map[g->p.its.y][g->p.its.x] = '3';
-		else if (g->map[g->p.its.y][g->p.its.x] == '3')
-			g->map[g->p.its.y][g->p.its.x] = '2';
-		g->moved = 1;
-		render_minimap(g);
-	}
+	(void) g;
+	// if (g->p.door == true && g->ray.perp_dist < 21
+	// 	&& (g->p.map_pos.x != g->p.its.x && g->p.map_pos.y != g->p.its.y))
+	// {
+	// 	if (g->map[g->p.its.y][g->p.its.x] == '2')
+	// 		g->map[g->p.its.y][g->p.its.x] = '3';
+	// 	if (g->map[g->p.its.y][g->p.its.x] == '3')
+	// 		g->map[g->p.its.y][g->p.its.x] = '2';
+	// }
 }

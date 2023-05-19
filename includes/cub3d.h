@@ -6,7 +6,7 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 16:37:23 by hwong             #+#    #+#             */
-/*   Updated: 2023/05/18 16:08:53 by hwong            ###   ########.fr       */
+/*   Updated: 2023/05/19 19:44:45 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,8 @@ typedef struct s_player
 	t_vecd	plane;
 	t_vec	its;
 	t_img	img;
+
+	bool	door;
 }	t_player;
 
 typedef struct s_keys
