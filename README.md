@@ -52,7 +52,7 @@ Instead we referred to this, [Raycasting by Lodev.](https://lodev.org/cgtutor/ra
 
 ## Audio
 * [ ] Figure out how to do it.
-* [ ] ![seele](https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.hoyolab.com%2Farticle%2F18129996&psig=AOvVaw1aUfxEpWNv6Z39a-10Cqdf&ust=1684769313021000&source=images&cd=vfe&ved=0CBEQjRxqFwoTCJDZpfnchv8CFQAAAAAdAAAAABAE)
+* [ ] ![seele](https://cdn.discordapp.com/attachments/989407433858375683/1109866833554706472/3b64fcf0fc783e3f1673f371d48fe802_6020605988926938718_1.webp)
 
 ## ISSUES
 * [x] Pure raycast render is rough and jagged, anti-aliasing? later on need take vertex coordinates and map to an mlx image.
