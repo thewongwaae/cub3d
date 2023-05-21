@@ -4,7 +4,8 @@
 * [Map Parsing](#map-parsing)
 * [Top-down player movement](#top-down-player-movement)
 * [Raycasting](#raycasting)
-* [Textures]()
+* [Textures](#textures)
+* [Audio](#audio)
 
 ## Map Parsing
 
@@ -48,6 +49,10 @@ Instead we referred to this, [Raycasting by Lodev.](https://lodev.org/cgtutor/ra
 * [x] Calculate the exact position of the texture pixel.
 * [x] Get the colour of the pixel. Set the pixel to draw as that colour.
 * [x] Draw texture on screen. :thumbs_up:
+
+## Audio
+* [ ] Figure out how to do it.
+* [ ] ![seele](https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.hoyolab.com%2Farticle%2F18129996&psig=AOvVaw1aUfxEpWNv6Z39a-10Cqdf&ust=1684769313021000&source=images&cd=vfe&ved=0CBEQjRxqFwoTCJDZpfnchv8CFQAAAAAdAAAAABAE)
 
 ## ISSUES
 * [x] Pure raycast render is rough and jagged, anti-aliasing? later on need take vertex coordinates and map to an mlx image.
