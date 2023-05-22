@@ -6,7 +6,7 @@
 /*   By: nnorazma <nnorazma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 16:37:23 by hwong             #+#    #+#             */
-/*   Updated: 2023/05/19 17:32:23 by nnorazma         ###   ########.fr       */
+/*   Updated: 2023/05/22 15:58:08 by nnorazma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,6 +134,7 @@ typedef struct s_game
 	double		sens;
 	bool		leak;
 	bool		moved;
+	bool		door;
 	t_ray		ray;
 	t_keys		key;
 	t_texture	*tex;
@@ -142,6 +143,7 @@ typedef struct s_game
 	t_img		bg;
 	t_img		mmap;
 	t_img		*current_tex;
+	void		*seele[118];
 }				t_game;
 
 /* CHECKS AND PARSE */

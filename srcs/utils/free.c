@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
+/*   By: nnorazma <nnorazma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 17:12:20 by hwong             #+#    #+#             */
-/*   Updated: 2023/05/06 16:36:36 by hwong            ###   ########.fr       */
+/*   Updated: 2023/05/22 15:27:23 by nnorazma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,6 @@ int	endgame( t_game *game )
 	free_tab(game->map);
 	mlx_destroy_window(game->mlx, game->win);
 	free(game->mlx);
+	printf("frames = %d\n", frames);
 	exit(0);
 }

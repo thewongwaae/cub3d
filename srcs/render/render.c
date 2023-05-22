@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
+/*   By: nnorazma <nnorazma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 19:14:42 by hwong             #+#    #+#             */
-/*   Updated: 2023/05/19 17:18:42 by hwong            ###   ########.fr       */
+/*   Updated: 2023/05/22 15:42:10 by nnorazma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,6 +124,8 @@ int	render( t_game *g )
 			g->mmap.mlx_img, 0, 0);
 		mlx_put_image_to_window(g->mlx, g->win,
 			g->p.img.mlx_img, 0, 0);
+		if (g->door == false)
+			seele_ult();
 		g->moved = false;
 	}
 	return (0);
