@@ -2,6 +2,7 @@
 
 void	set_door( t_game *g, t_vec map_pos )
 {
+	g->door.dist = g->ray.perp_dist;
 	if (map_pos.x == g->door.pos.x
 		&& map_pos.y == g->door.pos.y)
 		return ;
@@ -26,11 +27,13 @@ void	open_door( t_game *g )
 {
 	if (g->door.dist == INT16_MAX)
 		return ;
-	if (g->door.dist < 21)
+	if (g->door.dist < 1)
 	{
 		if (g->map[g->door.pos.y][g->door.pos.x] == '2')
 			g->map[g->door.pos.y][g->door.pos.x] = '3';
-		if (g->map[g->door.pos.y][g->door.pos.x] == '3')
+		else if (g->map[g->door.pos.y][g->door.pos.x] == '3')
 			g->map[g->door.pos.y][g->door.pos.x] = '2';
+		render_minimap(g);
+		g->moved = true;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 16:41:04 by hwong             #+#    #+#             */
-/*   Updated: 2023/05/23 13:51:05 by hwong            ###   ########.fr       */
+/*   Updated: 2023/05/23 14:10:01 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,8 +114,6 @@ void	raycast( t_game *g )
 		get_delta(g);
 		get_side(g, &step);
 		get_perp_dist(g, step, g->p.map_pos);
-		if (g->ray.perp_dist < g->door.dist)
-			g->door.dist = g->ray.perp_dist;
 		g->ray.height = (int)(WINSIZE_Y / g->ray.perp_dist);
 		set_line(g, ray);
 		set_current_tex(g, step);
