@@ -1,5 +1,13 @@
 #include "cub3d.h"
 
+void	set_door( t_game *g, t_vec map_pos )
+{
+	if (map_pos.x == g->door.pos.x
+		&& map_pos.y == g->door.pos.y)
+		return ;
+	g->door.pos = map_pos;
+}
+
 /*
 	On user input of the "space" bar
 	Check whether the player is near to wall/door
@@ -16,13 +24,13 @@
 */
 void	open_door( t_game *g )
 {
-	// (void) g;
-	if (g->p.door == true && g->ray.perp_dist < 21
-		&& (g->p.map_pos.x != g->p.its.x && g->p.map_pos.y != g->p.its.y))
+	if (g->door.dist == INT16_MAX)
+		return ;
+	if (g->door.dist < 21)
 	{
-		if (g->map[g->p.its.y][g->p.its.x] == '2')
-			g->map[g->p.its.y][g->p.its.x] = '3';
-		if (g->map[g->p.its.y][g->p.its.x] == '3')
-			g->map[g->p.its.y][g->p.its.x] = '2';
+		if (g->map[g->door.pos.y][g->door.pos.x] == '2')
+			g->map[g->door.pos.y][g->door.pos.x] = '3';
+		if (g->map[g->door.pos.y][g->door.pos.x] == '3')
+			g->map[g->door.pos.y][g->door.pos.x] = '2';
 	}
 }

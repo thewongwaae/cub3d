@@ -10,7 +10,7 @@ INCLUDES	= -I includes
 CHECKS		= checks flood parse queue
 HOOKS		= keypress mouse movement
 INTERACTION	= door
-RENDER		= main pp render load_textures textures raycast calculation
+RENDER		= main pp render load_textures textures raycast
 UTILS		= free gnl split strings stringss stringsss utils ft_strtok
 
 SRCS 		= $(addsuffix .c, $(addprefix srcs/checks/, $(CHECKS))) \

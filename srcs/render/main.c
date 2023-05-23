@@ -6,7 +6,7 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 17:11:56 by hwong             #+#    #+#             */
-/*   Updated: 2023/05/19 19:44:57 by hwong            ###   ########.fr       */
+/*   Updated: 2023/05/23 13:50:36 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ static void	game_init( t_game *g )
 	g->p.map_pos.x = 0;
 	g->p.dir = 0;
 	g->p.size = 4;
-	g->p.door = false;
 	g->leak = false;
 	g->msize.y = 0;
 	g->msize.x = 0;
