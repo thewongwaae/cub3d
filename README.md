@@ -63,7 +63,7 @@ Instead we referred to this, [Raycasting by Lodev.](https://lodev.org/cgtutor/ra
 
 ## Door Animation
 * This is about to be the most scuffed animation you've ever seen.
-* [ ] Figure out the frames. (Actual video has **118 frames**)
+* [ ] Figure out the frames. (Actual video has **118 frames**. Thats ***118 XPM FILES***)
 ## ISSUES
 * [x] Pure raycast render is rough and jagged, anti-aliasing? later on need take vertex coordinates and map to an mlx image.
 	* > Fixed: Completely changed the method. Smoother lines and display.
