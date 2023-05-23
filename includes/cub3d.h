@@ -6,7 +6,7 @@
 /*   By: nnorazma <nnorazma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 16:37:23 by hwong             #+#    #+#             */
-/*   Updated: 2023/05/23 15:12:09 by nnorazma         ###   ########.fr       */
+/*   Updated: 2023/05/23 15:46:12 by nnorazma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <math.h>
 # include <stdbool.h>
 # include <pthread.h>
+# include <signal.h>
 # include "../mlx/mlx.h"
 
 # define BUFFER_SIZE 1024
@@ -150,7 +151,7 @@ typedef struct s_game
 	t_img		mmap;
 	t_img		*current_tex;
 	t_audio		audio[2];
-	void		*seele[118];
+	void		*seele[39];
 }				t_game;
 
 /* CHECKS AND PARSE */
