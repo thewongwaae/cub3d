@@ -11,13 +11,15 @@ CHECKS		= checks flood parse queue
 HOOKS		= keypress mouse movement
 INTERACTION	= door
 RENDER		= main pp render load_textures textures raycast calculation
-UTILS		= free gnl split strings stringss stringsss utils ft_strtok
+UTILS		= free gnl split strings stringss stringsss stringssss utils ft_strtok
+SEELE		= seele_ult audio
 
 SRCS 		= $(addsuffix .c, $(addprefix srcs/checks/, $(CHECKS))) \
 			$(addsuffix .c, $(addprefix srcs/hooks/, $(HOOKS))) \
 			$(addsuffix .c, $(addprefix srcs/interaction/, $(INTERACTION))) \
 			$(addsuffix .c, $(addprefix srcs/render/, $(RENDER))) \
-			$(addsuffix .c, $(addprefix srcs/utils/, $(UTILS)))
+			$(addsuffix .c, $(addprefix srcs/utils/, $(UTILS)))	\
+			$(addsuffix .c, $(addprefix srcs/seele/, $(SEELE)))
 
 # SRCS = test.c
 

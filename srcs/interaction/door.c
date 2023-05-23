@@ -22,13 +22,10 @@ void	open_door( t_game *g )
 		if (g->map[g->p.its.y][g->p.its.x] == '2')
 		{
 			g->map[g->p.its.y][g->p.its.x] = '3';
-			g->door = false;
+			g->seele_ani = true;
 		}
 		else if (g->map[g->p.its.y][g->p.its.x] == '3')
-		{
 			g->map[g->p.its.y][g->p.its.x] = '2';
-			g->door = true;
-		}
 		g->moved = 1;
 		render_minimap(g);
 	}
