@@ -6,7 +6,7 @@
 /*   By: nnorazma <nnorazma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 16:37:23 by hwong             #+#    #+#             */
-/*   Updated: 2023/05/23 14:58:59 by hwong            ###   ########.fr       */
+/*   Updated: 2023/05/23 15:46:12 by nnorazma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 # include <stdlib.h>
 # include <math.h>
 # include <stdbool.h>
+# include <pthread.h>
+# include <signal.h>
 # include "../mlx/mlx.h"
 
 # define BUFFER_SIZE 1024
@@ -37,9 +39,14 @@
 # define BLACK 0X000000
 # define CELL_SIZE 30
 
+# define MUSIC 1
+# define ULT 2
+
 typedef	struct s_audio
 {
-	
+	pthread_t tid;
+	int type;
+	bool play;
 }	t_audio;
 
 typedef struct s_vec
@@ -140,6 +147,7 @@ typedef struct s_game
 	double		sens;
 	bool		leak;
 	bool		moved;
+	bool		seele_ani;
 	t_ray		ray;
 	t_keys		key;
 	t_texture	*tex;
@@ -149,6 +157,8 @@ typedef struct s_game
 	t_img		mmap;
 	t_door		door;
 	t_img		*current_tex;
+	t_audio		audio[2];
+	void		*seele[39];
 }				t_game;
 
 /* CHECKS AND PARSE */
@@ -156,6 +166,7 @@ int		checks( char *file, t_game *game );
 int		parse_mapfile( char *file, t_game *game );
 int		check_map( t_game *g );
 int		all_found( int *found );
+
 /* ITERATIVE FLOOD */
 t_queue	*init_queue( void );
 int		is_q_empty( t_queue *q );
@@ -211,11 +222,17 @@ void	*ft_calloc( size_t nitems, size_t size );
 void	*ft_memset( void *s, int c, size_t n );
 void	*ft_memcpy(void *str1, const void *str2, size_t n);
 int		ismapchar( int ch );
+char	*ft_itoa(int n);
 
 // utils
 int		is_walkable( char ch );
 int		is_in_wall( t_game *game, int x, int y );
 double	get_center( int start, int end );
 double	deg_to_rad( int angle );
+
+/* SEELE */
+void	seele_ult( t_game *g );
+void	seele_init( t_game *g );
+void	audio_init( t_game *g );
 
 #endif

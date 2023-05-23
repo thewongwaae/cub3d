@@ -1,7 +1,7 @@
 NAME		= cub3D
 CC			= gcc
 RM			= rm -rf
-CFLAGS		= -Wall -Werror -Wextra
+CFLAGS		= -Wall -Werror -Wextra -pthread
 MLX			= -lmlx -framework OpenGL -framework AppKit
 # MLX			= -lmlx -framework OpenGL -framework AppKit -L.
 MLXA		= libmlx.a
@@ -10,14 +10,17 @@ INCLUDES	= -I includes
 CHECKS		= checks flood parse queue
 HOOKS		= keypress mouse movement
 INTERACTION	= door
+UTILS		= free gnl split strings stringss stringsss stringssss utils ft_strtok
+SEELE		= seele_ult audio
 RENDER		= main pp render load_textures textures raycast
-UTILS		= free gnl split strings stringss stringsss utils ft_strtok
+
 
 SRCS 		= $(addsuffix .c, $(addprefix srcs/checks/, $(CHECKS))) \
 			$(addsuffix .c, $(addprefix srcs/hooks/, $(HOOKS))) \
 			$(addsuffix .c, $(addprefix srcs/interaction/, $(INTERACTION))) \
 			$(addsuffix .c, $(addprefix srcs/render/, $(RENDER))) \
-			$(addsuffix .c, $(addprefix srcs/utils/, $(UTILS)))
+			$(addsuffix .c, $(addprefix srcs/utils/, $(UTILS)))	\
+			$(addsuffix .c, $(addprefix srcs/seele/, $(SEELE)))
 
 # SRCS = test.c
 
