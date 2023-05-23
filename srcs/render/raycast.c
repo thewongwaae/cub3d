@@ -6,7 +6,7 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 16:41:04 by hwong             #+#    #+#             */
-/*   Updated: 2023/05/19 17:18:02 by hwong            ###   ########.fr       */
+/*   Updated: 2023/05/23 15:23:19 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static void	get_side( t_game *g, t_vec *step )
 }
 
 static void	get_perp_dist( t_game *g, t_vec step, t_vec map_pos )
-{
+{	
 	while (is_walkable(g->map[map_pos.y][map_pos.x]))
 	{
 		if (g->ray.side.x < g->ray.side.y)
@@ -69,11 +69,13 @@ static void	get_perp_dist( t_game *g, t_vec step, t_vec map_pos )
 			g->ray.hit = 1;
 		}
 		g->hit = g->map[map_pos.y][map_pos.x];
+		if (!g->door.met && (g->hit == '2' || g->hit == '3'))
+		{
+			set_door(g, map_pos);
+			g->door.met = true;
+		}
 	}
-	if (g->ray.hit == 0)
-		g->ray.perp_dist = g->ray.side.x - g->ray.delta.x;
-	else
-		g->ray.perp_dist = g->ray.side.y - g->ray.delta.y;
+	calc_perp_dist(g);
 }
 
 /*
@@ -103,6 +105,8 @@ void	raycast( t_game *g )
 	t_vec	step;
 
 	ray = -1;
+	g->door.dist = INT16_MAX;
+	g->door.met = false;
 	while (++ray < WINSIZE_X)
 	{
 		cam_x = 2.0 * ray / (double)WINSIZE_X - 1.0;

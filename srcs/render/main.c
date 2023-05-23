@@ -40,6 +40,7 @@ static void	game_init( t_game *g )
 	g->key.down = false;
 	g->key.right = false;
 	g->sens = 0.1;
+	g->door.met = false;
 	g->moved = true;
 	// g->door = true;
 	g->seele_ani = false;

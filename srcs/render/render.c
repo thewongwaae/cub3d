@@ -6,7 +6,7 @@
 /*   By: nnorazma <nnorazma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 19:14:42 by hwong             #+#    #+#             */
-/*   Updated: 2023/05/23 13:13:36 by nnorazma         ###   ########.fr       */
+/*   Updated: 2023/05/23 15:39:47 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,6 @@ static void	render_player( t_game *game )
 
 	render_bg(game->p.img, (t_vec){0, 0}, (t_vec){game->msize.y * CELL_SIZE,
 		game->msize.x * CELL_SIZE}, TRANS);
-	raycast(game);
 	i = game->p.pix.y;
 	while (i < (game->p.pix.y + game->p.size))
 	{
@@ -118,6 +117,7 @@ int	render( t_game *g )
 		render_bg(g->bg, (t_vec){WINSIZE_Y / 2, 0},
 			(t_vec){WINSIZE_Y, WINSIZE_X}, g->tex->floor);
 		render_player(g);
+		raycast(g);
 		mlx_put_image_to_window(g->mlx, g->win,
 			g->bg.mlx_img, 0, 0);
 		mlx_put_image_to_window(g->mlx, g->win,
