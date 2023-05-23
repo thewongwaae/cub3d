@@ -1,5 +1,13 @@
 #include "cub3d.h"
 
+void	calc_perp_dist( t_game *g )
+{
+	if (g->ray.hit == 0)
+		g->ray.perp_dist = g->ray.side.x - g->ray.delta.x;
+	else
+		g->ray.perp_dist = g->ray.side.y - g->ray.delta.y;
+}
+
 void	set_door( t_game *g, t_vec map_pos )
 {
 	g->door.dist = g->ray.perp_dist;
@@ -9,20 +17,6 @@ void	set_door( t_game *g, t_vec map_pos )
 	g->door.pos = map_pos;
 }
 
-/*
-	On user input of the "space" bar
-	Check whether the player is near to wall/door
-	Check whether player is near a door or wall
-	If closed door,
-		change to opened door
-	If opened door,
-		chage to closed door
-
-	ISSUE: door interacts when player is 20 pixels or smaller
-	near wall after door position coordinates have been taken
-	FIX: take note of what block player is currently facing.
-	perhaps change use of 'its'
-*/
 void	open_door( t_game *g )
 {
 	if (g->door.dist == INT16_MAX)
