@@ -61,6 +61,9 @@ Instead we referred to this, [Raycasting by Lodev.](https://lodev.org/cgtutor/ra
 * [x] Figure out how to do it.
 * [ ] ![seele](https://cdn.discordapp.com/attachments/989407433858375683/1109866833554706472/3b64fcf0fc783e3f1673f371d48fe802_6020605988926938718_1.webp)
 
+## Door Animation
+* This is about to be the most scuffed animation you've ever seen.
+* [ ] Figure out the frames. (Actual video has **118 frames**)
 ## ISSUES
 * [x] Pure raycast render is rough and jagged, anti-aliasing? later on need take vertex coordinates and map to an mlx image.
 	* > Fixed: Completely changed the method. Smoother lines and display.
