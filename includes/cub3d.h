@@ -6,7 +6,7 @@
 /*   By: nnorazma <nnorazma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 16:37:23 by hwong             #+#    #+#             */
-/*   Updated: 2023/05/19 17:32:23 by nnorazma         ###   ########.fr       */
+/*   Updated: 2023/05/23 14:58:59 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,13 @@ typedef struct s_texture
 	int		ceiling;
 }	t_texture;
 
+typedef struct s_door
+{
+	t_vec	pos;
+	double	dist;
+	bool	met;
+}	t_door;
+
 typedef struct s_player
 {
 	int		found;
@@ -95,7 +102,6 @@ typedef struct s_player
 	int		size;
 
 	t_vecd	pix;
-	double	dist;
 	t_vec	map_pos;
 	t_vecd	pdir;
 	t_vecd	plane;
@@ -141,6 +147,7 @@ typedef struct s_game
 	t_vec		msize;
 	t_img		bg;
 	t_img		mmap;
+	t_door		door;
 	t_img		*current_tex;
 }				t_game;
 
@@ -161,6 +168,7 @@ void	forward( t_game *game );
 void	backward( t_game *game );
 void	left( t_game *game );
 void	right( t_game *game );
+void	set_door( t_game *g, t_vec map_pos );
 void	open_door( t_game *g );
 int		key_down( int keycode, t_game *game );
 int		key_up( int keycode, t_game *game );
@@ -170,15 +178,12 @@ int		mouse_hook( int x, int y, t_game *game );
 int		load_textures( t_game *game );
 void	my_pp( t_img img, int x, int y, int colour );
 void	render_cell( t_img img, int color, int h_pixel, int w_pixel );
-t_vecd	get_intersect( t_game *g, double angle );
+void	calc_perp_dist( t_game *g );
 void	raycast( t_game *g );
-double	get_dist( t_vecd p1, t_vecd p2 );
 void	render_minimap( t_game *game );
 int		render( t_game *game );
 void	set_current_tex( t_game *g, t_vec step );
 void	draw_texture( t_game *g );
-// void	draw_column(t_game *g, double dist, int r, double angle);
-
 
 /* UTILS */
 // free
