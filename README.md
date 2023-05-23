@@ -26,12 +26,19 @@
 ## Raycasting
 
 ~~* Refer to that one video I shared~~
+
 ~~* Horizontal and vertical lines (on the grid) handled somewhat separately. Start with a single ray first.~~
+
 ~~* Horizontal check (up or down on the grid):~~
+
 ~~* Check if the nearest cell that the ray is facing on the horizontal line is a wall.~~
+
 ~~* else, add the x and y offset to check the next horizontal line.~~
+
 ~~* Draw a ray, just so we can see whats going on lol~~
+
 ~~* Vertical check (left or right):~~
+
 ~~* Pretty much the same as above.~~
 
 We scrapped the method above for multiple reasons:
@@ -51,7 +58,7 @@ Instead we referred to this, [Raycasting by Lodev.](https://lodev.org/cgtutor/ra
 * [x] Draw texture on screen. :thumbs_up:
 
 ## Audio
-* [ ] Figure out how to do it.
+* [x] Figure out how to do it.
 * [ ] ![seele](https://cdn.discordapp.com/attachments/989407433858375683/1109866833554706472/3b64fcf0fc783e3f1673f371d48fe802_6020605988926938718_1.webp)
 
 ## ISSUES
@@ -62,7 +69,12 @@ Instead we referred to this, [Raycasting by Lodev.](https://lodev.org/cgtutor/ra
 * [x] At certain distances, only the top pixels of the walls seem to be from another texture.
 ![:'>](https://cdn.discordapp.com/attachments/981502977003106384/1107985123334422618/Screenshot_2023-05-16_at_18.57.06.png)
 	* > Fixed: pix(x, y) were swapped in get_wall_hit calculations lol.
-* [x] Textures appear to be scrolling. Observe:
+* [x] Textures appear to be scrolling.
 	* > Fixed: See above.
 * [x] At certain angles, some walls seem to I guess.. crop? It just gets cut off. When walking past the wall, everything beyond that seems to disappear.
 	* > Fixed: Forgot to update the new position in the map. The variable was already declared.
+* [x] Audio forking is wrecking my imac bro.
+	* > Fixed: exit(0)
+* [x] Doors are making the game laggy.
+	* > Fixed: remove fsanitize ???
+* [ ] Seele audio crashes game.
