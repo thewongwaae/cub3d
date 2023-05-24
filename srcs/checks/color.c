@@ -6,7 +6,7 @@
 /*   By: hwong <hwong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 16:16:03 by hwong             #+#    #+#             */
-/*   Updated: 2023/05/24 16:16:23 by hwong            ###   ########.fr       */
+/*   Updated: 2023/05/24 16:27:55 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,8 @@ static int	valid_rgb_string( const char *strrgb ) {
 	{
         if (*strrgb == ',')
             comma++;
-		else if (!is_digit(*strrgb))
+		else if (!is_digit(*strrgb)
+            && *strrgb != ' ')
             return (0);
         strrgb++;
     }

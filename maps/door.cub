@@ -1,9 +1,9 @@
-C 255, 255, 255, 255
+C 255,255,255
 WE textures/acacia_log.xpm
 EA textures/dirt_1.xpm
 NO textures/ancient_debris_side.xpm
 SO textures/seele.xpm
-F 200, 100
+F 200,100,100
 
 111111111111
 100000100001
