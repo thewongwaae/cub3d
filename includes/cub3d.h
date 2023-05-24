@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nnorazma <nnorazma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hwong <hwong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 16:37:23 by hwong             #+#    #+#             */
-/*   Updated: 2023/05/24 14:37:41 by nnorazma         ###   ########.fr       */
+/*   Updated: 2023/05/24 15:34:19 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,11 @@
 # define CLOSE 2
 # define COLLIDE 3
 
-typedef	struct s_audio
+typedef struct s_audio
 {
-	pthread_t tid;
-	int type;
-	bool play;
+	pthread_t	tid;
+	int			type;
+	bool		play;
 }	t_audio;
 
 typedef struct s_vec
@@ -239,6 +239,5 @@ int		is_walkable( char ch );
 int		is_in_wall( t_game *game, int x, int y );
 double	get_center( int start, int end );
 double	deg_to_rad( int angle );
-
 
 #endif
