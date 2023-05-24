@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
+/*   By: nnorazma <nnorazma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 19:12:31 by hwong             #+#    #+#             */
-/*   Updated: 2023/05/09 14:45:03 by hwong            ###   ########.fr       */
+/*   Updated: 2023/05/24 14:18:10 by nnorazma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	is_walkable( char ch )
 double	get_center( int start, int end )
 {
 	return ((double)end - (((double)end
-		- (double)start) / 2));
+				- (double)start) / 2));
 }
 
 int	all_found( int *found )

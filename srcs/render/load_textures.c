@@ -6,7 +6,7 @@
 /*   By: nnorazma <nnorazma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 17:12:17 by hwong             #+#    #+#             */
-/*   Updated: 2023/05/19 17:32:55 by nnorazma         ###   ########.fr       */
+/*   Updated: 2023/05/24 14:18:29 by nnorazma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,9 @@ int	load_textures( t_game *g )
 	if (set_textures(&g->tex->north, g->mlx, g->paths[0])
 		|| set_textures(&g->tex->south, g->mlx, g->paths[1])
 		|| set_textures(&g->tex->west, g->mlx, g->paths[2])
-		|| set_textures(&g->tex->east, g->mlx, g->paths[3]))
+		|| set_textures(&g->tex->east, g->mlx, g->paths[3])
+		|| set_textures(&g->tex->door, g->mlx, "./textures/amogus.xpm")
+		|| set_textures(&g->tex->rock, g->mlx, "./textures/rock.xpm"))
 	{
 		free_tab(g->paths);
 		return (1);

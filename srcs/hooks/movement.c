@@ -22,7 +22,9 @@ void	forward( t_game *g )
 			g->p.map_pos.y = new_map.y;
 			g->p.map_pos.x = new_map.x;
 			g->moved = true;
+			return ;
 		}
+		g->audio[COLLIDE].play = true;
 	}
 }
 
@@ -48,7 +50,9 @@ void	backward( t_game *g )
 			g->p.map_pos.y = new_map.y;
 			g->p.map_pos.x = new_map.x;
 			g->moved = true;
+			return ;
 		}
+		g->audio[COLLIDE].play = true;
 	}
 }
 

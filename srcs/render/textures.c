@@ -6,7 +6,7 @@
 /*   By: nnorazma <nnorazma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 17:12:52 by nnorazma          #+#    #+#             */
-/*   Updated: 2023/05/19 17:32:02 by nnorazma         ###   ########.fr       */
+/*   Updated: 2023/05/24 13:46:02 by nnorazma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,9 @@
 
 void	set_current_tex( t_game *g, t_vec step )
 {
-	if (g->ray.hit == 0)
+	if (g->hit == '2')
+		g->current_tex = &(g->tex->door);
+	else if (g->ray.hit == 0)
 	{
 		if (step.x == 1)
 			g->current_tex = &(g->tex->east);

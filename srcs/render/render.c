@@ -6,7 +6,7 @@
 /*   By: nnorazma <nnorazma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 19:14:42 by hwong             #+#    #+#             */
-/*   Updated: 2023/05/23 15:39:47 by hwong            ###   ########.fr       */
+/*   Updated: 2023/05/24 14:20:14 by nnorazma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,8 +124,8 @@ int	render( t_game *g )
 			g->mmap.mlx_img, 0, 0);
 		mlx_put_image_to_window(g->mlx, g->win,
 			g->p.img.mlx_img, 0, 0);
-		if (g->seele_ani == true)
-			seele_ult(g);
+		if (g->boom == true)
+			boom(g);
 		g->moved = false;
 	}
 	return (0);

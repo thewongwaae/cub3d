@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   door.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nnorazma <nnorazma@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/05/24 14:22:36 by nnorazma          #+#    #+#             */
+/*   Updated: 2023/05/24 14:23:16 by nnorazma         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 void	calc_perp_dist( t_game *g )
@@ -24,9 +36,17 @@ void	open_door( t_game *g )
 	if (g->door.dist < 1)
 	{
 		if (g->map[g->door.pos.y][g->door.pos.x] == '2')
+		{
 			g->map[g->door.pos.y][g->door.pos.x] = '3';
+			g->boom = true;
+			g->audio[DOOR].play = true;
+		}
 		else if (g->map[g->door.pos.y][g->door.pos.x] == '3')
+		{
 			g->map[g->door.pos.y][g->door.pos.x] = '2';
+			g->boom = true;
+			g->audio[DOOR].play = true;
+		}
 		render_minimap(g);
 		g->moved = true;
 	}

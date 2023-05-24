@@ -6,7 +6,7 @@
 /*   By: nnorazma <nnorazma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 17:11:56 by hwong             #+#    #+#             */
-/*   Updated: 2023/05/23 13:54:03 by nnorazma         ###   ########.fr       */
+/*   Updated: 2023/05/24 14:19:40 by nnorazma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,7 @@ static void	game_init( t_game *g )
 	g->sens = 0.1;
 	g->door.met = false;
 	g->moved = true;
-	// g->door = true;
-	g->seele_ani = false;
-	}
+}
 
 /*
 	Initialise mlx variables needed to start-up window
@@ -125,7 +123,6 @@ int	main( int ac, char **av )
 	if (checks(av[1], &game))
 		return (write(2, ": Invalid file\n", 15));
 	init_mlx(&game);
-	seele_init(&game);
 	audio_init(&game);
 	if (load_textures(&game))
 		return (write(2, ": Invalid texture\n", 18));

@@ -6,7 +6,7 @@
 /*   By: nnorazma <nnorazma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 16:37:23 by hwong             #+#    #+#             */
-/*   Updated: 2023/05/23 15:46:12 by nnorazma         ###   ########.fr       */
+/*   Updated: 2023/05/24 14:24:35 by nnorazma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,9 @@
 # define BLACK 0X000000
 # define CELL_SIZE 30
 
-# define MUSIC 1
-# define ULT 2
+# define MUSIC 0
+# define DOOR 1
+# define COLLIDE 2
 
 typedef	struct s_audio
 {
@@ -91,6 +92,8 @@ typedef struct s_texture
 	t_img	south;
 	t_img	east;
 	t_img	west;
+	t_img	door;
+	t_img	rock;
 	int		floor;
 	int		ceiling;
 }	t_texture;
@@ -147,7 +150,7 @@ typedef struct s_game
 	double		sens;
 	bool		leak;
 	bool		moved;
-	bool		seele_ani;
+	bool		boom;
 	t_ray		ray;
 	t_keys		key;
 	t_texture	*tex;
@@ -157,7 +160,7 @@ typedef struct s_game
 	t_img		mmap;
 	t_door		door;
 	t_img		*current_tex;
-	t_audio		audio[2];
+	t_audio		audio[3];
 	void		*seele[39];
 }				t_game;
 
@@ -184,6 +187,8 @@ void	open_door( t_game *g );
 int		key_down( int keycode, t_game *game );
 int		key_up( int keycode, t_game *game );
 int		mouse_hook( int x, int y, t_game *game );
+void	audio_init( t_game *g );
+void	boom( t_game *g );
 
 /* RENDER */
 int		load_textures( t_game *game );
@@ -230,9 +235,5 @@ int		is_in_wall( t_game *game, int x, int y );
 double	get_center( int start, int end );
 double	deg_to_rad( int angle );
 
-/* SEELE */
-void	seele_ult( t_game *g );
-void	seele_init( t_game *g );
-void	audio_init( t_game *g );
 
 #endif
