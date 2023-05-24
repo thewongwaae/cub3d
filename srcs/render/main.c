@@ -37,8 +37,10 @@ static void	game_init( t_game *g )
 	g->fovdeg = 60;
 	g->key.up = false;
 	g->key.left = false;
+	g->key.sleft = false;
 	g->key.down = false;
 	g->key.right = false;
+	g->key.sright = false;
 	g->sens = 0.1;
 	g->door.met = false;
 	g->moved = true;

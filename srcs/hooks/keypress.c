@@ -74,11 +74,15 @@ int	key_down( int keycode, t_game *game )
 {
 	if (keycode == 13 || keycode == 126)
 		game->key.up = true;
-	else if (keycode == 0 || keycode == 123)
+	else if (keycode == 0)
+		game->key.sright = true;
+	else if (keycode == 123)
 		game->key.right = true;
 	else if (keycode == 1 || keycode == 125)
 		game->key.down = true;
-	else if (keycode == 2 || keycode == 124)
+	else if (keycode == 2)
+		game->key.sleft = true;
+	else if (keycode == 124)
 		game->key.left = true;
 	if (keycode == 49)
 		open_door(game);
@@ -99,11 +103,15 @@ int	key_up( int keycode, t_game *game )
 {
 	if (keycode == 13 || keycode == 126)
 		game->key.up = false;
-	else if (keycode == 0 || keycode == 123)
+	else if (keycode == 0)
+		game->key.sright = false;
+	else if (keycode == 123)
 		game->key.right = false;
 	else if (keycode == 1 || keycode == 125)
 		game->key.down = false;
-	else if (keycode == 2 || keycode == 124)
+	else if (keycode == 2)
+		game->key.sleft = false;
+	else if (keycode == 124)
 		game->key.left = false;
 	return (0);
 }
