@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
+/*   By: hwong <hwong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 17:12:14 by hwong             #+#    #+#             */
-/*   Updated: 2023/05/19 17:12:34 by hwong            ###   ########.fr       */
+/*   Updated: 2023/05/24 15:40:06 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,40 +38,6 @@ static char	**cub_to_array( int fd )
 	ft_free(buff);
 	return (res);
 }
-
-/*
-	Parse the 6 lines of texture information in any order
-*/
-// static int	parse_textures( char **mapfile, char **texs, t_game *game )
-// {
-// 	int		i;
-// 	int		j;
-// 	char	*space;
-
-// 	i = -1;
-// 	while (++i < 6)
-// 	{
-// 		j = -1;
-// 		while (mapfile[++j])
-// 		{
-// 			if (!ft_strncmp(mapfile[j], texs[i], ft_slen(texs[i])))
-// 			{
-// 				space = ft_strchr(mapfile[j], ' ');
-// 				if (space)
-// 				{
-// 					game->paths[i] = ft_strdup(space + 1);
-// 					game->foundtex[i] += 1;
-// 					if (j > game->foundtex[6])
-// 						game->foundtex[6] = j;
-// 				}
-// 			}
-// 		}
-// 	}
-// 	game->paths[i] = NULL;
-// 	if (!all_found(game->foundtex))
-// 		return (0);
-// 	return (game->foundtex[6]);
-// }
 
 static void	find_texture_paths( char **mapfile, char **texs, t_game *game )
 {
