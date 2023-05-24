@@ -6,7 +6,7 @@
 /*   By: nnorazma <nnorazma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 14:21:52 by nnorazma          #+#    #+#             */
-/*   Updated: 2023/05/24 14:21:55 by nnorazma         ###   ########.fr       */
+/*   Updated: 2023/05/24 14:43:54 by nnorazma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static void	play_audio( int type )
 	{
 		if (type == MUSIC)
 			music_player("audio/space_walk.mp3", "0.5");
-		else if (type == DOOR)
+		else if (type == OPEN || type == CLOSE)
 			music_player("audio/vine_boom.mp3", "1");
 		else if (type == COLLIDE)
 			music_player("audio/mgrr_alert.mp3", "1");
@@ -45,8 +45,8 @@ static void	*audio( void *arg )
 	{
 		if (sound->type == MUSIC)
 			play_audio(sound->type);
-		if ((sound->type == DOOR || sound->type == COLLIDE)
-			&& sound->play == true)
+		if ((sound->type == OPEN || sound->type == CLOSE
+				|| sound->type == COLLIDE) && sound->play == true)
 		{
 			play_audio(sound->type);
 			sound->play = false;
@@ -60,7 +60,7 @@ void	audio_init( t_game *g )
 	int	i;
 
 	i = 0;
-	while (i < 3)
+	while (i < 4)
 	{
 		g->audio[i].type = i;
 		g->audio[i].play = false;

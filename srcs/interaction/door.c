@@ -6,7 +6,7 @@
 /*   By: nnorazma <nnorazma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 14:22:36 by nnorazma          #+#    #+#             */
-/*   Updated: 2023/05/24 14:23:16 by nnorazma         ###   ########.fr       */
+/*   Updated: 2023/05/24 14:39:09 by nnorazma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,13 @@ void	open_door( t_game *g )
 		{
 			g->map[g->door.pos.y][g->door.pos.x] = '3';
 			g->boom = true;
-			g->audio[DOOR].play = true;
+			g->audio[OPEN].play = true;
 		}
 		else if (g->map[g->door.pos.y][g->door.pos.x] == '3')
 		{
 			g->map[g->door.pos.y][g->door.pos.x] = '2';
 			g->boom = true;
-			g->audio[DOOR].play = true;
+			g->audio[CLOSE].play = true;
 		}
 		render_minimap(g);
 		g->moved = true;

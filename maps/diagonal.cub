@@ -1,0 +1,12 @@
+WE ./textures/debug2.xpm
+EA ./textures/debug2.xpm
+NO ./textures/debug.xpm
+SO ./textures/debug.xpm
+C 0, 0, 0
+F 0, 0, 0
+
+11111
+10011
+10201
+110N1
+11111

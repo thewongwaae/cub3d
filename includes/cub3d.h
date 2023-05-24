@@ -6,7 +6,7 @@
 /*   By: nnorazma <nnorazma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 16:37:23 by hwong             #+#    #+#             */
-/*   Updated: 2023/05/24 14:24:35 by nnorazma         ###   ########.fr       */
+/*   Updated: 2023/05/24 14:37:41 by nnorazma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,9 @@
 # define CELL_SIZE 30
 
 # define MUSIC 0
-# define DOOR 1
-# define COLLIDE 2
+# define OPEN 1
+# define CLOSE 2
+# define COLLIDE 3
 
 typedef	struct s_audio
 {
@@ -160,7 +161,7 @@ typedef struct s_game
 	t_img		mmap;
 	t_door		door;
 	t_img		*current_tex;
-	t_audio		audio[3];
+	t_audio		audio[4];
 	void		*seele[39];
 }				t_game;
 

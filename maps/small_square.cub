@@ -1,9 +1,9 @@
-WE ./textures/basalt_top.xpm
-EA ./textures/debug2.xpm
-NO ./textures/gilded_blackstone.xpm
-SO ./textures/seele.xpm
-C 0,173,2
-F 255,255,255
+NO ./textures/diamond_block.xpm
+SO ./textures/gilded_blackstone.xpm
+WE ./textures/diamond_block.xpm
+EA ./textures/gilded_blackstone.xpm
+F 93, 238, 226
+C 61, 58, 68
 
 11111
 100S1

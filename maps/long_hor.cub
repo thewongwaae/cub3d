@@ -1,9 +1,9 @@
-NO ./textures/player.xpm
-SO ./textures/player.xpm
-WE ./textures/player.xpm
-EA ./textures/player.xpm
-F 255,255,255
-C 0,173,2
+NO ./textures/budding_amethyst.xpm
+SO ./textures/basalt_top.xpm
+WE ./textures/chorus_flower.xpm
+EA ./textures/black_glazed_terracotta.xpm
+F 150, 35, 35
+C 154, 121, 214
 
 11111
 10001

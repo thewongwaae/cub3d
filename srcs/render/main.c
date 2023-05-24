@@ -6,7 +6,7 @@
 /*   By: nnorazma <nnorazma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 17:11:56 by hwong             #+#    #+#             */
-/*   Updated: 2023/05/24 14:19:40 by nnorazma         ###   ########.fr       */
+/*   Updated: 2023/05/24 14:42:02 by nnorazma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ static void	game_init( t_game *g )
 	g->sens = 0.1;
 	g->door.met = false;
 	g->moved = true;
+	g->boom = false;
 }
 
 /*
