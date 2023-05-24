@@ -126,6 +126,8 @@ typedef struct s_keys
 	bool	down;
 	bool	left;
 	bool	right;
+	bool	sleft;
+	bool	sright;
 }	t_keys;
 
 typedef struct s_ray
@@ -182,7 +184,9 @@ void	free_queue( t_queue *q );
 void	forward( t_game *game );
 void	backward( t_game *game );
 void	left( t_game *game );
+void	strafe_left( t_game *game );
 void	right( t_game *game );
+void	strafe_right( t_game *game );
 void	set_door( t_game *g, t_vec map_pos );
 void	open_door( t_game *g );
 int		key_down( int keycode, t_game *game );

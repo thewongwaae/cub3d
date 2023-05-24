@@ -109,7 +109,9 @@ int	render( t_game *g )
 	forward(g);
 	backward(g);
 	left(g);
+	strafe_left(g);
 	right(g);
+	strafe_right(g);
 	if (g->moved == true)
 	{
 		render_bg(g->bg, (t_vec){0, 0}, (t_vec){WINSIZE_Y / 2, WINSIZE_X},

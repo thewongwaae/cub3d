@@ -8,7 +8,7 @@ MLXA		= libmlx.a
 INCLUDES	= -I includes
 
 CHECKS		= checks flood parse queue
-HOOKS		= keypress mouse movement
+HOOKS		= keypress mouse vertical horizontal
 INTERACTION	= door audio boom
 UTILS		= free gnl split strings stringss stringsss stringssss utils ft_strtok
 RENDER		= main pp render load_textures textures raycast
