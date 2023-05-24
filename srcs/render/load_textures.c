@@ -6,7 +6,7 @@
 /*   By: hwong <hwong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 17:12:17 by hwong             #+#    #+#             */
-/*   Updated: 2023/05/24 15:56:38 by hwong            ###   ########.fr       */
+/*   Updated: 2023/05/24 16:15:54 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,61 +29,6 @@ static int	set_textures( t_img *img, void *mlx, char *path )
 	img->mlx_img = mlx_xpm_file_to_image(mlx, path, &img->x, &img->y);
 	img->addr = mlx_get_data_addr(img->mlx_img, &img->bpp,
 			&img->line_len, &img->endian);
-	return (0);
-}
-
-/*
-	Bit-shift an integer to store rgb value
-*/
-static int	rgb_to_int( int r, int g, int b )
-{
-	int	color;
-
-	color = 0;
-	color |= (int)(b % 256);
-	color |= (int)(g % 256) << 8;
-	color |= (int)(r % 256) << 16;
-	return (color);
-}
-
-/*
-	Convert a string rgb value to an int array of 3
-*/
-static int	strrgb_to_rgba( const char *strrgb, int *rgba )
-{
-	char	*tkn;
-	int		i;
-
-	i = 0;
-	tkn = ft_strtok((char *)strrgb, ",");
-	while (tkn)
-	{
-		rgba[i] = ft_atoi(tkn);
-		if (rgba[i] < 0 || rgba[i] > 255)
-			return (1);
-		i++;
-		tkn = ft_strtok(NULL, ",");
-	}
-	return (0);
-}
-
-static int	set_color( t_game *g )
-{
-	int	*c;
-
-	c = malloc(sizeof(int) * 3);
-	if (strrgb_to_rgba(g->paths[4], c))
-	{
-		free(c);
-		return (1);
-	}
-	g->tex->floor = rgb_to_int(c[0], c[1], c[2]);
-	if (strrgb_to_rgba(g->paths[5], c))
-	{
-		free(c);
-		return (1);
-	}
-	g->tex->ceiling = rgb_to_int(c[0], c[1], c[2]);
 	return (0);
 }
 

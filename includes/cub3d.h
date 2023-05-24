@@ -6,7 +6,7 @@
 /*   By: hwong <hwong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 16:37:23 by hwong             #+#    #+#             */
-/*   Updated: 2023/05/24 15:34:19 by hwong            ###   ########.fr       */
+/*   Updated: 2023/05/24 16:17:09 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -172,6 +172,8 @@ int		checks( char *file, t_game *game );
 int		parse_mapfile( char *file, t_game *game );
 int		check_map( t_game *g );
 int		all_found( int *found );
+int		rgb_to_int( int r, int g, int b );
+int		set_color( t_game *g );
 
 /* ITERATIVE FLOOD */
 t_queue	*init_queue( void );

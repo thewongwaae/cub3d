@@ -7,7 +7,7 @@ MLX			= -lmlx -framework OpenGL -framework AppKit
 MLXA		= libmlx.a
 INCLUDES	= -I includes
 
-CHECKS		= checks flood parse queue
+CHECKS		= checks flood parse queue color
 HOOKS		= keypress mouse vertical horizontal
 INTERACTION	= door audio boom
 UTILS		= free gnl split strings stringss stringsss stringssss utils ft_strtok
