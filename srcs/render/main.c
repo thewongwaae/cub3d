@@ -6,7 +6,7 @@
 /*   By: nnorazma <nnorazma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 17:11:56 by hwong             #+#    #+#             */
-/*   Updated: 2023/05/24 14:42:02 by nnorazma         ###   ########.fr       */
+/*   Updated: 2023/05/24 15:43:39 by nnorazma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,10 +126,10 @@ int	main( int ac, char **av )
 	if (checks(av[1], &game))
 		return (write(2, ": Invalid file\n", 15));
 	init_mlx(&game);
-	audio_init(&game);
 	if (load_textures(&game))
 		return (write(2, ": Invalid texture\n", 18));
 	player_init(&game);
+	audio_init(&game);
 	render_minimap(&game);
 	mlx_hook(game.win, 2, (1L << 0), key_down, &game);
 	mlx_hook(game.win, 3, (1L << 0), key_up, &game);

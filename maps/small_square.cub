@@ -1,7 +1,7 @@
 NO ./textures/diamond_block.xpm
 SO ./textures/gilded_blackstone.xpm
-WE ./textures/diamond_block.xpm
-EA ./textures/gilded_blackstone.xpm
+WE ./textures/acacia_log.xpm
+EA ./textures/ancient_debris_side.xpm
 F 93, 238, 226
 C 61, 58, 68
 

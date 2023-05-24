@@ -6,7 +6,7 @@
 /*   By: nnorazma <nnorazma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 17:12:52 by nnorazma          #+#    #+#             */
-/*   Updated: 2023/05/24 13:46:02 by nnorazma         ###   ########.fr       */
+/*   Updated: 2023/05/24 15:40:21 by nnorazma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ void	set_current_tex( t_game *g, t_vec step )
 	else
 	{
 		if (step.y == 1)
-			g->current_tex = &(g->tex->north);
-		else
 			g->current_tex = &(g->tex->south);
+		else
+			g->current_tex = &(g->tex->north);
 	}
 }
 
