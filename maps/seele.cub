@@ -2,8 +2,8 @@ WE ./textures/seele.xpm
 EA ./textures/seele.xpm
 NO ./textures/seele.xpm
 SO ./textures/seele.xpm
-C 34,28,72
-F 34,28,72
+C 34,     28, 5
+F 34,28,    72
 
 11111
 10001

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   color.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hwong <hwong@student.42.fr>                +#+  +:+       +#+        */
+/*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 16:16:03 by hwong             #+#    #+#             */
-/*   Updated: 2023/05/24 16:27:55 by hwong            ###   ########.fr       */
+/*   Updated: 2023/05/24 16:45:42 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,20 +26,21 @@ int	rgb_to_int( int r, int g, int b )
 	return (color);
 }
 
-static int	valid_rgb_string( const char *strrgb ) {
-    int	comma;
-	
+static int	valid_rgb_string( const char *strrgb )
+{
+	int	comma;
+
 	comma = 0;
-    while (*strrgb)
+	while (*strrgb)
 	{
-        if (*strrgb == ',')
-            comma++;
+		if (*strrgb == ',')
+			comma++;
 		else if (!is_digit(*strrgb)
-            && *strrgb != ' ')
-            return (0);
-        strrgb++;
-    }
-    return (comma == 2);
+			&& *strrgb != ' ')
+			return (0);
+		strrgb++;
+	}
+	return (comma == 2);
 }
 
 /*
@@ -62,6 +63,8 @@ static int	strrgb_to_rgba( const char *strrgb, int *rgba )
 		i++;
 		tkn = ft_strtok(NULL, ",");
 	}
+	if (i != 3)
+		return (1);
 	return (0);
 }
 

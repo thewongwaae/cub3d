@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hwong <hwong@student.42.fr>                +#+  +:+       +#+        */
+/*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 19:14:42 by hwong             #+#    #+#             */
-/*   Updated: 2023/05/24 16:18:12 by hwong            ###   ########.fr       */
+/*   Updated: 2023/05/24 16:44:55 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,7 +120,6 @@ int	render( t_game *g )
 			(t_vec){WINSIZE_Y, WINSIZE_X}, g->tex->floor);
 		render_player(g);
 		raycast(g);
-		mlx_clear_window(g->mlx, g->win);
 		mlx_put_image_to_window(g->mlx, g->win,
 			g->bg.mlx_img, 0, 0);
 		mlx_put_image_to_window(g->mlx, g->win,
