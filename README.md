@@ -1,5 +1,6 @@
 # CUB3D 
 
+This project was made by [Wong Hong You | hwong](https://github.com/thewongwaae) and [Nur Almas | nnorazma](https://github.com/M4rrs)
 ### **Current Workflow:**
 * [Map Parsing](#map-parsing)
 * [Top-down player movement](#top-down-player-movement)
